@@ -1,53 +1,28 @@
 name: Notify Telegram 🚀
 
-on:
-  workflow_run:
-    workflows: ["Django Portfolio CI"] # CI workflow-ingiz nomi bilan bir xil bo'lishi kerak
-    types: [completed]
+on: [push]
 
 jobs:
-  on-success:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+  notify:
     runs-on: ubuntu-latest
     steps:
-      - name: Success Message
+      - name: Send message to Telegram
         uses: appleboy/telegram-action@master
         with:
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           format: markdown
           message: |
-            *✅ TESTLAR MUVAFFAQIYATLI O'TDI*
+            *🔔 YANGLANISH XABARI*
             ------------------------------------
             *📁 Loyiha:* `${{ github.repository }}`
-            *🌿 Branch:* `#${{ github.event.workflow_run.head_branch }}`
-            *👤 Muallif:* `${{ github.event.workflow_run.head_commit.author.name }}`
+            *🌿 Branch:* `#${{ github.ref_name }}`
+            *👤 Muallif:* `${{ github.actor }}`
             
-            *📝 Commit:*
-            _${{ github.event.workflow_run.head_commit.message }}_
+            *📝 Xabar:*
+            _${{ github.event.head_commit.message }}_
             
-            *🚀 Holat:* Barcha testlar va tekshiruvlar muvaffaqiyatli yakunlandi. Loyiha stabil!
+            *📊 Holat:* ✅ Muvaffaqiyatli yuklandi
+            *🔗 Havola:* [O'zgarishlarni ko'rish](${{ github.event.head_commit.url }})
             ------------------------------------
-            *🤖 Asilbek.dev Monitoring System*
-
-  on-failure:
-    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Failure Message
-        uses: appleboy/telegram-action@master
-        with:
-          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          to: ${{ secrets.TELEGRAM_CHAT_ID }}
-          format: markdown
-          message: |
-            *🚨 DIQQAT: XATOLIK ANIQLANDI!*
-            ------------------------------------
-            *📁 Loyiha:* `${{ github.repository }}`
-            *🌿 Branch:* `#${{ github.event.workflow_run.head_branch }}`
-            
-            *❌ Muammo:* Testlar yoki Build jarayonida xatolik yuz berdi. 
-            
-            *🔗 Tekshirish:* [Xatolik loglarini ko'rish](${{ github.event.workflow_run.html_url }})
-            ------------------------------------
-            *⚠️ Iltimos, kodni qayta ko'rib chiqing!*
+            *⏰ Vaqt:* ${{ github.event.head_commit.timestamp }}
