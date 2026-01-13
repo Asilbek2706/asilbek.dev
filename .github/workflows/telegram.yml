@@ -1,4 +1,4 @@
-name: Notify Telegram
+name: Notify Telegram 🚀
 
 on: [push]
 
@@ -11,7 +11,19 @@ jobs:
         with:
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          format: markdown
           message: |
-            🚀 GitHub Action ishladi!
-            Repo: ${{ github.repository }}
-            Commit: ${{ github.sha }}
+            *🔔 YANGLANISH XABARI*
+            ------------------------------------
+            *📁 Loyiha:* `${{ github.repository }}`
+            *🌿 Branch:* `#${{ github.ref_name }}`
+            *👤 Muallif:* `${{ github.actor }}`
+            
+            *📝 Xabar:*
+            _${{ github.event.head_commit.message }}_
+            
+            *📊 Holat:* ✅ Muvaffaqiyatli yuklandi
+            *🔗 Havola:* [O'zgarishlarni ko'rish](${{ github.event.head_commit.url }})
+            ------------------------------------
+            *⏰ Vaqt:* ${{ github.event.head_commit.timestamp }}
+            *🤖 Asilbek.dev Bot System*
