@@ -40,8 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
-    'ckeditor',
-    'ckeditor_uploader',
+    'django_ckeditor_5',
 ]
 
 MIDDLEWARE = [
@@ -59,7 +58,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -116,9 +115,58 @@ USE_I18N = True
 USE_TZ = True
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-CKEDITOR_UPLOAD_PATH = "uploads/"
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
+
+CKEDITOR_5_CONFIGS = {
+    "default": {
+        "toolbar": [
+            "heading", "|",
+            "bold", "italic", "link", "|",
+
+            # 🔹 CODE BLOCK TUGMASI (SHART)
+            "codeBlock", "|",
+
+            "bulletedList", "numberedList", "|",
+            "blockQuote", "insertTable", "|",
+            "imageUpload", "|",
+            "undo", "redo",
+        ],
+
+        "image": {
+            "toolbar": [
+                "imageTextAlternative",
+                "toggleImageCaption",
+                "linkImage",
+            ]
+        },
+
+        "table": {
+            "contentToolbar": [
+                "tableColumn",
+                "tableRow",
+                "mergeTableCells",
+            ]
+        },
+
+        # 🔹 CODE BLOCK SOZLAMASI
+        "codeBlock": {
+            "languages": [
+                {"language": "plaintext", "label": "Plain text"},
+                {"language": "python", "label": "Python"},
+                {"language": "javascript", "label": "JavaScript"},
+                {"language": "html", "label": "HTML"},
+                {"language": "css", "label": "CSS"},
+                {"language": "bash", "label": "Bash"},
+                {"language": "json", "label": "JSON"},
+                {"language": "sql", "label": "SQL"},
+            ]
+        },
+    }
+}
+
+
+
 
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
