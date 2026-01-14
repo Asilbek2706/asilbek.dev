@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Title</title>
+
+  <!-- ✅ Prism theme (dark) -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.min.css"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root{
+      --bg: #0b0f19;
+      --surface: #0f172a;
+      --text: #e5e7eb;
+      --muted: #a1a1aa;
+      --border: rgba(255,255,255,.10);
+      --link: #60a5fa;
+      --code-bg: rgba(255,255,255,.06);
+      --quote-bg: rgba(255,255,255,.04);
+      --radius: 14px;
+      --maxw: 860px;
+    }
+
+    * { box-sizing: border-box; }
+    body{
+      margin: 0;
+      background: radial-gradient(1200px 600px at 20% -10%, rgba(96,165,250,.12), transparent 60%),
+                  radial-gradient(900px 500px at 90% 10%, rgba(34,197,94,.10), transparent 55%),
+                  var(--bg);
+      color: var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+      line-height: 1.65;
+    }
+
+    .page{ padding: 28px 16px 48px; }
+
+    .content-wrap{
+      max-width: var(--maxw);
+      margin: 0 auto;
+      background: rgba(255,255,255,.02);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 20px;
+      backdrop-filter: blur(10px);
+    }
+
+    /* CKEditor content container */
+    .ck-content{
+      font-size: 16px;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    /* Headings */
+    .ck-content h1, .ck-content h2, .ck-content h3,
+    .ck-content h4, .ck-content h5, .ck-content h6{
+      line-height: 1.25;
+      margin: 1.2em 0 0.55em;
+      letter-spacing: -0.01em;
+    }
+    .ck-content h1{ font-size: 2rem; }
+    .ck-content h2{ font-size: 1.6rem; }
+    .ck-content h3{ font-size: 1.35rem; }
+    .ck-content h4{ font-size: 1.15rem; }
+    .ck-content h5{ font-size: 1.05rem; }
+    .ck-content h6{ font-size: 0.95rem; color: var(--muted); }
+
+    /* Paragraphs & spacing */
+    .ck-content p{ margin: 0.9em 0; }
+
+    /* Links */
+    .ck-content a{
+      color: var(--link);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(96,165,250,.35);
+    }
+    .ck-content a:hover{
+      border-bottom-color: rgba(96,165,250,.85);
+    }
+
+    /* Lists */
+    .ck-content ul, .ck-content ol{
+      margin: 0.9em 0;
+      padding-left: 1.25em;
+    }
+    .ck-content li{ margin: 0.35em 0; }
+    .ck-content li > ul,
+    .ck-content li > ol{
+      margin-top: 0.35em;
+      margin-bottom: 0.35em;
+    }
+
+    /* Blockquote */
+    .ck-content blockquote{
+      margin: 1em 0;
+      padding: 0.9em 1em;
+      border-left: 4px solid rgba(96,165,250,.6);
+      background: var(--quote-bg);
+      border-radius: 10px;
+      color: rgba(229,231,235,.92);
+    }
+
+    /* Horizontal rule */
+    .ck-content hr{
+      border: 0;
+      border-top: 1px solid var(--border);
+      margin: 1.25em 0;
+    }
+
+    /* Images & media */
+    .ck-content img,
+    .ck-content figure{
+      max-width: 100%;
+      height: auto;
+    }
+    .ck-content figure{ margin: 1.1em 0; }
+    .ck-content figure img{
+      display: block;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+    .ck-content figcaption{
+      margin-top: 0.5em;
+      font-size: 0.9rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* Tables (responsive) */
+    .ck-content table{
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.1em 0;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .ck-content th, .ck-content td{
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .ck-content th{
+      text-align: left;
+      background: rgba(255,255,255,.04);
+      font-weight: 650;
+    }
+    .ck-content tr:last-child td{ border-bottom: 0; }
+    .ck-content td:last-child, .ck-content th:last-child{ border-right: 0; }
+
+    .table-scroll{
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-radius: 12px;
+    }
+    .table-scroll table{ min-width: 640px; }
+
+    /* ✅ Code blocks: Prism bilan mos */
+    .ck-content pre{
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: auto;
+      margin: 1.1em 0;
+    }
+    /* Prism odatda pre[class*="language-"] ga background beradi.
+       Shu sababli pre ni padding bilan, code ni esa normal qoldiramiz. */
+    .ck-content pre[class*="language-"]{
+      padding: 14px 14px;
+    }
+    .ck-content pre code{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    /* Inline code (oddiy matn orasida) */
+    .ck-content :not(pre) > code{
+      background: var(--code-bg);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 8px;
+      padding: 0.15em 0.35em;
+      font-size: 0.95em;
+    }
+
+    /* Small screens */
+    @media (max-width: 520px){
+      .content-wrap{
+        padding: 16px 14px;
+        border-radius: 12px;
+      }
+      .ck-content{ font-size: 15px; }
+      .ck-content h1{ font-size: 1.6rem; }
+      .ck-content h2{ font-size: 1.35rem; }
+      .ck-content h3{ font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="content-wrap">
+      <div class="ck-content">
+        {{ content.content|safe }}
+      </div>
+    </div>
+  </div>
+
+  <!-- ✅ Prism core -->
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+
+  <!-- ✅ Languages (siz ishlatadiganlari) -->
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-python.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-javascript.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script> <!-- HTML -->
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-css.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-sql.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-bash.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-json.min.js"></script>
+</body>
+</html>

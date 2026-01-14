@@ -1,2 +1,5 @@
 .idea
 venv
+.env
+main/migrations/*
+db.sqlite3
