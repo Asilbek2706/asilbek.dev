@@ -3,5 +3,5 @@ from main.models import HomePage
 
 
 def home(request):
-    content = HomePage.objects.first()
-    return render(request, 'home.html', {'content': content})
+    homepage_data = HomePage.objects.first()
+    return render(request, 'home.html', {'homepage': homepage_data})
