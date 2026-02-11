@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block title %}Asilbek.dev | Bosh sahifa{% endblock %}
+
+{% block content %}
+<main class="py-10 space-y-20 bg-[#0a0a0a] text-white min-h-screen">
+
+  <section class="max-w-4xl mx-auto px-4">
+    {% if page %}
+    <div class="prose prose-invert lg:prose-xl">
+      {{ page.content|safe }}
+    </div>
+    {% endif %}
+  </section>
+
+  <section class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 px-4">
+
+    <div class="bg-zinc-900/50 border border-zinc-800 rounded-[2rem] p-8 shadow-xl relative group hover:border-red-600/50 transition-all duration-500">
+      <div class="flex items-center justify-between mb-10">
+        <span class="text-blue-500 text-2xl">🎓</span>
+        <h3 class="text-zinc-400 font-bold tracking-[0.3em] text-xs uppercase">EDUCATION</h3>
+        <div class="w-2 h-2 bg-blue-600 rounded-full shadow-[0_0_10px_#2563eb]"></div>
+      </div>
+
+      <div class="space-y-12 border-l-2 border-zinc-800 ml-4 pl-10 relative">
+        <div class="relative">
+          <div class="absolute -left-[49px] top-1 w-5 h-5 bg-[#0a0a0a] border-2 border-blue-600 rounded-full z-10 shadow-[0_0_10px_#2563eb]"></div>
+          <span class="bg-blue-900/20 text-blue-400 px-4 py-1 rounded-lg text-xs font-mono border border-blue-800/30">2024 — 2028</span>
+          <h4 class="text-xl font-bold text-zinc-100 mt-5">Acharya University Uzbekistan</h4>
+          <p class="text-blue-500 font-semibold text-sm">B.S. in Computer Science & Engineering</p>
+          <p class="text-zinc-500 text-sm mt-3 leading-relaxed">
+            Hozirda 2-bosqich talabasiman (2026). Murakkab algoritmlar va tizimli dizayn bo'yicha tahsil olmoqdaman.
+          </p>
+        </div>
+
+        <div class="relative">
+          <div class="absolute -left-[49px] top-1 w-5 h-5 bg-[#0a0a0a] border-2 border-blue-600 rounded-full z-10"></div>
+          <span class="bg-blue-900/20 text-blue-400 px-4 py-1 rounded-lg text-xs font-mono border border-blue-800/30">Continuous</span>
+          <h4 class="text-xl font-bold text-zinc-100 mt-5">Full-Stack Specialization</h4>
+          <p class="text-zinc-500 text-sm mt-3 leading-relaxed">
+            Intensive self-study on Golang, Redis, and React Micro-frontend architectures.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-zinc-900/50 border border-zinc-800 rounded-[2rem] p-8 shadow-xl hover:border-red-600/50 transition-all duration-500">
+      <div class="flex items-center justify-between mb-10">
+        <div class="flex-1"></div>
+        <h3 class="text-zinc-400 font-bold tracking-[0.3em] text-xs uppercase text-center flex-1">TECHNICAL ARSENAL</h3>
+        <div class="flex-1 flex justify-end">
+          <div class="w-2 h-2 bg-blue-600 rounded-full shadow-[0_0_10px_#2563eb]"></div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        <div class="bg-zinc-800/30 border border-zinc-800/50 p-4 rounded-2xl flex items-center gap-4 hover:bg-zinc-800 transition-colors group">
+          <span class="w-2 h-2 bg-blue-500 rounded-full group-hover:scale-150 transition-transform shadow-[0_0_8px_#3b82f6]"></span>
+          <span class="text-zinc-300 font-medium">React.js</span>
+        </div>
+        <div class="bg-zinc-800/30 border border-zinc-800/50 p-4 rounded-2xl flex items-center gap-4 hover:bg-zinc-800 transition-colors group">
+          <span class="w-2 h-2 bg-blue-500 rounded-full group-hover:scale-150 transition-transform shadow-[0_0_8px_#3b82f6]"></span>
+          <span class="text-zinc-300 font-medium">TypeScript</span>
+        </div>
+        <div class="bg-zinc-800/30 border border-zinc-800/50 p-4 rounded-2xl flex items-center gap-4 hover:bg-zinc-800 transition-colors group">
+          <span class="w-2 h-2 bg-blue-500 rounded-full group-hover:scale-150 transition-transform shadow-[0_0_8px_#3b82f6]"></span>
+          <span class="text-zinc-300 font-medium">JavaScript</span>
+        </div>
+        <div class="bg-zinc-800/30 border border-zinc-800/50 p-4 rounded-2xl flex items-center gap-4 hover:bg-zinc-800 transition-colors group">
+          <span class="w-2 h-2 bg-blue-500 rounded-full group-hover:scale-150 transition-transform shadow-[0_0_8px_#3b82f6]"></span>
+          <span class="text-zinc-300 font-medium">Python</span>
+        </div>
+        <div class="bg-zinc-800/30 border border-zinc-800/50 p-4 rounded-2xl flex items-center gap-4 hover:bg-zinc-800 transition-colors group">
+          <span class="w-2 h-2 bg-blue-500 rounded-full group-hover:scale-150 transition-transform shadow-[0_0_8px_#3b82f6]"></span>
+          <span class="text-zinc-300 font-medium">SASS / SCSS</span>
+        </div>
+        <div class="bg-zinc-800/30 border border-zinc-800/50 p-4 rounded-2xl flex items-center gap-4 hover:bg-zinc-800 transition-colors group">
+          <span class="w-2 h-2 bg-blue-500 rounded-full group-hover:scale-150 transition-transform shadow-[0_0_8px_#3b82f6]"></span>
+          <span class="text-zinc-300 font-medium">SQLite3</span>
+        </div>
+        <div class="bg-zinc-800/30 border border-zinc-800/50 p-4 rounded-2xl flex items-center gap-4 hover:bg-zinc-800 transition-colors group">
+          <span class="w-2 h-2 bg-blue-500 rounded-full group-hover:scale-150 transition-transform shadow-[0_0_8px_#3b82f6]"></span>
+          <span class="text-zinc-300 font-medium">Golang</span>
+        </div>
+        <div class="bg-zinc-800/30 border border-zinc-800/50 p-4 rounded-2xl flex items-center gap-4 hover:bg-zinc-800 transition-colors group">
+          <span class="w-2 h-2 bg-blue-500 rounded-full group-hover:scale-150 transition-transform shadow-[0_0_8px_#3b82f6]"></span>
+          <span class="text-zinc-300 font-medium">Redis</span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="max-w-6xl mx-auto px-4 pb-20">
+    <h2 class="text-4xl font-black text-white mb-12 text-center uppercase tracking-[0.2em]">
+      Tanlangan <span class="text-red-600 drop-shadow-[0_0_15px_rgba(220,38,38,0.8)]">Loyihalar</span>
+    </h2>
+
+    <div class="grid sm:grid-cols-2 gap-10">
+      {% for project in projects %}
+      <div class="group relative bg-zinc-900/50 rounded-[2rem] overflow-hidden border border-zinc-800 hover:border-red-600 transition-all duration-700 shadow-2xl">
+        {% if project.image %}
+        <div class="overflow-hidden">
+          <img src="{{ project.image.url }}" class="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-700 opacity-60 group-hover:opacity-100">
+        </div>
+        {% endif %}
+        <div class="p-8">
+          <h3 class="text-2xl font-bold text-white mb-3">{{ project.title }}</h3>
+          <p class="text-zinc-400 text-sm mb-6 leading-relaxed">{{ project.description|truncatechars:120 }}</p>
+          <a href="{{ project.link }}" target="_blank" class="inline-flex items-center text-red-600 font-black tracking-widest text-xs hover:text-red-500 transition-colors">
+            LOYIHANI KO'RISH <span class="ml-3 group-hover:translate-x-2 transition-transform">→</span>
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+</main>
+{% endblock %}

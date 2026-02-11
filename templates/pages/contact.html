@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+{% block title %}Bog'lanish | Asilbek.dev{% endblock %}
+
+{% block content %}
+<main class="py-16 bg-[#0a0a0a] min-h-screen text-white">
+    <div class="max-w-6xl mx-auto px-4">
+
+        <div class="mb-16">
+            <h1 class="text-5xl font-black tracking-tighter uppercase italic">
+                Menga <span class="text-red-600 drop-shadow-[0_0_15px_rgba(220,38,38,0.6)]">Xabar Yo'llang</span>
+            </h1>
+            <div class="h-1 w-24 bg-red-600 mt-4 rounded-full"></div>
+            {% if page.content %}
+            <div class="mt-6 prose prose-invert prose-red max-w-2xl text-zinc-400">
+                {{ page.content|safe }}
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="grid lg:grid-cols-12 gap-12">
+
+            <div class="lg:col-span-4 space-y-8">
+                <div class="bg-zinc-900/50 border border-zinc-800 p-8 rounded-[2rem] shadow-xl">
+                    <h3 class="text-xs font-bold tracking-[0.3em] text-zinc-500 uppercase mb-8">Mening Ma'lumotlarim</h3>
+
+                    <ul class="space-y-6">
+                        {% if contact_settings.email %}
+                        <li class="group">
+                            <p class="text-[10px] text-zinc-600 uppercase tracking-widest mb-1">Elektron Pochta</p>
+                            <a href="mailto:{{ contact_settings.email }}" class="text-zinc-200 hover:text-red-500 transition-colors font-medium break-all">
+                                {{ contact_settings.email }}
+                            </a>
+                        </li>
+                        {% endif %}
+
+                        {% if contact_settings.telegram %}
+                        <li class="group">
+                            <p class="text-[10px] text-zinc-600 uppercase tracking-widest mb-1">Telegram</p>
+                            <a href="https://t.me/{{ contact_settings.telegram }}" target="_blank" class="text-zinc-200 hover:text-red-500 transition-colors font-medium flex items-center gap-2">
+                                @{{ contact_settings.telegram }}
+                                <span class="w-1.5 h-1.5 bg-red-600 rounded-full animate-pulse"></span>
+                            </a>
+                        </li>
+                        {% endif %}
+
+                        {% if contact_settings.address %}
+                        <li>
+                            <p class="text-[10px] text-zinc-600 uppercase tracking-widest mb-1">Manzil</p>
+                            <p class="text-zinc-200">{{ contact_settings.address }}</p>
+                        </li>
+                        {% endif %}
+                    </ul>
+
+                    <div class="mt-12 pt-8 border-t border-zinc-800">
+                        <a href="{% url 'message_history' %}" class="group flex items-center justify-between text-xs font-black tracking-widest text-zinc-400 hover:text-white transition-colors">
+                            Xabarlar tarixi
+                            <span class="group-hover:translate-x-2 transition-transform">→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-8">
+                {% if success %}
+                <div class="bg-red-600/10 border border-red-600/50 text-red-500 p-6 rounded-2xl mb-8 flex items-center gap-4 animate-in fade-in zoom-in duration-500">
+                    <span class="text-2xl">🚀</span>
+                    <div>
+                        <p class="font-bold uppercase tracking-tight">Xabar yuborildi!</p>
+                    </div>
+                </div>
+                {% endif %}
+
+                <div class="bg-zinc-900/30 border border-zinc-800 p-8 md:p-12 rounded-[2rem] shadow-2xl relative overflow-hidden">
+
+                    <form method="POST" class="space-y-6 relative z-10">
+                        {% csrf_token %}
+
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label class="text-[10px] font-bold text-zinc-500 uppercase tracking-widest ml-1">Ismingiz</label>
+                                <input type="text" name="name" required placeholder="John Doe"
+                                       class="w-full bg-black/50 border border-zinc-800 text-white px-6 py-4 rounded-xl focus:outline-none focus:border-red-600 transition-all placeholder:text-zinc-700">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-[10px] font-bold text-zinc-500 uppercase tracking-widest ml-1">Email</label>
+                                <input type="email" name="email" required placeholder="john@example.com"
+                                       class="w-full bg-black/50 border border-zinc-800 text-white px-6 py-4 rounded-xl focus:outline-none focus:border-red-600 transition-all placeholder:text-zinc-700">
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-bold text-zinc-500 uppercase tracking-widest ml-1">Mavzu</label>
+                            <input type="text" name="subject" placeholder="Loyiha haqida..."
+                                   class="w-full bg-black/50 border border-zinc-800 text-white px-6 py-4 rounded-xl focus:outline-none focus:border-red-600 transition-all placeholder:text-zinc-700">
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-bold text-zinc-500 uppercase tracking-widest ml-1">Xabar Mazmuni</label>
+                            <textarea name="message" rows="6" required placeholder="Menga nima demoqchisiz?..."
+                                      class="w-full bg-black/50 border border-zinc-800 text-white px-6 py-4 rounded-xl focus:outline-none focus:border-red-600 transition-all placeholder:text-zinc-700 resize-none"></textarea>
+                        </div>
+
+                        <div class="pt-4">
+                            <button type="submit"
+                                    class="w-full md:w-auto px-12 py-5 bg-red-600 hover:bg-red-700 text-white font-black rounded-xl transition-all shadow-[0_4px_25px_rgba(220,38,38,0.3)] active:scale-95 flex items-center justify-center gap-3 group">
+                                Xabar yuborish
+                                <span class="group-hover:translate-x-2 transition-transform italic text-xl">→</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+{% endblock %}

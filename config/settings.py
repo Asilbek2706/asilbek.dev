@@ -17,7 +17,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'compressor',         # SASS uchun
+    'compressor',
     'main',
     'django_ckeditor_5',
 ]
@@ -61,29 +61,37 @@ DATABASES = {
 # --- STATIC & MEDIA SOZLAMALARI ---
 STATIC_URL = 'static/'
 
-# 1. Siz SASS fayllarni tashlaydigan joy
+# Manba fayllar (Siz tahrir qiladigan joy)
 STATICFILES_DIRS = [
     BASE_DIR / 'static_dev',
 ]
 
-# 2. Serverga yuklaganda ishlatiladigan papka
+# Yig'iladigan joy (Production uchun)
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# 3. SASS ni topish va o'girish uchun finderlar
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'compressor.finders.CompressorFinder',
 ]
 
-# 4. SASS sozlamalari
+# --- COMPRESSOR (SASS) SOZLAMALARI ---
+# Compressor xom SCSS fayllarni static_dev ichidan qidirishi shart
+COMPRESS_ROOT = BASE_DIR / 'static_dev'
+COMPRESS_ENABLED = True
+COMPRESS_OFFLINE = False # Debug rejimida False bo'lgani ma'qul
+
 COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),
 )
-COMPRESS_ENABLED = True # DEBUG=True bo'lsa ham ishlatish uchun
 
+# Media sozlamalari
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = BASE_DIR / 'media'
+
+# Bot sozlamalari
+BOT_TOKEN = os.getenv('BOT_TOKEN')
+ADMIN_CHAT_ID = os.getenv('ADMIN_CHAT_ID')
 
 # --- CKEDITOR 5 SOZLAMALARI ---
 CKEDITOR_5_CONFIGS = {
