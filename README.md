@@ -1,93 +1,73 @@
-# asilbek.dev
+# React + TypeScript + Vite
 
-![Django CI](https://github.com/Asilbek2706/asilbek.dev/actions/workflows/ci_cd.yml/badge.svg)
-![Image Compress](https://github.com/Asilbek2706/asilbek.dev/actions/workflows/image_compress.yml/badge.svg)
-![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-A personal portfolio website built with Django, featuring a content management system for pages, projects, and contact messages.
+Currently, two official plugins are available:
 
-## Features
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-- 📄 Dynamic page management with CKEditor integration
-- 💼 Portfolio/Projects showcase
-- 📧 Contact form with Telegram bot integration
-- 📱 Message history tracking
-- 🖼️ Image upload and management
-- 🎨 Clean and responsive design
+## React Compiler
 
-## Tech Stack
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-- **Backend**: Django 6.0.1
-- **Database**: SQLite (default)
-- **Editor**: CKEditor 5 for rich text editing
-- **Other**: Python-dotenv for environment variables
+## Expanding the ESLint configuration
 
-## Installation
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-1. Clone the repository:
-```bash
-git clone https://github.com/Asilbek2706/asilbek.dev.git
-cd asilbek.dev
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
+
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
 
-2. Create a virtual environment:
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
+
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
-
-3. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
-
-4. Create a `.env` file for environment variables (optional):
-```bash
-# Add your environment variables here
-SECRET_KEY=your-secret-key
-DEBUG=True
-```
-
-5. Run migrations:
-```bash
-python manage.py migrate
-```
-
-6. Create a superuser:
-```bash
-python manage.py createsuperuser
-```
-
-7. Run the development server:
-```bash
-python manage.py runserver
-```
-
-8. Access the site at `http://127.0.0.1:8000/`
-
-## Usage
-
-### Admin Panel
-Access the Django admin panel at `http://127.0.0.1:8000/admin/` to:
-- Manage pages (Home, About, Contact)
-- Add/edit projects
-- Configure contact settings (email, Telegram bot)
-- View received messages
-
-### Pages
-- **Home**: Displays featured projects and content
-- **About**: Personal information and bio
-- **Portfolio**: Complete list of projects
-- **Contact**: Contact form with Telegram integration
-- **Message History**: View contact message history
-
-## Configuration
-
-Configure the following in the Django admin:
-- **Contact Settings**: Email, Telegram username, bot token, and admin ID
-- **Pages**: Edit content for Home, About, and Contact pages
-- **Projects**: Add your projects with images, descriptions, and links
-
-## License
-
-This project is licensed under the MIT License.
