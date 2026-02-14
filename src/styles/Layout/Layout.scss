@@ -14,7 +14,7 @@ $font-bebas: 'Bebas Neue', cursive;
 $font-inter: 'Inter', sans-serif;
 
 @mixin box-shadow-brutal($color: $ink, $size: 8px) {
-  box-shadow: $size $size 0px $color;
+  box-shadow: $size $size 0 $color;
 }
 
 body {
