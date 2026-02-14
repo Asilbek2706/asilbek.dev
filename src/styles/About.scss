@@ -12,7 +12,7 @@ $font-bebas: 'Bebas Neue', cursive;
 $font-inter: 'Inter', sans-serif;
 
 @mixin brutal-shadow($color: $ink, $size: 8px) {
-  box-shadow: $size $size 0px $color;
+  box-shadow: $size $size 0 $color;
 }
 
 @mixin manga-step($s: 0.2s) {
@@ -47,7 +47,6 @@ $font-inter: 'Inter', sans-serif;
   background-color: $paper !important;
   color: $ink;
   overflow-x: hidden;
-  animation: page-reveal 0.5s steps(5) forwards;
 
   section {
     position: relative;
@@ -328,11 +327,6 @@ $font-inter: 'Inter', sans-serif;
 @keyframes badge-float {
   0%, 100% { transform: rotate(6deg) translateY(0); }
   50% { transform: rotate(3deg) translateY(-15px); }
-}
-
-@keyframes page-reveal {
-  from { opacity: 0; transform: scale(0.98); filter: blur(10px); }
-  to { opacity: 1; transform: scale(1); filter: blur(0); }
 }
 
 .spinner-grow {

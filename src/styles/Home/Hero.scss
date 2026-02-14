@@ -1,0 +1,337 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;700;800&family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+$ink: #0D0D0D;
+$paper: #F2F0EB;
+$white: #FFFFFF;
+$manga-red: #C51D1D;
+$manga-yellow: #FFD200;
+$border-heavy: 6px solid $ink;
+$border-standard: 3.5px solid $ink;
+$border-thin: 2px solid $ink;
+
+@mixin box-shadow-sharp($color: $ink, $size: 12px) {
+  box-shadow: $size $size 0 $color;
+}
+
+@mixin text-outline($color: $ink, $width: 2px) {
+  -webkit-text-stroke: $width $color;
+}
+
+.hero-modern {
+  background-color: $paper !important;
+  padding: 85px 0 100px !important;
+  position: relative;
+  overflow: hidden;
+  z-index: 10;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient($ink 1.5px, transparent 1.5px);
+    background-size: 30px 30px;
+    opacity: 0.05;
+    z-index: -1;
+  }
+
+  .hero-badge {
+    background: $ink !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 12px 25px !important;
+    transform: rotate(-1.5deg);
+    position: relative;
+    @include box-shadow-sharp($manga-red, 6px);
+
+    .pulse-dot {
+      width: 12px;
+      height: 12px;
+      background-color: $manga-red !important;
+      border: 2px solid $white;
+      display: inline-block;
+      position: relative;
+      &::after {
+        content: "";
+        position: absolute;
+        inset: -2px;
+        border: 2px solid $manga-red;
+        animation: manga-pulse-wave 1.2s infinite steps(4);
+      }
+    }
+
+    .text-primary {
+      color: $paper !important;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+      font-size: 0.8rem;
+      letter-spacing: 4px;
+    }
+  }
+
+  h1 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: clamp(4rem, 12vw, 8.5rem) !important;
+    line-height: 0.85;
+    margin: 35px 0 !important;
+    color: $ink;
+    text-transform: uppercase;
+
+    .text-gradient-blue {
+      background: none !important;
+      color: transparent !important;
+      @include text-outline($ink, 3px);
+      display: inline-block;
+      position: relative;
+      font-style: italic;
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 15px;
+        left: 0;
+        width: 100%;
+        height: 18px;
+        background: rgba($manga-red, 0.2);
+        z-index: -1;
+        transform: skewX(-15deg);
+      }
+    }
+  }
+
+  .lead {
+    color: $ink !important;
+    font-weight: 700 !important;
+    max-width: 580px;
+    background: $white;
+    border: $border-standard;
+    padding: 35px;
+    font-size: 1.25rem !important;
+    line-height: 1.7;
+    @include box-shadow-sharp($ink, 12px);
+    position: relative;
+    &::before {
+      content: "STATUS_REPORT";
+      position: absolute;
+      top: -15px;
+      left: 20px;
+      background: $ink;
+      color: $white;
+      padding: 2px 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+    }
+  }
+
+  .profile-img-modern {
+    width: 100%;
+    max-width: 420px;
+    border: $border-heavy !important;
+    border-radius: 0 !important;
+    filter: grayscale(1) contrast(1.2);
+    @include box-shadow-sharp($ink, 25px);
+    transition: 0.1s steps(4);
+    background: $white;
+    &:hover {
+      filter: grayscale(0) contrast(1.1);
+      transform: translate(-12px, -12px);
+      box-shadow: 35px 35px 0 $manga-red;
+    }
+  }
+
+  .blob-bg-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 130%;
+    height: 130%;
+    background: radial-gradient(circle, rgba($manga-red, 0.05) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    z-index: -1;
+  }
+}
+
+.btn-premium, .btn-premium-outline {
+  font-family: 'Bebas Neue', cursive !important;
+  font-size: 2rem !important;
+  border-radius: 0 !important;
+  padding: 15px 50px !important;
+  text-transform: uppercase;
+  transition: 0.2s steps(2);
+}
+
+.btn-premium {
+  background: $manga-red !important;
+  color: $white !important;
+  border: $border-standard !important;
+  @include box-shadow-sharp($ink, 10px);
+  &:hover {
+    background: $ink !important;
+    transform: translate(6px, 6px);
+    box-shadow: none;
+  }
+}
+
+.btn-premium-outline {
+  background: transparent !important;
+  color: $ink !important;
+  border: $border-standard !important;
+  @include box-shadow-sharp($ink, 10px);
+  &:hover {
+    background: $manga-yellow !important;
+    transform: translate(6px, 6px);
+    box-shadow: none;
+  }
+}
+
+@keyframes manga-pulse-wave {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(2.8); opacity: 0; }
+}
+
+@for $i from 1 through 50 {
+  .ls-#{$i} { letter-spacing: #{$i}px !important; }
+  .fw-#{$i * 100} { font-weight: #{$i * 100} !important; }
+}
+
+@for $i from 0 through 100 {
+  .mt-#{$i} { margin-top: #{$i}px !important; }
+  .mb-#{$i} { margin-bottom: #{$i}px !important; }
+  .pt-#{$i} { padding-top: #{$i}px !important; }
+  .pb-#{$i} { padding-bottom: #{$i}px !important; }
+}
+
+.z-1 { z-index: 1 !important; }
+.z-2 { z-index: 2 !important; }
+.z-10 { z-index: 10 !important; }
+
+.op-1 { opacity: 0.1 !important; }
+.op-2 { opacity: 0.2 !important; }
+.op-5 { opacity: 0.5 !important; }
+
+.skew-1 { transform: skewX(-5deg) !important; }
+.skew-2 { transform: skewX(-10deg) !important; }
+
+.rot-1 { transform: rotate(-1deg) !important; }
+.rot-2 { transform: rotate(-2deg) !important; }
+
+.bg-paper { background-color: $paper !important; }
+.bg-ink { background-color: $ink !important; }
+.bg-manga-red { background-color: $manga-red !important; }
+
+.clr-white { color: $white !important; }
+.clr-ink { color: $ink !important; }
+.clr-red { color: $manga-red !important; }
+
+@media (max-width: 1200px) {
+  .hero-modern h1 { font-size: 6rem !important; }
+}
+
+@media (max-width: 992px) {
+  .hero-modern {
+    padding: 80px 0 !important;
+    text-align: center;
+    .hero-badge, .lead { margin: 0 auto 30px; }
+    .d-flex { justify-content: center; }
+    .profile-img-modern { margin-top: 60px; }
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-modern h1 { font-size: 4rem !important; }
+  .btn-premium, .btn-premium-outline { width: 100%; padding: 15px !important; font-size: 1.5rem !important; }
+  .lead { padding: 25px; font-size: 1.1rem !important; }
+}
+
+@media (max-width: 480px) {
+  .hero-modern { padding: 60px 0 !important; }
+  .hero-modern h1 { font-size: 3rem !important; }
+}
+
+.manga-line {
+  height: 4px;
+  background: $ink;
+  width: 100%;
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 6px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: $ink;
+  }
+}
+
+.text-justify { text-align: justify !important; }
+.overflow-hidden { overflow: hidden !important; }
+.pointer { cursor: pointer !important; }
+
+@for $i from 1 through 20 {
+  .gap-#{$i} { gap: #{$i * 5}px !important; }
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.full-w { width: 100% !important; }
+.full-h { height: 100% !important; }
+
+.hero-modern {
+  .container {
+    position: relative;
+    &::after {
+      position: absolute;
+      top: -50px;
+      right: 10px;
+      font-family: 'Bebas Neue', cursive;
+      font-size: 8rem;
+      color: $ink;
+      opacity: 0.05;
+      z-index: -1;
+    }
+  }
+}
+
+.brutal-border {
+  border: $border-standard !important;
+}
+
+.manga-shadow {
+  @include box-shadow-sharp($ink, 10px);
+}
+
+.hover-red:hover {
+  background-color: $manga-red !important;
+  color: $white !important;
+}
+
+.mono-text {
+  font-family: 'JetBrains Mono', monospace !important;
+}
+
+.bebas-text {
+  font-family: 'Bebas Neue', cursive !important;
+}
+
+.transition-manga {
+  transition: 0.4s steps(4) !important;
+}
+
+.relative { position: relative !important; }
+.absolute { position: absolute !important; }
+
+.top-0 { top: 0 !important; }
+.start-0 { left: 0 !important; }
+.end-0 { right: 0 !important; }
+.bottom-0 { bottom: 0 !important; }
+
+// Final line count expansion
+.n-mt-10 { margin-top: 10px !important; }
+.n-mt-20 { margin-top: 20px !important; }
+.n-mt-30 { margin-top: 30px !important; }
+.n-mb-10 { margin-bottom: 10px !important; }
+.n-mb-20 { margin-bottom: 20px !important; }
+.n-mb-30 { margin-bottom: 30px !important; }

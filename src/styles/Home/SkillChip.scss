@@ -1,0 +1,101 @@
+$ink: #0D0D0D;
+$white: #FFFFFF;
+$manga-red: #C51D1D;
+$manga-yellow: #FFD200;
+$border-thin: 2.5px solid $ink;
+
+.skill-item-modern {
+  background-color: $white !important;
+  border: $border-thin !important;
+  border-radius: 0 !important; // Pill uslubidan voz kechildi
+  padding: 10px 20px !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  position: relative;
+  transition: 0.15s steps(2);
+  box-shadow: 4px 4px 0 $ink;
+
+  i {
+    font-size: 1.2rem;
+    transition: 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  span {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 800 !important;
+    font-size: 0.85rem !important;
+    text-transform: uppercase;
+    color: $ink !important;
+    letter-spacing: 0.5px;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    transform: translate(0, 0);
+    transition: 0.15s steps(2);
+  }
+
+  &:hover {
+    background-color: $ink !important;
+    transform: translate(-3px, -3px);
+    box-shadow: 8px 8px 0 $manga-yellow;
+
+    span {
+      color: $white !important;
+    }
+
+    i {
+      transform: scale(1.2) rotate(10deg);
+      filter: brightness(1.5);
+    }
+  }
+
+  &:active {
+    transform: translate(2px, 2px);
+    box-shadow: none;
+  }
+}
+
+@for $i from 1 through 50 {
+  .sc-mt-#{$i} { margin-top: #{$i}px !important; }
+  .sc-mb-#{$i} { margin-bottom: #{$i}px !important; }
+}
+
+.sc-fw-medium { font-weight: 600 !important; }
+.sc-small { font-size: 0.75rem !important; }
+.sc-transition { transition: 0.2s all ease-in-out; }
+
+@media (max-width: 992px) {
+  .skill-item-modern {
+    padding: 8px 16px !important;
+    span { font-size: 0.8rem !important; }
+  }
+}
+
+@media (max-width: 768px) {
+  .skill-item-modern {
+    width: auto;
+    flex-grow: 1;
+    justify-content: center;
+    box-shadow: 3px 3px 0 $ink;
+
+    &:hover {
+      box-shadow: 6px 6px 0 $manga-yellow;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .skill-item-modern {
+    gap: 8px;
+    padding: 6px 12px !important;
+
+    i { font-size: 1rem; }
+    span { font-size: 0.75rem !important; }
+  }
+}

@@ -42,7 +42,7 @@ const HeroSection: React.FC<Props> = ({ about }) => (
                                 <div className="contact-card-sm p-3 rounded-4 border">
                                     <i className="bi bi-geo-alt text-primary fs-4 mb-2 d-block"></i>
                                     <span className="text-muted d-block small mb-1">Manzil</span>
-                                    <span className="text-dark fw-bold">Tashkent, Uzbekistan</span>
+                                    <span className="text-dark fw-bold">Bukhara, Uzbekistan</span>
                                 </div>
                             </div>
                         </div>

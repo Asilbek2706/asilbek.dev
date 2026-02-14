@@ -1,0 +1,167 @@
+$ink: #0D0D0D;
+$paper: #F2F0EB;
+$white: #FFFFFF;
+$manga-red: #C51D1D;
+$manga-yellow: #FFD200;
+$border-standard: 3.5px solid $ink;
+$border-thin: 2px solid $ink;
+
+@mixin box-shadow-sharp($color: $ink, $size: 12px) {
+  box-shadow: $size $size 0 $color;
+}
+
+.project-card-premium {
+  background: $white !important;
+  border: $border-standard !important;
+  border-radius: 0 !important;
+  @include box-shadow-sharp($ink, 12px);
+  transition: 0.4s steps(4);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    transform: translate(-8px, -8px);
+    @include box-shadow-sharp($manga-red, 20px);
+
+    .project-img-container img {
+      transform: scale(1.1) rotate(1deg);
+      filter: grayscale(0) contrast(1.1);
+    }
+
+    .project-overlay {
+      opacity: 1 !important;
+      background: rgba($ink, 0.85) !important;
+
+      .btn-light {
+        transform: translateY(0) scale(1);
+      }
+    }
+  }
+
+  .project-img-container {
+    border-bottom: $border-standard;
+    background: $ink;
+    height: 250px;
+
+    img {
+      transition: 0.6s steps(4);
+      filter: grayscale(1) contrast(1.2);
+    }
+
+    .project-overlay {
+      transition: 0.3s steps(4);
+      backdrop-filter: blur(2px);
+
+      .btn-light {
+        background: $white !important;
+        color: $ink !important;
+        border: $border-standard !important;
+        border-radius: 0 !important;
+        font-family: 'Bebas Neue', cursive;
+        font-size: 1.5rem;
+        padding: 10px 25px !important;
+        transform: translateY(20px) scale(0.8);
+        transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        @include box-shadow-sharp($manga-red, 6px);
+
+        &:hover {
+          background: $manga-yellow !important;
+          transform: translate(3px, 3px);
+          box-shadow: none;
+        }
+      }
+    }
+  }
+
+  .p-4 {
+    padding: 30px !important;
+
+    h5 {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 2.2rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: $ink;
+    }
+
+    .bi-github {
+      color: $ink;
+      transition: 0.3s steps(2);
+      &:hover {
+        color: $manga-red;
+        transform: rotate(15deg) scale(1.2);
+      }
+    }
+
+    p {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      line-height: 1.5;
+      color: rgba($ink, 0.7);
+      margin-top: 10px;
+    }
+
+    .border-top {
+      border-top: $border-thin !important;
+      margin-top: 20px;
+
+      .badge {
+        background: $ink !important;
+        color: $white !important;
+        border-radius: 0 !important;
+        font-family: 'JetBrains Mono', monospace;
+        font-weight: 800;
+        padding: 8px 15px;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        @include box-shadow-sharp($manga-yellow, 4px);
+        border: none;
+      }
+    }
+  }
+}
+
+@for $i from 1 through 100 {
+  .p-mt-#{$i} { margin-top: #{$i}px !important; }
+  .p-mb-#{$i} { margin-bottom: #{$i}px !important; }
+  .p-pt-#{$i} { padding-top: #{$i}px !important; }
+  .p-pb-#{$i} { padding-bottom: #{$i}px !important; }
+}
+
+.p-full-w { width: 100% !important; }
+.p-flex { display: flex !important; }
+.p-relative { position: relative !important; }
+
+@media (max-width: 1200px) {
+  .project-card-premium {
+    h5 { font-size: 1.8rem; }
+  }
+}
+
+@media (max-width: 991px) {
+  .project-card-premium {
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .project-card-premium {
+    @include box-shadow-sharp($ink, 8px);
+
+    &:hover {
+      transform: translate(-4px, -4px);
+      box-shadow: 12px 12px 0 $manga-red;
+    }
+
+    .p-4 {
+      padding: 20px !important;
+      h5 { font-size: 1.6rem; }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .project-img-container { height: 200px !important; }
+  .project-card-premium .p-4 p { font-size: 0.9rem; }
+}

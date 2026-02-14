@@ -1,0 +1,197 @@
+$ink: #0D0D0D;
+$paper: #F2F0EB;
+$white: #FFFFFF;
+$manga-red: #C51D1D;
+$manga-yellow: #FFD200;
+$border-standard: 3.5px solid $ink;
+$border-thin: 2px solid $ink;
+
+@mixin box-shadow-sharp($color: $ink, $size: 12px) {
+  box-shadow: $size $size 0 $color;
+}
+
+.stats-card-section {
+  background-color: $paper !important;
+  padding: 100px 0 !important;
+  position: relative;
+  z-index: 5;
+
+  .glass-card-premium {
+    background: $white !important;
+    border: $border-standard !important;
+    border-radius: 0 !important;
+    @include box-shadow-sharp($ink, 15px);
+    transition: 0.3s steps(4);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    &:hover {
+      transform: translate(-6px, -6px);
+      box-shadow: 21px 21px 0 $manga-red;
+
+      h4 i {
+        transform: rotate(-15deg) scale(1.2);
+        color: $manga-red !important;
+      }
+    }
+
+    h4 {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 2.8rem;
+      color: $ink;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 2rem !important;
+
+      i {
+        display: inline-block;
+        transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+    }
+  }
+
+  .modern-timeline {
+    border-left: $border-standard !important;
+    padding-left: 30px !important;
+    margin-left: 10px;
+    position: relative;
+
+    .badge {
+      background: $ink !important;
+      color: $white !important;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+      border-radius: 0 !important;
+      padding: 10px 18px;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      display: inline-block;
+      @include box-shadow-sharp($manga-red, 5px);
+      border: none;
+    }
+
+    h5 {
+      font-weight: 900;
+      font-size: 1.6rem;
+      margin-top: 25px;
+      color: $ink;
+      text-transform: uppercase;
+      letter-spacing: -0.5px;
+    }
+
+    p {
+      font-weight: 500;
+      line-height: 1.8;
+      color: rgba($ink, 0.8) !important;
+      font-size: 1.1rem;
+    }
+  }
+
+  .skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+}
+
+.skill-chip-wrapper {
+  border: $border-thin !important;
+  background: $white !important;
+  border-radius: 0 !important;
+  padding: 12px 22px !important;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: 0.2s steps(2);
+  position: relative;
+
+  span {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 800;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: $ink;
+  }
+
+  i {
+    font-size: 1.2rem;
+    color: $ink;
+  }
+
+  &:hover {
+    background: $ink !important;
+    transform: translate(-4px, -4px);
+    @include box-shadow-sharp($manga-yellow, 8px);
+
+    span, i {
+      color: $white !important;
+    }
+  }
+}
+
+@for $i from 1 through 150 {
+  .s-mt-#{$i} { margin-top: #{$i}px !important; }
+  .s-mb-#{$i} { margin-bottom: #{$i}px !important; }
+  .s-pt-#{$i} { padding-top: #{$i}px !important; }
+  .s-pb-#{$i} { padding-bottom: #{$i}px !important; }
+}
+
+@for $i from 1 through 10 {
+  .s-z-#{$i} { z-index: #{$i} !important; }
+}
+
+.s-full-w { width: 100% !important; }
+.s-flex { display: flex !important; }
+.s-ai-center { align-items: center !important; }
+.s-relative { position: relative !important; }
+.s-uppercase { text-transform: uppercase !important; }
+
+@media (max-width: 1200px) {
+  .stats-card-section .glass-card-premium {
+    padding: 40px !important;
+    h4 { font-size: 2.2rem; }
+  }
+}
+
+@media (max-width: 991px) {
+  .stats-card-section {
+    padding: 70px 0 !important;
+    .col-lg-7, .col-lg-5 {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .stats-card-section .glass-card-premium {
+    padding: 30px !important;
+    @include box-shadow-sharp($ink, 10px);
+
+    h4 { font-size: 2rem; margin-bottom: 1.5rem !important; }
+  }
+
+  .modern-timeline {
+    padding-left: 20px !important;
+    h5 { font-size: 1.3rem; }
+    p { font-size: 1rem; }
+  }
+
+  .skill-chip-wrapper {
+    width: 100%;
+    justify-content: center;
+    padding: 15px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-card-section {
+    padding: 50px 0 !important;
+    h4 { font-size: 1.8rem; }
+  }
+  .modern-timeline .badge {
+    font-size: 0.8rem;
+    padding: 8px 14px;
+  }
+}

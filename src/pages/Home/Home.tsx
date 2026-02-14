@@ -9,7 +9,7 @@ import StatsCard from "./StatsCards.tsx";
 import SectionHeader from "../../components/Shared/UI/SectionHeader.tsx";
 import ProjectCard from "../../components/Shared/UI/ProjectCard.tsx";
 
-import '../../styles/Home.scss';
+import '../../styles/Home/Home.scss';
 
 const Home: React.FC = () => {
   const aboutInfo = useAboutStore((state) => state.aboutInfo);
