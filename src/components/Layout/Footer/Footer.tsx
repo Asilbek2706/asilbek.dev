@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { useAboutStore } from "../../../store/useAboutStore.ts";
 import FooterBrand from './FooterBrand';
 import FooterContact from './FooterContact';
-
 import '../../../styles/Layout/Footer.scss';
 
 const Footer: React.FC = () => {
