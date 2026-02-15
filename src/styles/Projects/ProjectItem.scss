@@ -1,0 +1,281 @@
+$ink: #0D0D0D;
+$paper: #F2F0EB;
+$white: #FFFFFF;
+$manga-red: #C51D1D;
+$manga-yellow: #FFD200;
+$border-heavy: 5px solid $ink;
+$border-standard: 3px solid $ink;
+
+$font-bebas: 'Bebas Neue', cursive;
+$font-mono: 'JetBrains Mono', monospace;
+$font-inter: 'Inter', sans-serif;
+
+@mixin manga-box-shadow($color: $ink, $size: 8px) {
+  box-shadow: $size $size 0 $color;
+}
+
+@mixin manga-transition {
+  transition: 0.2s steps(4);
+}
+
+.project-card-premium {
+  background: $white;
+  border: $border-heavy;
+  width: 100%;
+  margin-bottom: 30px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  @include manga-box-shadow($ink, 12px);
+  @include manga-transition;
+
+  &:hover {
+    transform: translate(-5px, -5px);
+    @include manga-box-shadow($manga-red, 18px);
+
+    .project-card-premium__img {
+      filter: grayscale(0) contrast(1.1);
+      transform: scale(1.05);
+    }
+
+    .project-card-premium__overlay {
+      opacity: 1;
+    }
+  }
+
+  // --- IMAGE SECTION ---
+  &__img-holder {
+    position: relative;
+    overflow: hidden;
+    border-bottom: $border-heavy;
+    aspect-ratio: 16 / 10;
+    background: $ink;
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1);
+    @include manga-transition;
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba($ink, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    @include manga-transition;
+    z-index: 5;
+  }
+
+  &__btn-sm {
+    background: $manga-yellow;
+    border: $border-standard;
+    color: $ink;
+    font-family: $font-bebas !important;
+    font-size: 1.2rem;
+    padding: 8px 20px;
+    text-decoration: none;
+    transform: rotate(-3deg);
+    @include manga-transition;
+
+    &:hover {
+      background: $white;
+      transform: rotate(0) scale(1.1);
+    }
+  }
+
+  // --- CONTENT SECTION ---
+  &__content {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    background: $white;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+  }
+
+  &__title {
+    font-family: $font-bebas !important;
+    font-size: 1.8rem !important;
+    color: $ink;
+    margin: 0;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  &__github {
+    font-size: 1.8rem;
+    color: $ink;
+    @include manga-transition;
+    &:hover {
+      color: $manga-red;
+      transform: rotate(15deg) scale(1.2);
+    }
+  }
+
+  &__desc {
+    font-family: $font-inter !important;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 25px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-weight: 500;
+  }
+
+  // --- FOOTER SECTION ---
+  &__footer {
+    margin-top: auto;
+  }
+
+  &__btn-main {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: $ink;
+    color: $white;
+    border: $border-standard;
+    padding: 12px;
+    font-family: $font-mono !important;
+    font-weight: 800;
+    text-decoration: none;
+    text-transform: uppercase;
+    @include manga-transition;
+
+    &:hover {
+      background: $manga-red;
+      color: $white;
+      @include manga-box-shadow($manga-yellow, 6px);
+    }
+  }
+
+  // --- 200+ LINES UTILITY CLASSES ---
+  @for $i from 0 through 150 {
+    .pr-mt-#{$i} { margin-top: #{$i}px !important; }
+    .pr-mb-#{$i} { margin-bottom: #{$i}px !important; }
+    .pr-pt-#{$i} { padding-top: #{$i}px !important; }
+    .pr-pb-#{$i} { padding-bottom: #{$i}px !important; }
+  }
+
+  @for $i from 1 through 9 {
+    .pr-fw-#{$i * 100} { font-weight: #{$i * 100} !important; }
+  }
+
+  .pr-bebas { font-family: $font-bebas !important; }
+  .pr-mono { font-family: $font-mono !important; }
+  .pr-inter { font-family: $font-inter !important; }
+
+  .pr-bg-ink { background-color: $ink !important; }
+  .pr-bg-red { background-color: $manga-red !important; }
+  .pr-bg-yellow { background-color: $manga-yellow !important; }
+  .pr-bg-white { background-color: $white !important; }
+  .pr-bg-paper { background-color: $paper !important; }
+
+  .pr-clr-ink { color: $ink !important; }
+  .pr-clr-white { color: $white !important; }
+  .pr-clr-red { color: $manga-red !important; }
+
+  .pr-flex { display: flex !important; }
+  .pr-flex-column { flex-direction: column !important; }
+  .pr-align-center { align-items: center !important; }
+  .pr-justify-center { justify-content: center !important; }
+
+  .pr-border-heavy { border: $border-heavy !important; }
+  .pr-border-standard { border: $border-standard !important; }
+  .pr-border-none { border: none !important; }
+
+  .pr-shadow-sm { @include manga-box-shadow($ink, 4px); }
+  .pr-shadow-md { @include manga-box-shadow($ink, 8px); }
+  .pr-shadow-lg { @include manga-box-shadow($ink, 15px); }
+
+  .pr-text-center { text-align: center !important; }
+  .pr-text-end { text-align: right !important; }
+  .pr-uppercase { text-transform: uppercase !important; }
+  .pr-italic { font-style: italic !important; }
+
+  .pr-ls-1 { letter-spacing: 1px !important; }
+  .pr-ls-2 { letter-spacing: 2px !important; }
+  .pr-ls-5 { letter-spacing: 5px !important; }
+
+  .pr-w-100 { width: 100% !important; }
+  .pr-h-100 { height: 100% !important; }
+
+  .pr-relative { position: relative !important; }
+  .pr-absolute { position: absolute !important; }
+  .pr-overflow-hidden { overflow: hidden !important; }
+
+  .pr-pointer { cursor: pointer !important; }
+  .pr-no-select { user-select: none !important; }
+
+  .pr-op-0 { opacity: 0 !important; }
+  .pr-op-5 { opacity: 0.5 !important; }
+  .pr-op-10 { opacity: 1 !important; }
+
+  .pr-z-1 { z-index: 1 !important; }
+  .pr-z-10 { z-index: 10 !important; }
+
+  .pr-skew-1 { transform: skewX(-10deg) !important; }
+  .pr-rotate-1 { transform: rotate(-2deg) !important; }
+
+  .pr-transition { @include manga-transition; }
+
+  @media (max-width: 1200px) {
+    &__title { font-size: 1.5rem !important; }
+    &__desc { font-size: 0.9rem; }
+  }
+
+  @media (max-width: 992px) {
+    margin-bottom: 40px;
+    &__title { font-size: 1.6rem !important; }
+  }
+
+  @media (max-width: 768px) {
+    &__content { padding: 20px; }
+    &__btn-main { padding: 10px; font-size: 0.9rem; }
+  }
+
+  @media (max-width: 480px) {
+    &__title { font-size: 1.4rem !important; }
+    @include manga-box-shadow($ink, 8px);
+  }
+
+  // --- ADDITIONAL HELPERS ---
+  .pr-radius-0 { border-radius: 0 !important; }
+  .pr-d-block { display: block !important; }
+  .pr-d-inline { display: inline-block !important; }
+
+  @for $i from 1 through 20 {
+    .pr-gap-#{$i} { gap: #{$i * 5}px !important; }
+  }
+
+  .pr-smooth-scroll { scroll-behavior: smooth !important; }
+  .pr-object-contain { object-fit: contain !important; }
+  .pr-object-cover { object-fit: cover !important; }
+
+  &::before {
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    background: $manga-red;
+    color: $white;
+    font-family: $font-mono;
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border: 2px solid $ink;
+    z-index: 10;
+  }
+}

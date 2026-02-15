@@ -6,7 +6,7 @@ import HeroSection from './HeroSection';
 import PrinciplesSection from './PrinciplesSection';
 import SkillsSection from './SkillsSection';
 
-import '../../styles/About.scss';
+import '../../styles/About/About.scss';
 
 
 const About: React.FC = () => {

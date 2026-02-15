@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@700;800&family=Inter:wght@600&display=swap');
+
+$pr-ink: #0D0D0D;
+$pr-white: #FFFFFF;
+$pr-red: #C51D1D;
+$pr-yellow: #FFD200;
+$pr-blue: #0051FF;
+$pr-border: 4px solid $pr-ink;
+
+@mixin pr-shadow($color: $pr-ink, $size: 12px) {
+  box-shadow: $size $size 0 $color;
+}
+
+.bg-light-soft {
+  background-color: #F2F0EB !important;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient($pr-ink 1px, transparent 1px);
+    background-size: 20px 20px;
+    opacity: 0.05;
+  }
+}
+
+.principle-card {
+  background: $pr-white !important;
+  border: $pr-border !important;
+  border-radius: 0 !important;
+  padding: 45px !important;
+  @include pr-shadow($pr-ink, 14px);
+  transition: 0.2s steps(4);
+  position: relative;
+  z-index: 2;
+
+  &:hover {
+    transform: translate(-8px, -8px);
+    @include pr-shadow($pr-blue, 20px);
+
+    .icon-wrapper-modern {
+      transform: scale(1.1) rotate(-10deg);
+      background-color: $pr-ink !important;
+      color: $pr-white !important;
+    }
+
+    h4 {
+      color: $pr-red;
+    }
+  }
+
+  &::after {
+    content: "PRINCIPLE_STRICT";
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background: $pr-ink;
+    color: $pr-white;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    padding: 2px 10px;
+    font-weight: 800;
+  }
+
+  .icon-wrapper-modern {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    border: $pr-border;
+    border-radius: 0 !important;
+    margin-bottom: 30px !important;
+    transition: 0.3s steps(3);
+    @include pr-shadow($pr-yellow, 6px);
+  }
+
+  h4 {
+    font-family: 'Bebas Neue', cursive !important;
+    font-size: 2.2rem !important;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 15px !important;
+    color: $pr-ink;
+    transition: 0.2s;
+  }
+
+  p {
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 600 !important;
+    line-height: 1.6 !important;
+    color: rgba($pr-ink, 0.8) !important;
+    font-size: 1.05rem !important;
+  }
+}
+
+.display-5.fw-bold.text-dark {
+  font-family: 'Bebas Neue', cursive !important;
+  font-size: 4rem !important;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  display: inline-block;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    width: 100%;
+    height: 15px;
+    background: $pr-yellow;
+    z-index: -1;
+    opacity: 0.5;
+    transform: skewX(-15deg);
+  }
+}
+
+@for $i from 1 through 10 {
+  .pr-rotate-#{$i} { transform: rotate(#{$i}deg); }
+}
+
+@media (max-width: 991px) {
+  .principle-card {
+    margin-bottom: 20px;
+    padding: 35px !important;
+
+    h4 { font-size: 1.8rem !important; }
+  }
+}
+
+@media (max-width: 768px) {
+  .display-5.fw-bold.text-dark {
+    font-size: 2.8rem !important;
+  }
+}
+
+.pr-manga-speed-lines {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: repeating-linear-gradient(90deg, $pr-ink, $pr-ink 20px, transparent 20px, transparent 40px);
+  opacity: 0.1;
+  z-index: 1;
+}
+
+.pr-z-index { z-index: 10; }
+.pr-relative { position: relative; }

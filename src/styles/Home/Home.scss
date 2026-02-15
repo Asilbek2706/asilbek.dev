@@ -3,191 +3,208 @@
 @import './ProjectCard';
 @import './SectionHeader';
 @import './SkillChip';
+
 $ink: #0D0D0D;
 $paper: #F2F0EB;
 $white: #FFFFFF;
 $manga-red: #C51D1D;
 $manga-yellow: #FFD200;
-$manga-blue: #0044CC;
-$border-heavy: 5px solid $ink;
-$border-standard: 3.5px solid $ink;
-$border-thin: 2px solid $ink;
+$border-heavy: 6px solid $ink;
+$border-standard: 4px solid $ink;
+$font-bebas: 'Bebas Neue', cursive;
+$font-mono: 'JetBrains Mono', monospace;
 
-@mixin box-shadow-sharp($color: $ink, $size: 12px) {
+@mixin manga-shadow($color: $ink, $size: 10px) {
   box-shadow: $size $size 0 $color;
 }
 
-@mixin text-outline($color: $ink, $width: 1.5px) {
-  -webkit-text-stroke: $width $color;
+@mixin manga-transition {
+  transition: 0.15s steps(3);
 }
 
 .home-page-container {
-  background-color: $paper !important;
-  min-height: 100vh;
+  background-color: $paper;
   position: relative;
-  &.fade-in { animation: manga-entry 0.8s steps(4) forwards; }
-}
+  overflow-x: hidden;
 
-.hero-modern {
-  background-color: $paper !important;
-  padding: 100px 0 !important;
-  position: relative;
-  z-index: 10;
   &::before {
-    content: ""; position: absolute; inset: 0;
+    content: "";
+    position: absolute;
+    inset: 0;
     background-image: radial-gradient($ink 1.5px, transparent 1.5px);
-    background-size: 30px 30px; opacity: 0.05; z-index: -1;
+    background-size: 30px 30px;
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 1;
   }
-  .hero-badge {
-    background: $ink !important; border-radius: 0 !important;
-    padding: 12px 25px !important; transform: rotate(-1.5deg);
-    @include box-shadow-sharp($manga-red, 6px);
-    .text-primary { color: $paper !important; font-family: 'JetBrains Mono', monospace; font-weight: 800; letter-spacing: 4px; }
-  }
-  h1 {
-    font-family: 'Bebas Neue', cursive; font-size: clamp(4rem, 12vw, 8rem) !important;
-    line-height: 0.85; margin: 35px 0 !important; color: $ink; text-transform: uppercase;
-    .text-gradient-blue {
-      color: transparent !important; @include text-outline($ink, 3px);
-      display: inline-block; position: relative; font-style: italic;
-      &::after { content: ""; position: absolute; bottom: 15px; left: 0; width: 100%; height: 15px; background: rgba($manga-red, 0.2); z-index: -1; }
+
+  section.bg-white {
+    background-color: $paper !important;
+    position: relative;
+    z-index: 2;
+    border-top: $border-heavy;
+
+    &::after {
+      content: "PROJECT_ARCHIVE_2024";
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: $ink;
+      color: $white;
+      padding: 5px 15px;
+      font-family: $font-mono;
+      font-size: 0.75rem;
+      font-weight: 900;
     }
   }
-  .lead {
-    background: $white; border: $border-standard; padding: 35px;
-    font-size: 1.25rem !important; font-weight: 700; @include box-shadow-sharp($ink, 12px);
-    position: relative; transform: rotate(0.5deg);
-    &::before { content: "STATUS_01"; position: absolute; top: -15px; left: 20px; background: $ink; color: $white; padding: 2px 12px; font-family: 'JetBrains Mono'; font-size: 0.7rem; }
-  }
-  .profile-img-modern {
-    border: $border-heavy !important; border-radius: 0 !important;
-    filter: grayscale(1) contrast(1.2); @include box-shadow-sharp($ink, 25px);
-    transition: 0.4s steps(4); background: $white;
-    &:hover { filter: grayscale(0); transform: translate(-10px, -10px); box-shadow: 35px 35px 0px $manga-red; }
-  }
-}
 
-.stats-card-section, .py-5.bg-light-soft {
-  background-color: $paper !important;
-  .glass-card-premium {
-    background: $white !important; border: $border-heavy !important; // Border qalinlashdi
-    border-radius: 0 !important; @include box-shadow-sharp($ink, 15px);
-    padding: 45px !important; transition: 0.3s steps(4);
-    &:hover { transform: translate(-5px, -5px); box-shadow: 20px 20px 0px $manga-red; }
-    h4 {
-      font-family: 'Bebas Neue', cursive; font-size: 3rem; margin-bottom: 30px !important;
-      i { color: $manga-red !important; margin-right: 15px; }
+  .btn-outline-primary {
+    border: $border-standard !important;
+    background: $ink !important;
+    color: $white !important;
+    border-radius: 0 !important;
+    font-family: $font-bebas !important;
+    font-size: 1.8rem !important;
+    padding: 15px 50px !important;
+    text-transform: uppercase;
+    @include manga-shadow($manga-red, 8px);
+    @include manga-transition;
+    position: relative;
+    overflow: hidden;
+
+    &:hover {
+      transform: translate(-4px, -4px);
+      @include manga-shadow($manga-yellow, 12px);
+      background: $manga-red !important;
+    }
+
+    &:active {
+      transform: translate(0, 0);
+      box-shadow: none;
     }
   }
-  .modern-timeline {
-    border-left: $border-standard !important; padding-left: 30px !important;
-    .badge {
-      background: $ink !important; border-radius: 0 !important; padding: 8px 15px;
-      font-family: 'JetBrains Mono'; @include box-shadow-sharp($manga-red, 4px);
-    }
-    h5 { font-weight: 900; font-size: 1.6rem; text-transform: uppercase; margin: 20px 0 10px; }
-    p { font-weight: 600; color: $ink !important; line-height: 1.6; }
+
+  .n-util-font-mono {
+    font-family: $font-mono !important;
+    letter-spacing: -1px;
+    background: $manga-yellow;
+    display: inline-block;
+    padding: 10px 20px;
+    border: $border-standard;
+  }
+
+  @for $i from 1 through 150 {
+    .h-mt-#{$i} { margin-top: #{$i}px !important; }
+    .h-mb-#{$i} { margin-bottom: #{$i}px !important; }
+    .h-pt-#{$i} { padding-top: #{$i}px !important; }
+    .h-pb-#{$i} { padding-bottom: #{$i}px !important; }
+    .h-p-#{$i} { padding: #{$i}px !important; }
+    .h-m-#{$i} { margin: #{$i}px !important; }
+  }
+
+  .h-bebas { font-family: $font-bebas !important; }
+  .h-mono { font-family: $font-mono !important; }
+
+  .h-bg-ink { background-color: $ink !important; }
+  .h-bg-red { background-color: $manga-red !important; }
+  .h-bg-yellow { background-color: $manga-yellow !important; }
+  .h-bg-paper { background-color: $paper !important; }
+
+  .h-clr-white { color: $white !important; }
+  .h-clr-red { color: $manga-red !important; }
+  .h-clr-ink { color: $ink !important; }
+
+  .h-flex { display: flex !important; }
+  .h-flex-col { flex-direction: column !important; }
+  .h-align-center { align-items: center !important; }
+  .h-justify-center { justify-content: center !important; }
+  .h-justify-between { justify-content: space-between !important; }
+
+  .h-w-100 { width: 100% !important; }
+  .h-vh-100 { height: 100vh !important; }
+  .h-relative { position: relative !important; }
+  .h-absolute { position: absolute !important; }
+  .h-z-10 { z-index: 10 !important; }
+  .h-z-20 { z-index: 20 !important; }
+
+  .h-uppercase { text-transform: uppercase !important; }
+  .h-fw-900 { font-weight: 900 !important; }
+  .h-fw-800 { font-weight: 800 !important; }
+
+  .h-ls-1 { letter-spacing: 1px !important; }
+  .h-ls-3 { letter-spacing: 3px !important; }
+  .h-ls-5 { letter-spacing: 5px !important; }
+
+  .h-rotate-1 { transform: rotate(1deg) !important; }
+  .h-rotate-minus-1 { transform: rotate(-1deg) !important; }
+  .h-skew-10 { transform: skewX(-10deg) !important; }
+
+  .h-shadow-sm { @include manga-shadow($ink, 5px); }
+  .h-shadow-md { @include manga-shadow($ink, 10px); }
+  .h-shadow-lg { @include manga-shadow($ink, 20px); }
+
+  .h-pointer { cursor: pointer !important; }
+  .h-no-select { user-select: none !important; }
+  .h-overflow-hidden { overflow: hidden !important; }
+
+  @for $i from 1 through 20 {
+    .h-gap-#{$i} { gap: #{$i * 5}px !important; }
+  }
+
+  @media (max-width: 991px) {
+    .col-lg-5 { width: 100%; }
+  }
+
+  @media (max-width: 768px) {
+    .container { padding: 0 25px; }
+    .btn-outline-primary { width: 100%; padding: 12px 20px !important; font-size: 1.5rem !important; }
+  }
+
+  .h-d-block { display: block !important; }
+  .h-d-flex { display: flex !important; }
+  .h-d-none { display: none !important; }
+
+  .h-transition { @include manga-transition; }
+
+  .h-text-center { text-align: center !important; }
+  .h-text-right { text-align: right !important; }
+  .h-text-justify { text-align: justify !important; }
+
+  .h-border-red { border-color: $manga-red !important; }
+  .h-border-yellow { border-color: $manga-yellow !important; }
+  .h-border-ink { border-color: $ink !important; }
+
+  .h-radius-0 { border-radius: 0 !important; }
+  .h-radius-50 { border-radius: 50% !important; }
+
+  @for $i from 1 through 9 {
+    .h-f-scale-#{$i} { font-size: #{$i * 0.5}rem !important; }
+  }
+
+  .h-object-cover { object-fit: cover !important; }
+  .h-top-0 { top: 0 !important; }
+  .h-left-0 { left: 0 !important; }
+
+  .h-op-5 { opacity: 0.5 !important; }
+  .h-op-10 { opacity: 1 !important; }
+
+  .h-antialiased { -webkit-font-smoothing: antialiased !important; }
+  .h-break-word { word-break: break-word !important; }
+
+  .manga-panel-divider {
+    height: 20px;
+    background: $ink;
+    transform: skewY(-1deg);
+    margin: 40px 0;
+    width: 110%;
+    margin-left: -5%;
+    box-shadow: 0 10px 0 rgba($manga-red, 0.3);
+  }
+
+  .h-cursor-none { cursor: none !important; }
+  .h-user-drag-none { -webkit-user-drag: none !important; }
+
+  @for $i from 1 through 10 {
+    .h-z-index-#{$i} { z-index: #{$i} !important; }
   }
 }
-
-.skill-item-modern {
-  background: $white !important; border: $border-standard !important; // Border qalinlashdi
-  border-radius: 0 !important; padding: 12px 20px !important;
-  transition: 0.15s steps(2); @include box-shadow-sharp($ink, 5px);
-  span { font-family: 'JetBrains Mono'; font-weight: 800; text-transform: uppercase; color: $ink !important; }
-  &:hover {
-    background: $ink !important; transform: translate(-3px, -3px);
-    box-shadow: 8px 8px 0px $manga-yellow;
-    span, i { color: $white !important; }
-  }
-}
-
-.project-card-premium {
-  background: $white !important; border: $border-heavy !important; // Border qalinlashdi
-  border-radius: 0 !important; @include box-shadow-sharp($ink, 15px);
-  transition: 0.4s steps(4);
-  .project-img-container {
-    border-bottom: $border-heavy; height: 280px !important;
-    img { filter: grayscale(1) contrast(1.25); transition: 0.5s steps(4); }
-  }
-  &:hover {
-    transform: translate(-10px, -10px); box-shadow: 30px 30px 0 $manga-red;
-    img {
-      filter: grayscale(1);
-      transition: transform 0.2s steps(4), filter 0.2s steps(4);
-
-      &:hover {
-        filter: grayscale(0);
-        transform: scale(1.05);
-      }
-    }
-    .project-overlay { opacity: 1 !important; background: rgba($ink, 0.8) !important; }
-  }
-  .project-overlay .btn-light {
-    border-radius: 0 !important; border: $border-standard !important;
-  }
-  h5 { font-size: 2.4rem; color: $ink; margin-top: 15px; }
-  p { font-weight: 600; color: rgba($ink, 0.8); height: auto !important; margin-bottom: 20px !important; }
-  .border-top { border-top: $border-standard !important; }
-  .badge { background: $ink !important; border-radius: 0 !important; @include box-shadow-sharp($manga-red, 4px); }
-}
-
-.section-header-modern, .mb-5.text-center {
-  h6 { background: $ink; color: $white !important; transform: skewX(-15deg); padding: 5px 15px; font-family: 'JetBrains Mono'; }
-  h2 { font-family: 'Bebas Neue'; font-size: 5rem !important; @include text-outline($ink, 1px); }
-  .mx-auto.bg-primary { background: $manga-red !important; height: 12px !important; border: $border-standard; border-radius: 0 !important; transform: skewX(-30deg); width: 120px !important; }
-}
-
-.btn-outline-primary {
-  border: $border-heavy !important; background: $white !important;
-  color: $ink !important; border-radius: 0 !important; font-family: 'Bebas Neue';
-  font-size: 2rem !important; padding: 15px 50px !important;
-  @include box-shadow-sharp($ink, 10px);
-  &:hover { background: $manga-yellow !important; transform: translate(5px, 5px); box-shadow: none; }
-}
-
-@keyframes manga-pulse-wave { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(3); opacity: 0; } }
-@keyframes manga-entry { 0% { opacity: 0; transform: translateY(50px); } 100% { opacity: 1; transform: translateY(0); } }
-
-@for $i from 0 through 150 {
-  .n-mt-#{$i} { margin-top: #{$i}px !important; } .n-mb-#{$i} { margin-bottom: #{$i}px !important; }
-  .n-pt-#{$i} { padding-top: #{$i}px !important; } .n-pb-#{$i} { padding-bottom: #{$i}px !important; }
-}
-
-.n-util-font-mono { font-family: 'JetBrains Mono' !important; }
-.n-util-text-ink { color: $ink !important; }
-.n-upper { text-transform: uppercase !important; }
-
-@media (max-width: 1200px) {
-  .hero-modern h1 { font-size: 6rem !important; }
-  .section-header-modern h2 { font-size: 4rem !important; }
-}
-
-@media (max-width: 992px) {
-  .hero-modern, .stats-card-section { text-align: center; .d-flex { justify-content: center; } }
-  .glass-card-premium { margin-bottom: 30px; }
-  .project-card-premium { max-width: 500px; margin: 0 auto; }
-}
-
-@media (max-width: 768px) {
-  .hero-modern h1 { font-size: 4rem !important; }
-  .glass-card-premium { padding: 30px !important; }
-  .btn-outline-primary { width: 100%; font-size: 1.6rem !important; }
-}
-
-@media (max-width: 480px) {
-  .hero-modern h1 { font-size: 3rem !important; }
-  .section-header-modern h2 { font-size: 2.8rem !important; }
-  .skill-item-modern { width: 100%; justify-content: center; }
-}
-
-::-webkit-scrollbar { width: 14px; }
-::-webkit-scrollbar-track { background: $paper; }
-::-webkit-scrollbar-thumb { background: $ink; border: 3px solid $paper; &:hover { background: $manga-red; } }
-
-.manga-grid-overlay { position: fixed; inset: 0; background-image: linear-gradient($ink 1px, transparent 1px), linear-gradient(90deg, $ink 1px, transparent 1px); background-size: 40px 40px; opacity: 0.02; pointer-events: none; }
-.brutal-divider { height: 8px; background: $ink; width: 100%; margin: 50px 0; border-top: 2px solid $white; border-bottom: 2px solid $white; }
-.skew-box { transform: skewX(-10deg); display: inline-block; }
-.text-stroke-red { @include text-outline($manga-red, 1px); }
-.manga-bg-red { background: $manga-red !important; color: $white !important; }
-.manga-bg-yellow { background: $manga-yellow !important; color: $ink !important; }

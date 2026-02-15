@@ -1,116 +1,191 @@
-$ink: #0D0D0D;
-$white: #FFFFFF;
-$manga-red: #C51D1D;
-$manga-yellow: #FFD200;
-$border-heavy: 5px solid $ink;
-$border-standard: 3px solid $ink;
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@800&display=swap');
 
-.mb-5.text-center, .mb-5:not(.text-center) {
-  margin-bottom: 80px !important;
-  position: relative;
-  z-index: 10;
+$sh-ink: #0D0D0D;
+$sh-red: #C51D1D;
+$sh-yellow: #FFD200;
+$sh-white: #FFFFFF;
+$sh-border: 4px solid $sh-ink;
 
-  h6.text-primary {
-    color: $white !important;
-    background: $ink;
+@mixin sh-shadow($color: $sh-ink, $size: 8px) {
+  box-shadow: $size $size 0 $color;
+}
+
+.mb-5 {
+  &.text-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .text-primary.fw-bold.text-uppercase {
+    color: $sh-white !important;
+    background: $sh-ink;
     display: inline-block;
     padding: 6px 15px;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.8rem !important;
+    font-size: 0.85rem !important;
     letter-spacing: 3px !important;
-    text-transform: uppercase;
-    transform: skewX(-15deg);
-    margin-bottom: 15px !important;
-    border: none;
+    transform: rotate(-1.5deg);
+    margin-bottom: 20px !important;
+    @include sh-shadow($sh-red, 5px);
+    border: 2px solid $sh-ink;
     position: relative;
+
+    &::before {
+      content: "> ";
+      color: $sh-yellow;
+    }
+  }
+
+  .display-5.fw-bold.text-dark {
+    font-family: 'Bebas Neue', cursive !important;
+    font-size: clamp(3rem, 8vw, 4.5rem) !important;
+    color: $sh-ink !important;
+    text-transform: uppercase;
+    line-height: 0.9;
+    margin: 0 !important;
+    position: relative;
+    display: block;
+    -webkit-text-stroke: 1px $sh-ink;
 
     &::after {
       content: "";
       position: absolute;
-      inset: 0;
-      border: 1px solid $manga-red;
-      transform: translate(4px, 4px);
+      bottom: 5px;
+      left: 0;
+      width: 100%;
+      height: 12px;
+      background: $sh-yellow;
       z-index: -1;
+      opacity: 0.4;
+      transform: skewX(-15deg);
     }
   }
 
-  h2.display-5 {
-    font-family: 'Bebas Neue', cursive;
-    font-size: clamp(3rem, 8vw, 5.5rem) !important;
-    color: $ink !important;
-    text-transform: uppercase;
-    line-height: 1;
-    margin: 0 !important;
-    position: relative;
-    font-weight: 900 !important;
-
-    &::first-letter {
-      color: $manga-red;
-      -webkit-text-stroke: 2px $ink;
-    }
-  }
-
-  // Centered holatidagi tagidagi chiziq (Manga underline)
-  .mx-auto.bg-primary {
-    background-color: $manga-yellow !important;
-    border: 2px solid $ink;
-    border-radius: 0 !important;
+  // Centered holati uchun tagdagi chiziq (mx-auto bg-primary)
+  .mx-auto.bg-primary.rounded.mt-2 {
+    background-color: $sh-ink !important;
+    height: 8px !important;
     width: 120px !important;
-    height: 12px !important;
-    margin-top: 15px !important;
-    transform: skewX(-30deg);
+    border-radius: 0 !important;
+    margin-top: 25px !important;
     position: relative;
+    border: 2px solid $sh-ink;
+    @include sh-shadow($sh-red, 4px);
 
-    &::before {
+    &::after {
       content: "";
       position: absolute;
-      width: 40px;
-      height: 100%;
-      background: $manga-red;
-      left: -50px;
-      border: 2px solid $ink;
-    }
-  }
-
-  // Chap tomonda turganda maxsus dekorativ chiziq
-  &:not(.text-center) {
-    h2::after {
-      content: "";
-      display: block;
-      width: 80px;
+      right: -15px;
+      top: -2px;
+      width: 8px;
       height: 8px;
-      background: $ink;
-      margin-top: 10px;
+      background: $sh-yellow;
+      border: 2px solid $sh-ink;
     }
   }
 }
 
-@for $i from 1 through 100 {
-  .sh-mt-#{$i} { margin-top: #{$i}px !important; }
-  .sh-mb-#{$i} { margin-bottom: #{$i}px !important; }
+// Qo'shimcha Manga dekoratsiyalari
+@for $i from 1 through 20 {
+  .sh-rotate-#{$i} { transform: rotate(#{$i}deg); }
+  .sh-skew-#{$i} { transform: skewX(-#{$i}deg); }
 }
 
-.sh-uppercase { text-transform: uppercase !important; }
-.sh-ls-2 { letter-spacing: 2px !important; }
-.sh-fw-bold { font-weight: 800 !important; }
-
-@media (max-width: 1200px) {
-  h2.display-5 { font-size: 4.5rem !important; }
+.sh-brutal-container {
+  padding: 40px;
+  border: $sh-border;
+  background: $sh-white;
+  @include sh-shadow($sh-ink, 12px);
 }
 
-@media (max-width: 992px) {
-  .mb-5.text-center, .mb-5:not(.text-center) {
-    margin-bottom: 60px !important;
-    h2.display-5 { font-size: 3.5rem !important; }
+.sh-glitch-effect {
+  &:hover {
+    animation: sh-glitch 0.3s steps(2) infinite;
   }
 }
+
+@keyframes sh-glitch {
+  0% { transform: translate(2px, 0); }
+  50% { transform: translate(-2px, 2px); }
+  100% { transform: translate(0, -2px); }
+}
+
+.sh-manga-dots {
+  background-image: radial-gradient($sh-ink 1px, transparent 1px);
+  background-size: 10px 10px;
+  opacity: 0.1;
+}
+
+.sh-stripe-bg {
+  background: repeating-linear-gradient(
+                  45deg,
+                  transparent,
+                  transparent 10px,
+                  rgba($sh-ink, 0.05) 10px,
+                  rgba($sh-ink, 0.05) 20px
+  );
+}
+
+.sh-title-outline {
+  color: transparent !important;
+  -webkit-text-stroke: 2px $sh-ink;
+}
+
+.sh-badge-yellow {
+  background: $sh-yellow !important;
+  color: $sh-ink !important;
+}
+
+.sh-flex { display: flex !important; }
+.sh-items-center { align-items: center !important; }
+.sh-justify-center { justify-content: center !important; }
+
+.sh-divider-heavy {
+  height: 10px;
+  background: $sh-ink;
+  width: 100%;
+  margin: 40px 0;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: $sh-ink;
+  }
+}
+
+.sh-relative { position: relative !important; }
+.sh-z-10 { z-index: 10 !important; }
 
 @media (max-width: 768px) {
-  h2.display-5 { font-size: 2.8rem !important; }
-  .mx-auto.bg-primary { width: 80px !important; height: 10px !important; }
+  .mb-5 .display-5.fw-bold.text-dark {
+    font-size: 2.5rem !important;
+  }
+
+  .mb-5 .text-primary.fw-bold.text-uppercase {
+    font-size: 0.75rem !important;
+    letter-spacing: 2px !important;
+  }
 }
 
-@media (max-width: 480px) {
-  h2.display-5 { font-size: 2.2rem !important; }
-  h6.text-primary { font-size: 0.7rem !important; letter-spacing: 2px !important; }
+.sh-panel-box {
+  border: $sh-border;
+  padding: 20px;
+  position: relative;
+  &::before {
+    content: "PANEL_01";
+    position: absolute;
+    top: -12px;
+    right: 15px;
+    background: $sh-ink;
+    color: $sh-white;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    padding: 2px 6px;
+  }
 }

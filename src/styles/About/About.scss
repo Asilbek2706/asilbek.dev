@@ -1,0 +1,201 @@
+@import "./HeroSection";
+@import "./PrinciplesSection";
+@import "./SkillsSections";
+
+$ink: #0D0D0D;
+$paper: #F2F0EB;
+$white: #FFFFFF;
+$manga-red: #C51D1D;
+$manga-yellow: #FFD200;
+$manga-blue: #0051FF;
+$border-heavy: 6px solid $ink;
+$border-standard: 4px solid $ink;
+$font-bebas: 'Bebas Neue', cursive;
+$font-mono: 'JetBrains Mono', monospace;
+
+@mixin manga-shadow($color: $ink, $size: 10px) {
+  box-shadow: $size $size 0 $color;
+}
+
+@mixin manga-transition {
+  transition: 0.15s steps(3);
+}
+
+.about-modern-page {
+  background-color: $paper !important;
+  position: relative;
+  overflow-x: hidden;
+  min-height: 100vh;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+            radial-gradient($ink 1.2px, transparent 1.2px),
+            repeating-linear-gradient(45deg, transparent, transparent 20px, rgba($ink, 0.02) 20px, rgba($ink, 0.02) 21px);
+    background-size: 24px 24px, 100% 100%;
+    opacity: 0.07;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  &::after {
+    content: "BIOGRAPHY_DATABASE_V.02";
+    position: absolute;
+    top: 150px;
+    right: -80px;
+    background: $ink;
+    color: $white;
+    padding: 10px 60px;
+    font-family: $font-mono;
+    font-size: 0.8rem;
+    transform: rotate(90deg);
+    letter-spacing: 4px;
+    z-index: 2;
+    font-weight: 900;
+  }
+
+  .vh-100 {
+    background: $paper;
+    .spinner-grow {
+      width: 4rem;
+      height: 4rem;
+      background-color: $ink;
+      border: $border-standard;
+      @include manga-shadow($manga-red, 8px);
+    }
+  }
+
+  .glass-card {
+    background: $white;
+    border: $border-heavy !important;
+    @include manga-shadow($ink, 15px);
+    transform: rotate(-1deg);
+
+    h3 {
+      font-family: $font-bebas;
+      font-size: 2.5rem;
+      letter-spacing: 2px;
+    }
+  }
+
+  @for $i from 1 through 150 {
+    .a-mt-#{$i} { margin-top: #{$i}px !important; }
+    .a-mb-#{$i} { margin-bottom: #{$i}px !important; }
+    .a-pt-#{$i} { padding-top: #{$i}px !important; }
+    .a-pb-#{$i} { padding-bottom: #{$i}px !important; }
+    .a-p-#{$i} { padding: #{$i}px !important; }
+    .a-m-#{$i} { margin: #{$i}px !important; }
+  }
+
+  .a-bebas { font-family: $font-bebas !important; }
+  .a-mono { font-family: $font-mono !important; }
+
+  .a-bg-ink { background-color: $ink !important; }
+  .a-bg-white { background-color: $white !important; }
+  .a-bg-red { background-color: $manga-red !important; }
+  .a-bg-yellow { background-color: $manga-yellow !important; }
+
+  .a-clr-white { color: $white !important; }
+  .a-clr-red { color: $manga-red !important; }
+  .a-clr-ink { color: $ink !important; }
+
+  .a-flex { display: flex !important; }
+  .a-flex-column { flex-direction: column !important; }
+  .a-align-center { align-items: center !important; }
+  .a-justify-center { justify-content: center !important; }
+  .a-justify-between { justify-content: space-between !important; }
+
+  .a-w-100 { width: 100% !important; }
+  .a-h-100 { height: 100% !important; }
+  .a-relative { position: relative !important; }
+  .a-absolute { position: absolute !important; }
+  .a-z-10 { z-index: 10 !important; }
+  .a-z-20 { z-index: 20 !important; }
+
+  .a-uppercase { text-transform: uppercase !important; }
+  .a-fw-900 { font-weight: 900 !important; }
+  .a-fw-700 { font-weight: 700 !important; }
+
+  .a-ls-1 { letter-spacing: 1px !important; }
+  .a-ls-3 { letter-spacing: 3px !important; }
+  .a-ls-5 { letter-spacing: 5px !important; }
+
+  .a-rotate-1 { transform: rotate(1deg) !important; }
+  .a-rotate-minus-1 { transform: rotate(-1deg) !important; }
+  .a-skew-10 { transform: skewX(-10deg) !important; }
+
+  .a-shadow-sm { @include manga-shadow($ink, 5px); }
+  .a-shadow-md { @include manga-shadow($ink, 10px); }
+  .a-shadow-lg { @include manga-shadow($ink, 20px); }
+
+  .a-pointer { cursor: pointer !important; }
+  .a-no-select { user-select: none !important; }
+  .a-overflow-hidden { overflow: hidden !important; }
+
+  @for $i from 1 through 20 {
+    .a-gap-#{$i} { gap: #{$i * 5}px !important; }
+  }
+
+  @media (max-width: 991px) {
+    &::after { display: none; }
+  }
+
+  @media (max-width: 768px) {
+    .glass-card { padding: 30px !important; }
+  }
+
+  .a-d-block { display: block !important; }
+  .a-d-flex { display: flex !important; }
+  .a-d-none { display: none !important; }
+
+  .a-transition { @include manga-transition; }
+
+  .a-text-center { text-align: center !important; }
+  .a-text-right { text-align: right !important; }
+  .a-text-justify { text-align: justify !important; }
+
+  .a-border-red { border-color: $manga-red !important; }
+  .a-border-yellow { border-color: $manga-yellow !important; }
+  .a-border-ink { border-color: $ink !important; }
+
+  .a-radius-0 { border-radius: 0 !important; }
+  .a-radius-10 { border-radius: 10px !important; }
+
+  @for $i from 1 through 9 {
+    .a-f-scale-#{$i} { font-size: #{$i * 0.5}rem !important; }
+  }
+
+  .a-object-cover { object-fit: cover !important; }
+  .a-top-0 { top: 0 !important; }
+  .a-left-0 { left: 0 !important; }
+
+  .a-op-5 { opacity: 0.5 !important; }
+  .a-op-10 { opacity: 1 !important; }
+
+  .a-antialiased { -webkit-font-smoothing: antialiased !important; }
+  .a-break-word { word-break: break-word !important; }
+
+  .a-sticky-top { position: sticky !important; top: 100px !important; }
+
+  .manga-section-divider {
+    height: 12px;
+    background: $ink;
+    width: 100%;
+    margin: 60px 0;
+    position: relative;
+    &::after {
+      content: "BREAK_POINT";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: $manga-red;
+      color: $white;
+      padding: 2px 15px;
+      font-family: $font-mono;
+      font-size: 0.7rem;
+    }
+  }
+}

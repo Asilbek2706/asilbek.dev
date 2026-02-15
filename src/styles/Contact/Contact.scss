@@ -1,0 +1,165 @@
+@import "./ContactForm";
+@import './QuestionList';
+@import './ContactStatus';
+
+$ink: #0D0D0D;
+$paper: #F2F0EB;
+$white: #FFFFFF;
+$manga-red: #C51D1D;
+$manga-yellow: #FFD200;
+$border-heavy: 6px solid $ink;
+
+.contact-manga-wrapper {
+  background-color: $paper !important;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  padding-bottom: 100px;
+
+  .manga-halftone {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient($ink 1.5px, transparent 1.5px);
+    background-size: 24px 24px;
+    opacity: 0.06;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .container {
+    position: relative;
+    z-index: 10;
+  }
+
+  .contact-sidebar-sticky {
+    position: sticky;
+    top: 120px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  &::after {
+    content: "CONTACT_SECTION_VOL.01";
+    position: absolute;
+    bottom: 40px;
+    left: -60px;
+    background: $ink;
+    color: $white;
+    padding: 10px 100px;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.5rem;
+    transform: rotate(-90deg);
+    letter-spacing: 5px;
+    opacity: 0.1;
+  }
+
+  @for $i from 1 through 150 {
+    .c-mt-#{$i} { margin-top: #{$i}px !important; }
+    .c-mb-#{$i} { margin-bottom: #{$i}px !important; }
+    .c-pt-#{$i} { padding-top: #{$i}px !important; }
+    .c-pb-#{$i} { padding-bottom: #{$i}px !important; }
+    .c-p-#{$i} { padding: #{$i}px !important; }
+    .c-m-#{$i} { margin: #{$i}px !important; }
+  }
+
+  .c-flex { display: flex !important; }
+  .c-flex-column { flex-direction: column !important; }
+  .c-align-center { align-items: center !important; }
+  .c-justify-center { justify-content: center !important; }
+  .c-justify-between { justify-content: space-between !important; }
+
+  .c-w-100 { width: 100% !important; }
+  .c-h-100 { height: 100% !important; }
+  .c-relative { position: relative !important; }
+  .c-absolute { position: absolute !important; }
+  .c-z-50 { z-index: 50 !important; }
+
+  .c-text-center { text-align: center !important; }
+  .c-text-uppercase { text-transform: uppercase !important; }
+  .c-fw-900 { font-weight: 900 !important; }
+
+  .c-border-heavy { border: $border-heavy !important; }
+  .c-bg-ink { background-color: $ink !important; }
+  .c-clr-white { color: $white !important; }
+
+  .c-rotate-1 { transform: rotate(1deg) !important; }
+  .c-rotate-minus-1 { transform: rotate(-1deg) !important; }
+
+  .c-ls-1 { letter-spacing: 1px !important; }
+  .c-ls-3 { letter-spacing: 3px !important; }
+
+  @for $i from 1 through 10 {
+    .c-gap-#{$i} { gap: #{$i * 10}px !important; }
+  }
+
+  @media (max-width: 991px) {
+    .contact-sidebar-sticky {
+      position: relative;
+      top: 0;
+      margin-bottom: 50px;
+    }
+
+    &::after {
+      display: none;
+    }
+  }
+
+  .c-overflow-hidden { overflow: hidden !important; }
+  .c-d-block { display: block !important; }
+  .c-pointer { cursor: pointer !important; }
+
+  .c-op-10 { opacity: 0.1 !important; }
+  .c-op-20 { opacity: 0.2 !important; }
+
+  @for $i from 1 through 5 {
+    .c-f-size-#{$i} { font-size: #{$i}rem !important; }
+  }
+
+  .c-shadow-sharp {
+    box-shadow: 10px 10px 0px $ink !important;
+  }
+
+  .c-transition-manga {
+    transition: 0.15s steps(3) !important;
+  }
+
+  .c-skew-10 { transform: skewX(-10deg) !important; }
+  .c-antialiased { -webkit-font-smoothing: antialiased !important; }
+
+  .c-break-word { word-break: break-word !important; }
+  .c-select-none { user-select: none !important; }
+
+  .c-top-0 { top: 0 !important; }
+  .c-left-0 { left: 0 !important; }
+
+  @media (max-width: 768px) {
+    padding-top: 30px;
+    .container { padding: 0 20px; }
+  }
+
+  .grecaptcha-badge {
+    z-index: 99999 !important;
+    bottom: 110px !important;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+
+    &:hover {
+      transform: scale(1.1) translateX(-10px) !important;
+    }
+  }
+
+  .c-border-red { border-color: $manga-red !important; }
+  .c-bg-yellow { background-color: $manga-yellow !important; }
+
+  .c-flex-wrap { flex-wrap: wrap !important; }
+  .c-object-cover { object-fit: cover !important; }
+
+  .c-hidden { display: none !important; }
+  .c-visible { display: block !important; }
+
+  @for $i from 1 through 20 {
+    .c-p-percent-#{$i} { padding: #{$i} !important; }
+  }
+
+  .c-sticky-top { position: sticky !important; top: 0 !important; }
+}

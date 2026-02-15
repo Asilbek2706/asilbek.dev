@@ -1,74 +1,104 @@
-$ink: #0D0D0D;
-$paper: #F2F0EB;
-$white: #FFFFFF;
-$manga-red: #C51D1D;
-$manga-yellow: #FFD200;
-$border-standard: 3.5px solid $ink;
-$border-thin: 2px solid $ink;
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@700;800&family=Inter:wght@600;800&display=swap');
 
-@mixin box-shadow-sharp($color: $ink, $size: 12px) {
-  box-shadow: $size $size 0 $color;
+$pc-ink: #0D0D0D;
+$pc-paper: #F2F0EB;
+$pc-white: #FFFFFF;
+$pc-red: #C51D1D;
+$pc-yellow: #FFD200;
+$pc-blue: #0051FF;
+$pc-border-heavy: 4px solid $pc-ink;
+$pc-border-thin: 2px solid $pc-ink;
+
+@mixin pc-manga-shadow($color: $pc-ink) {
+  box-shadow: 12px 12px 0 $color;
 }
 
 .project-card-premium {
-  background: $white !important;
-  border: $border-standard !important;
+  background: $pc-white !important;
+  border: $pc-border-heavy !important;
   border-radius: 0 !important;
-  @include box-shadow-sharp($ink, 12px);
-  transition: 0.4s steps(4);
+  @include pc-manga-shadow();
+  transition: 0.2s steps(4);
   position: relative;
   display: flex;
   flex-direction: column;
+  height: 100%;
 
   &:hover {
-    transform: translate(-8px, -8px);
-    @include box-shadow-sharp($manga-red, 20px);
+    transform: translate(-10px, -10px);
+    @include pc-manga-shadow($pc-red);
 
     .project-img-container img {
-      transform: scale(1.1) rotate(1deg);
       filter: grayscale(0) contrast(1.1);
+      transform: scale(1.05);
     }
 
     .project-overlay {
       opacity: 1 !important;
-      background: rgba($ink, 0.85) !important;
+      background: rgba($pc-ink, 0.8) !important;
 
       .btn-light {
-        transform: translateY(0) scale(1);
+        transform: translateY(0) rotate(0deg) !important;
       }
+    }
+
+    .p-4 h5 {
+      color: $pc-red !important;
     }
   }
 
   .project-img-container {
-    border-bottom: $border-standard;
-    background: $ink;
     height: 250px;
+    background: $pc-ink;
+    border-bottom: $pc-border-heavy;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: "CODE_01";
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 5;
+      background: $pc-red;
+      color: $pc-white;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      padding: 2px 8px;
+      font-weight: 800;
+      border: 2px solid $pc-ink;
+    }
 
     img {
-      transition: 0.6s steps(4);
       filter: grayscale(1) contrast(1.2);
+      transition: 0.4s steps(4);
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
     }
 
     .project-overlay {
       transition: 0.3s steps(4);
-      backdrop-filter: blur(2px);
+      z-index: 10;
 
       .btn-light {
-        background: $white !important;
-        color: $ink !important;
-        border: $border-standard !important;
+        background: $pc-white !important;
+        color: $pc-ink !important;
+        border: $pc-border-heavy !important;
         border-radius: 0 !important;
-        font-family: 'Bebas Neue', cursive;
-        font-size: 1.5rem;
-        padding: 10px 25px !important;
-        transform: translateY(20px) scale(0.8);
-        transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        @include box-shadow-sharp($manga-red, 6px);
+        font-family: 'Bebas Neue', cursive !important;
+        font-size: 1.6rem !important;
+        padding: 12px 28px !important;
+        transform: translateY(30px) rotate(-5deg);
+        transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        @include pc-manga-shadow($pc-red);
+        text-transform: uppercase;
+        font-weight: 800 !important;
 
         &:hover {
-          background: $manga-yellow !important;
-          transform: translate(3px, 3px);
-          box-shadow: none;
+          background: $pc-yellow !important;
+          transform: translate(4px, 4px) !important;
+          box-shadow: none !important;
         }
       }
     }
@@ -76,92 +106,140 @@ $border-thin: 2px solid $ink;
 
   .p-4 {
     padding: 30px !important;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 
     h5 {
-      font-family: 'Bebas Neue', cursive;
-      font-size: 2.2rem;
-      letter-spacing: 1px;
+      font-family: 'Bebas Neue', cursive !important;
+      font-size: 2.2rem !important;
       text-transform: uppercase;
-      color: $ink;
+      letter-spacing: 1px;
+      margin-bottom: 15px !important;
+      transition: 0.2s;
     }
 
     .bi-github {
-      color: $ink;
-      transition: 0.3s steps(2);
+      font-size: 1.8rem;
+      color: $pc-ink;
+      transition: 0.2s steps(2);
       &:hover {
-        color: $manga-red;
-        transform: rotate(15deg) scale(1.2);
+        color: $pc-red;
+        transform: scale(1.2) rotate(15deg);
       }
     }
 
     p {
-      font-family: 'Inter', sans-serif;
-      font-weight: 600;
-      line-height: 1.5;
-      color: rgba($ink, 0.7);
-      margin-top: 10px;
+      font-family: 'Inter', sans-serif !important;
+      font-size: 1.05rem !important;
+      font-weight: 600 !important;
+      line-height: 1.5 !important;
+      color: rgba($pc-ink, 0.7) !important;
+      margin-bottom: 25px !important;
+      height: auto !important;
+      min-height: 48px;
     }
 
     .border-top {
-      border-top: $border-thin !important;
-      margin-top: 20px;
+      border-top: $pc-border-thin !important;
+      padding-top: 20px !important;
+      margin-top: auto !important;
 
       .badge {
-        background: $ink !important;
-        color: $white !important;
+        background: $pc-ink !important;
+        color: $pc-white !important;
         border-radius: 0 !important;
-        font-family: 'JetBrains Mono', monospace;
+        padding: 8px 16px !important;
+        font-family: 'JetBrains Mono', monospace !important;
         font-weight: 800;
-        padding: 8px 15px;
         font-size: 0.8rem;
         text-transform: uppercase;
-        @include box-shadow-sharp($manga-yellow, 4px);
+        @include pc-manga-shadow($pc-yellow);
         border: none;
       }
     }
   }
 }
 
-@for $i from 1 through 100 {
-  .p-mt-#{$i} { margin-top: #{$i}px !important; }
-  .p-mb-#{$i} { margin-bottom: #{$i}px !important; }
-  .p-pt-#{$i} { padding-top: #{$i}px !important; }
-  .p-pb-#{$i} { padding-bottom: #{$i}px !important; }
+@for $i from 1 through 50 {
+  .pc-mt-#{$i} { margin-top: #{$i}px !important; }
+  .pc-mb-#{$i} { margin-bottom: #{$i}px !important; }
+  .pc-p-#{$i} { padding: #{$i}px !important; }
 }
 
-.p-full-w { width: 100% !important; }
-.p-flex { display: flex !important; }
-.p-relative { position: relative !important; }
+.pc-manga-dots {
+  background-image: radial-gradient($pc-ink 1px, transparent 1px);
+  background-size: 10px 10px;
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
+  pointer-events: none;
+}
 
-@media (max-width: 1200px) {
-  .project-card-premium {
-    h5 { font-size: 1.8rem; }
-  }
+.pc-text-outline {
+  -webkit-text-stroke: 1.5px $pc-ink;
+  color: transparent !important;
 }
 
 @media (max-width: 991px) {
   .project-card-premium {
     margin-bottom: 30px;
+    .p-4 h5 { font-size: 1.8rem !important; }
   }
 }
 
 @media (max-width: 768px) {
   .project-card-premium {
-    @include box-shadow-sharp($ink, 8px);
-
-    &:hover {
-      transform: translate(-4px, -4px);
-      box-shadow: 12px 12px 0 $manga-red;
-    }
-
-    .p-4 {
-      padding: 20px !important;
-      h5 { font-size: 1.6rem; }
-    }
+    @include pc-manga-shadow();
+    &:hover { transform: translate(-5px, -5px); }
+    .project-img-container { height: 200px !important; }
+    .p-4 { padding: 20px !important; }
   }
 }
 
-@media (max-width: 480px) {
-  .project-img-container { height: 200px !important; }
-  .project-card-premium .p-4 p { font-size: 0.9rem; }
+.pc-brutal-divider {
+  height: 8px;
+  background: $pc-ink;
+  width: 100%;
+  margin: 20px 0;
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: $pc-ink;
+  }
 }
+
+.pc-skew-box {
+  background: $pc-yellow;
+  padding: 5px 15px;
+  transform: skewX(-15deg);
+  display: inline-block;
+  span {
+    transform: skewX(15deg);
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 800;
+  }
+}
+
+.pc-rotate-neg { transform: rotate(-2deg); }
+.pc-rotate-pos { transform: rotate(2deg); }
+
+.pc-flex-center {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.pc-full-w { width: 100% !important; }
+
+.pc-relative { position: relative !important; }
+
+.pc-z-top { z-index: 100 !important; }
+
+.pc-overflow-v { overflow: visible !important; }

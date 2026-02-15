@@ -12,29 +12,34 @@ const StatsCard: React.FC = () => {
     ];
 
     return (
-        <section className="py-5 bg-light-soft">
+        <section className="stats-card-modern">
             <div className="container">
                 <div className="row g-4">
+                    {/* Education Section */}
                     <div className="col-lg-7">
-                        <div className="glass-card-premium h-100 p-4 p-md-5 bg-white border rounded-4 shadow-sm">
-                            <h4 className="fw-bold mb-4 d-flex align-items-center">
-                                <i className="bi bi-mortarboard-fill text-primary me-3 fs-3"></i> Education
+                        <div className="stats-card-modern__card">
+                            <h4 className="stats-card-modern__title">
+                                <i className="bi bi-mortarboard-fill"></i> Education
                             </h4>
-                            <div className="modern-timeline ps-3 border-start border-primary border-2">
-                                <div className="mb-0">
-                                    <span className="badge bg-primary bg-opacity-10 text-primary mb-2">2024 — 2028</span>
-                                    <h5 className="fw-bold">Acharya University Uzbekistan</h5>
-                                    <p className="text-muted small lh-lg mb-0">Hozirda 2-kurs talabasiman. Men bu yerda murakkab algoritmlar va dasturiy ta'minot muhandisligini o'rganmoqdaman.</p>
+                            <div className="stats-card-modern__timeline">
+                                <div className="stats-card-modern__timeline-item">
+                                    <span className="stats-card-modern__date">2024 — 2028</span>
+                                    <h5 className="stats-card-modern__school">Acharya University Uzbekistan</h5>
+                                    <p className="stats-card-modern__text">
+                                        Hozirda 2-kurs talabasiman. Men bu yerda murakkab algoritmlar va dasturiy ta'minot muhandisligini o'rganmoqdaman.
+                                    </p>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    {/* Arsenal Section */}
                     <div className="col-lg-5">
-                        <div className="glass-card-premium h-100 p-4 p-md-5 bg-white border rounded-4 shadow-sm">
-                            <h4 className="fw-bold mb-4 d-flex align-items-center">
-                                <i className="bi bi-cpu-fill text-primary me-3 fs-3"></i> Arsenal
+                        <div className="stats-card-modern__card">
+                            <h4 className="stats-card-modern__title">
+                                <i className="bi bi-cpu-fill"></i> Arsenal
                             </h4>
-                            <div className="d-flex flex-wrap gap-2">
+                            <div className="stats-card-modern__skills-grid">
                                 {skills.map(skill => (
                                     <SkillChip key={skill.name} name={skill.name} icon={skill.icon} color={skill.color} />
                                 ))}

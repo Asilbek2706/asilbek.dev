@@ -450,3 +450,16 @@ $font-bebas: 'Bebas Neue', cursive;
   .cta-box h5 { font-size: 1.8rem; }
   .cta-box p { font-size: 0.9rem; }
 }
+
+.grecaptcha-badge {
+  z-index: 99999 !important;
+}
+
+.grecaptcha-badge {
+  bottom: 100px !important;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  &:hover {
+    transform: scale(1.1) translateX(-10px);
+  }
+}
