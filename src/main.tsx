@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
+import './index.scss';
 
 const queryClient = new QueryClient({
     defaultOptions: {

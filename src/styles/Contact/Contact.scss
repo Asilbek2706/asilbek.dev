@@ -1,13 +1,18 @@
-@import "./ContactForm";
-@import './QuestionList';
-@import './ContactStatus';
+@use "./ContactForm";
+@use './QuestionList';
+@use './ContactStatus';
 
 $ink: #0D0D0D;
+$pc-ink: #0D0D0D;
 $paper: #F2F0EB;
 $white: #FFFFFF;
 $manga-red: #C51D1D;
 $manga-yellow: #FFD200;
 $border-heavy: 6px solid $ink;
+
+@mixin pc-manga-shadow($color: $pc-ink, $size: 12px) {
+  box-shadow: $size $size 0 $color;
+}
 
 .contact-manga-wrapper {
   background-color: $paper !important;
@@ -136,16 +141,6 @@ $border-heavy: 6px solid $ink;
   @media (max-width: 768px) {
     padding-top: 30px;
     .container { padding: 0 20px; }
-  }
-
-  .grecaptcha-badge {
-    z-index: 99999 !important;
-    bottom: 110px !important;
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
-
-    &:hover {
-      transform: scale(1.1) translateX(-10px) !important;
-    }
   }
 
   .c-border-red { border-color: $manga-red !important; }
