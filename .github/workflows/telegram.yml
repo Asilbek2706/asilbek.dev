@@ -2,7 +2,7 @@ name: Notify Telegram 🚀
 
 on:
   push:
-    branches: [main]
+    branches: [frontend-asilbek]
 
 jobs:
   notify:
