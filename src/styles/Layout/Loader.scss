@@ -158,6 +158,10 @@
   .manga-title {
     font-size: 1.8rem;
     letter-spacing: 2px;
+
+    .text-red {
+      color: #ff003c !important;
+    }
   }
 
   .manga-title::before,
