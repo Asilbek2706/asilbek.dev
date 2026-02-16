@@ -5,7 +5,7 @@ const FooterBrand: React.FC<{ info: AboutData }> = ({ info }) => (
     <div className="col-lg-5">
         <div className="footer-brand mb-4">
             <span className="logo-text text-white">
-                {info.firstname}<span className="text-primary">.dev</span>
+                {info.firstname}-karomatov<span className="text-primary">.dev</span>
             </span>
         </div>
         <p className="footer-quote mb-4">

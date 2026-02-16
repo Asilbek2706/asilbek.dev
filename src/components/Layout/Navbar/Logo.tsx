@@ -12,7 +12,7 @@ const Logo: React.FC<LogoProps> = ({ firstname }) => {
                 {firstname.charAt(0)}
             </div>
             <span className="logo-text">
-                {firstname}<span className="text-primary">.dev</span>
+                {firstname}-karomatov<span className="text-primary">.dev</span>
             </span>
         </Link>
     );
