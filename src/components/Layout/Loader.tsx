@@ -1,11 +1,17 @@
 import { useState } from 'react';
 
-const Loader = ({ onFinished }: { onFinished: () => void }) => {
+interface Props {
+    onFinished?: () => void;
+}
+
+const Loader = ({ onFinished }: Props) => {
     const [isFadingOut, setIsFadingOut] = useState(false);
 
     const handleAnimationEnd = () => {
         setIsFadingOut(true);
-        setTimeout(onFinished, 500);
+        if (onFinished) {
+            setTimeout(onFinished, 500);
+        }
     };
 
     return (
