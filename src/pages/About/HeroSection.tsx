@@ -33,7 +33,7 @@ const HeroSection: React.FC<Props> = ({ about }) => (
                 {/* 2. TEXT VA MA'LUMOTLAR QISMI */}
                 <div className="col-lg-7">
                     <div className="about-hero-manga__info-wrapper">
-                        <span className="about-hero-manga__meta">Mening tarixim</span>
+                        <span className="about-hero-manga__meta">Men Haqimda</span>
                         <h1 className="about-hero-manga__main-title">
                             {about.firstname} <span className="about-hero-manga__title-outline">{about.lastname}</span>
                         </h1>
@@ -63,7 +63,7 @@ const HeroSection: React.FC<Props> = ({ about }) => (
 
                         {/* Social Icons */}
                         <div className="about-hero-manga__footer">
-                            <h6 className="about-hero-manga__footer-label">Follow:</h6>
+                            <h6 className="about-hero-manga__footer-label">Kuzatish:</h6>
                             <div className="about-hero-manga__social-grid">
                                 <a href={about.github_link} target="_blank" className="about-hero-manga__social-btn github"><i className="bi bi-github"></i></a>
                                 <a href={about.telegram_link} target="_blank" className="about-hero-manga__social-btn telegram"><i className="bi bi-telegram"></i></a>
