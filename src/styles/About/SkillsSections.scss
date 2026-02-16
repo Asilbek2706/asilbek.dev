@@ -1,3 +1,4 @@
+// --- VARIABLES ---
 $ink: #0D0D0D;
 $paper: #F2F0EB;
 $white: #FFFFFF;
@@ -10,12 +11,22 @@ $font-bebas: 'Bebas Neue', cursive;
 $font-mono: 'JetBrains Mono', monospace;
 $font-inter: 'Inter', sans-serif;
 
+// --- MIXINS ---
 @mixin manga-shadow($color: $ink, $size: 10px) {
   box-shadow: $size $size 0 $color;
 }
 
 @mixin manga-transition {
   transition: 0.2s steps(4);
+}
+
+@keyframes manga-scroll-infinite {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 .skills-section-manga {
@@ -59,16 +70,27 @@ $font-inter: 'Inter', sans-serif;
   }
 
   &__marquee {
+    display: flex;
+    overflow: hidden;
+    user-select: none;
     background: $white;
     padding: 30px 0;
     border-top: $border-heavy;
     border-bottom: $border-heavy;
-    display: flex;
-    overflow: hidden;
     position: relative;
-    // Egri emas, tekis holatga qaytarildi
-    transform: none !important;
     margin: 60px 0;
+
+    &::before, &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      width: 100px;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+    }
+    &::before { left: 0; background: linear-gradient(to right, $white, transparent); }
+    &::after { right: 0; background: linear-gradient(to left, $white, transparent); }
   }
 
   &__content {
@@ -76,9 +98,7 @@ $font-inter: 'Inter', sans-serif;
     flex-shrink: 0;
     gap: 40px;
     padding: 0 20px;
-    min-width: 100%;
-    // Tezlik 25s dan 45s ga tushirildi (sekinlashdi)
-    animation: manga-scroll-slow 45s linear infinite;
+    animation: manga-scroll-infinite 60s linear infinite;
 
     &:hover {
       animation-play-state: paused;
@@ -103,7 +123,7 @@ $font-inter: 'Inter', sans-serif;
     &:hover {
       background: $ink;
       color: $white;
-      transform: translateY(-5px);
+      transform: translateY(-5px) rotate(2deg);
       @include manga-shadow($manga-red, 10px);
     }
   }
@@ -112,142 +132,27 @@ $font-inter: 'Inter', sans-serif;
     width: 12px;
     height: 12px;
     background: $manga-red;
-    border-radius: 0;
+    border: 2px solid $ink;
     transform: rotate(45deg);
   }
 
-  @keyframes manga-scroll-slow {
-    from { transform: translateX(0); }
-    to { transform: translateX(-100%); }
-  }
-
-  // --- UTILITY CLASSES (FOR 200+ LINES) ---
-
-  @for $i from 0 through 150 {
+  @for $i from 0 through 100 {
+    .sk-m-#{$i} { margin: #{$i}px !important; }
+    .sk-p-#{$i} { padding: #{$i}px !important; }
     .sk-mt-#{$i} { margin-top: #{$i}px !important; }
     .sk-mb-#{$i} { margin-bottom: #{$i}px !important; }
-    .sk-ml-#{$i} { margin-left: #{$i}px !important; }
-    .sk-mr-#{$i} { margin-right: #{$i}px !important; }
     .sk-pt-#{$i} { padding-top: #{$i}px !important; }
     .sk-pb-#{$i} { padding-bottom: #{$i}px !important; }
-    .sk-pl-#{$i} { padding-left: #{$i}px !important; }
-    .sk-pr-#{$i} { padding-right: #{$i}px !important; }
   }
-
-  .sk-font-bebas { font-family: $font-bebas !important; }
-  .sk-font-mono { font-family: $font-mono !important; }
-  .sk-font-inter { font-family: $font-inter !important; }
-
-  @for $i from 1 through 9 {
-    .sk-fw-#{$i * 100} { font-weight: #{$i * 100} !important; }
-  }
-
-  .sk-text-center { text-align: center !important; }
-  .sk-text-start { text-align: left !important; }
-  .sk-text-end { text-align: right !important; }
-  .sk-text-justify { text-align: justify !important; }
-
-  .sk-uppercase { text-transform: uppercase !important; }
-  .sk-lowercase { text-transform: lowercase !important; }
-  .sk-capitalize { text-transform: capitalize !important; }
-
-  .sk-border-none { border: none !important; }
-  .sk-border-1 { border: 1px solid $ink !important; }
-  .sk-border-2 { border: 2px solid $ink !important; }
-  .sk-border-4 { border: 4px solid $ink !important; }
-  .sk-border-6 { border: 6px solid $ink !important; }
-
-  .sk-bg-ink { background-color: $ink !important; }
-  .sk-bg-white { background-color: $white !important; }
-  .sk-bg-paper { background-color: $paper !important; }
-  .sk-bg-red { background-color: $manga-red !important; }
-  .sk-bg-yellow { background-color: $manga-yellow !important; }
-
-  .sk-clr-ink { color: $ink !important; }
-  .sk-clr-white { color: $white !important; }
-  .sk-clr-red { color: $manga-red !important; }
-  .sk-clr-yellow { color: $manga-yellow !important; }
-
-  .sk-display-flex { display: flex !important; }
-  .sk-display-block { display: block !important; }
-  .sk-display-inline { display: inline-block !important; }
-  .sk-display-grid { display: grid !important; }
-
-  .sk-flex-row { flex-direction: row !important; }
-  .sk-flex-column { flex-direction: column !important; }
-  .sk-flex-wrap { flex-wrap: wrap !important; }
-
-  .sk-justify-between { justify-content: space-between !important; }
-  .sk-justify-center { justify-content: center !important; }
-  .sk-justify-around { justify-content: space-around !important; }
-  .sk-align-center { align-items: center !important; }
-
-  .sk-w-25 { width: 25% !important; }
-  .sk-w-50 { width: 50% !important; }
-  .sk-w-75 { width: 75% !important; }
-  .sk-w-100 { width: 100% !important; }
-
-  .sk-h-25 { height: 25% !important; }
-  .sk-h-50 { height: 50% !important; }
-  .sk-h-100 { height: 100% !important; }
-
-  .sk-ls-1 { letter-spacing: 1px !important; }
-  .sk-ls-2 { letter-spacing: 2px !important; }
-  .sk-ls-3 { letter-spacing: 3px !important; }
-  .sk-ls-5 { letter-spacing: 5px !important; }
-
-  .sk-op-0 { opacity: 0 !important; }
-  .sk-op-2 { opacity: 0.2 !important; }
-  .sk-op-5 { opacity: 0.5 !important; }
-  .sk-op-10 { opacity: 1 !important; }
-
-  .sk-z-1 { z-index: 1 !important; }
-  .sk-z-10 { z-index: 10 !important; }
-  .sk-z-max { z-index: 9999 !important; }
-
-  .sk-relative { position: relative !important; }
-  .sk-absolute { position: absolute !important; }
-  .sk-fixed { position: fixed !important; }
-
-  .sk-pointer { cursor: pointer !important; }
-  .sk-no-select { user-select: none !important; }
-
-  .sk-shadow-none { box-shadow: none !important; }
-  .sk-shadow-sm { @include manga-shadow($ink, 4px); }
-  .sk-shadow-md { @include manga-shadow($ink, 8px); }
-  .sk-shadow-lg { @include manga-shadow($ink, 15px); }
-  .sk-shadow-red { @include manga-shadow($manga-red, 10px); }
-
-  .sk-transition-fast { transition: 0.1s steps(2) !important; }
-  .sk-transition-normal { transition: 0.3s steps(4) !important; }
-  .sk-transition-slow { transition: 0.6s ease-in-out !important; }
-
-  .sk-rotate-45 { transform: rotate(45deg) !important; }
-  .sk-rotate-90 { transform: rotate(90deg) !important; }
-  .sk-rotate-180 { transform: rotate(180deg) !important; }
-  .sk-skew-x-10 { transform: skewX(-10deg) !important; }
-
-  .sk-overflow-hidden { overflow: hidden !important; }
-  .sk-overflow-auto { overflow: auto !important; }
 
   @media (max-width: 1200px) {
     &__title { font-size: 4.5rem !important; }
-    &__chip { font-size: 1.2rem; }
-  }
-
-  @media (max-width: 992px) {
-    padding: 80px 0 !important;
-    &__title { font-size: 3.5rem !important; }
+    &__chip { font-size: 1.2rem; padding: 10px 25px; }
   }
 
   @media (max-width: 768px) {
-    &__marquee { padding: 20px 0; }
-    &__chip { padding: 10px 25px; font-size: 1.1rem; }
-    &__content { gap: 20px; }
-  }
-
-  @media (max-width: 480px) {
-    &__title { font-size: 2.5rem !important; }
-    &__chip { padding: 8px 20px; font-size: 0.9rem; }
+    &__title { font-size: 3rem !important; }
+    &__marquee { padding: 15px 0; margin: 30px 0; }
+    &__content { gap: 20px; animation-duration: 40s; }
   }
 }

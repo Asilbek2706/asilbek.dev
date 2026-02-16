@@ -117,3 +117,70 @@
   visibility: hidden;
   transition: opacity 0.5s ease, visibility 0.5s ease;
 }
+
+@media (max-width: 1200px) {
+  .manga-title {
+    font-size: 3.5rem;
+    letter-spacing: 4px;
+  }
+}
+
+@media (max-width: 992px) {
+  .manga-title {
+    font-size: 3rem;
+  }
+
+  .loader-progress-bar {
+    width: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .manga-title {
+    font-size: 2.5rem;
+    letter-spacing: 3px;
+    margin-bottom: 5px;
+  }
+
+  .loader-progress-bar {
+    width: 200px;
+    height: 3px;
+    margin: 20px 0;
+  }
+
+  .loader-status-code {
+    font-size: 0.7rem;
+    letter-spacing: 1.5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .manga-title {
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+  }
+
+  .manga-title::before,
+  .manga-title::after {
+    clip: rect(0, 300px, 0, 0);
+  }
+
+  .loader-progress-bar {
+    width: 160px;
+  }
+
+  .loader-status-code {
+    font-size: 0.6rem;
+    letter-spacing: 1px;
+  }
+}
+
+@media (max-height: 450px) {
+  .manga-title {
+    font-size: 2rem;
+    margin-bottom: 5px;
+  }
+  .loader-progress-bar {
+    margin: 10px 0;
+  }
+}
