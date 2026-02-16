@@ -22,7 +22,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         if (data) setAboutInfo(data);
     }, [data, setAboutInfo]);
 
-    if (isLoading || !aboutInfo) return <Loader />;
+    if (isLoading || !aboutInfo) return <Loader onFinished={() => {}} />;
 
     if (isError) return (
         <div className="container py-5 text-center">
