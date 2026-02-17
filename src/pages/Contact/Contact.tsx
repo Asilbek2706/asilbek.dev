@@ -43,19 +43,27 @@ const Contact: React.FC = () => {
 
     const handleSubmit = useCallback(async (e: React.FormEvent) => {
         e.preventDefault();
+        console.log("Submit bosildi...");
+
         if (!executeRecaptcha) {
+            console.error("reCAPTCHA yuklanmagan!");
             setStatus({ type: 'danger', msg: 'reCAPTCHA hali tayyor emas' });
             return;
         }
 
         try {
             setStatus({ type: 'info', msg: 'Xavfsizlik tekshiruvi...' });
-            const token = await executeRecaptcha('contact_form');
+
+            const token = await executeRecaptcha('contact');
+            console.log("reCAPTCHA Token olindi:", token);
+
             mutation.mutate({ ...formData, recaptcha_token: token });
         } catch (err) {
-            setStatus({ type: 'danger', msg: 'Yuborishda xatolik yuz berdi' });
+            console.error("reCAPTCHA xatosi:", err);
+            setStatus({ type: 'danger', msg: 'Xavfsizlik tekshiruvidan o\'tilmadi' });
         }
     }, [executeRecaptcha, formData, mutation]);
+
 
     return (
         <section className="contact-manga-wrapper">

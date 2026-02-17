@@ -18,13 +18,8 @@ export const sendQuestion = async (data: IContact): Promise<ApiResponse<IContact
         {
             name: data.name,
             email: data.email,
-            message: data.message
-        },
-        {
-            headers: {
-                'X-RECAPTCHA-TOKEN': data.recaptcha_token
-            }
-        }
-    );
+            message: data.message,
+            recaptcha_token: data.recaptcha_token
+        });
     return response.data;
 };
