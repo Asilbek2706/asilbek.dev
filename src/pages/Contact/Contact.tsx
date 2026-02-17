@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, {useState, useCallback, useEffect} from 'react';
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { sendQuestion, getQuestions } from '../../services/contactService';
@@ -26,6 +26,11 @@ const Contact: React.FC = () => {
         queryFn: getQuestions,
         refetchInterval: 10000,
     });
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        document.body.style.overflow = 'auto'; // Har ehtimolga qarshi
+    }, []);
 
     const mutation = useMutation({
         mutationFn: (data: ContactFormData & { recaptcha_token: string }) => sendQuestion(data),

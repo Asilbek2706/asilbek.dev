@@ -8,25 +8,38 @@ $paper: #F2F0EB;
 $white: #FFFFFF;
 $manga-red: #C51D1D;
 $manga-yellow: #FFD200;
+$manga-blue: #2E51A2;
+$manga-green: #00A86B;
 $border-heavy: 6px solid $ink;
+$border-standard: 4px solid $ink;
 
 @mixin pc-manga-shadow($color: $pc-ink, $size: 12px) {
   box-shadow: $size $size 0 $color;
 }
 
+@mixin smooth-scroll {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+}
+
 .contact-manga-wrapper {
+  @include smooth-scroll;
   background-color: $paper !important;
   min-height: 100vh;
+  width: 100%;
   position: relative;
   overflow-x: hidden;
-  padding-bottom: 100px;
+  overflow-y: auto;
+  padding-bottom: 120px;
+  display: block;
 
   .manga-halftone {
     position: absolute;
     inset: 0;
     background-image: radial-gradient($ink 1.5px, transparent 1.5px);
-    background-size: 24px 24px;
-    opacity: 0.06;
+    background-size: 28px 28px;
+    opacity: 0.08;
     pointer-events: none;
     z-index: 1;
   }
@@ -34,127 +47,206 @@ $border-heavy: 6px solid $ink;
   .container {
     position: relative;
     z-index: 10;
+    max-width: 1300px;
+    margin: 0 auto;
+    height: auto;
   }
 
   .contact-sidebar-sticky {
     position: sticky;
-    top: 120px;
+    top: 100px;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 40px;
+    z-index: 20;
+    @include smooth-scroll;
   }
 
   &::after {
     content: "CONTACT_SECTION_VOL.01";
     position: absolute;
-    bottom: 40px;
-    left: -60px;
+    bottom: 50px;
+    left: -80px;
     background: $ink;
     color: $white;
-    padding: 10px 100px;
+    padding: 12px 120px;
     font-family: 'Bebas Neue', cursive;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     transform: rotate(-90deg);
-    letter-spacing: 5px;
-    opacity: 0.1;
+    letter-spacing: 8px;
+    opacity: 0.15;
+    pointer-events: none;
   }
 
-  @for $i from 1 through 150 {
+  @for $i from 0 through 200 {
     .c-mt-#{$i} { margin-top: #{$i}px !important; }
     .c-mb-#{$i} { margin-bottom: #{$i}px !important; }
+    .c-ml-#{$i} { margin-left: #{$i}px !important; }
+    .c-mr-#{$i} { margin-right: #{$i}px !important; }
     .c-pt-#{$i} { padding-top: #{$i}px !important; }
     .c-pb-#{$i} { padding-bottom: #{$i}px !important; }
+    .c-pl-#{$i} { padding-left: #{$i}px !important; }
+    .c-pr-#{$i} { padding-right: #{$i}px !important; }
     .c-p-#{$i} { padding: #{$i}px !important; }
     .c-m-#{$i} { margin: #{$i}px !important; }
   }
 
   .c-flex { display: flex !important; }
   .c-flex-column { flex-direction: column !important; }
+  .c-flex-row { flex-direction: row !important; }
   .c-align-center { align-items: center !important; }
+  .c-align-start { align-items: flex-start !important; }
+  .c-align-end { align-items: flex-end !important; }
   .c-justify-center { justify-content: center !important; }
   .c-justify-between { justify-content: space-between !important; }
+  .c-justify-end { justify-content: flex-end !important; }
 
   .c-w-100 { width: 100% !important; }
+  .c-w-50 { width: 50% !important; }
   .c-h-100 { height: 100% !important; }
+  .c-min-h-vh { min-height: 100vh !important; }
+
   .c-relative { position: relative !important; }
   .c-absolute { position: absolute !important; }
+  .c-fixed { position: fixed !important; }
+  .c-z-10 { z-index: 10 !important; }
   .c-z-50 { z-index: 50 !important; }
+  .c-z-max { z-index: 9999 !important; }
 
   .c-text-center { text-align: center !important; }
+  .c-text-right { text-align: right !important; }
+  .c-text-left { text-align: left !important; }
   .c-text-uppercase { text-transform: uppercase !important; }
   .c-fw-900 { font-weight: 900 !important; }
+  .c-fw-700 { font-weight: 700 !important; }
+  .c-fw-400 { font-weight: 400 !important; }
 
   .c-border-heavy { border: $border-heavy !important; }
+  .c-border-std { border: $border-standard !important; }
+  .c-border-none { border: none !important; }
+
   .c-bg-ink { background-color: $ink !important; }
+  .c-bg-paper { background-color: $paper !important; }
+  .c-bg-white { background-color: $white !important; }
+  .c-bg-red { background-color: $manga-red !important; }
+  .c-bg-yellow { background-color: $manga-yellow !important; }
+  .c-bg-blue { background-color: $manga-blue !important; }
+  .c-bg-green { background-color: $manga-green !important; }
+
   .c-clr-white { color: $white !important; }
+  .c-clr-ink { color: $ink !important; }
+  .c-clr-red { color: $manga-red !important; }
+  .c-clr-green { color: $manga-green !important; }
 
   .c-rotate-1 { transform: rotate(1deg) !important; }
+  .c-rotate-2 { transform: rotate(2deg) !important; }
   .c-rotate-minus-1 { transform: rotate(-1deg) !important; }
+  .c-rotate-minus-2 { transform: rotate(-2deg) !important; }
 
   .c-ls-1 { letter-spacing: 1px !important; }
+  .c-ls-2 { letter-spacing: 2px !important; }
   .c-ls-3 { letter-spacing: 3px !important; }
+  .c-ls-5 { letter-spacing: 5px !important; }
 
-  @for $i from 1 through 10 {
-    .c-gap-#{$i} { gap: #{$i * 10}px !important; }
+  @for $i from 1 through 20 {
+    .c-gap-#{$i} { gap: #{$i * 5}px !important; }
+    .c-lh-#{$i} { line-height: #{$i * 0.1 + 1} !important; }
   }
 
   @media (max-width: 991px) {
     .contact-sidebar-sticky {
       position: relative;
       top: 0;
-      margin-bottom: 50px;
+      margin-bottom: 60px;
+      gap: 30px;
     }
-
-    &::after {
-      display: none;
-    }
+    &::after { display: none; }
   }
 
   .c-overflow-hidden { overflow: hidden !important; }
+  .c-overflow-auto { overflow-y: auto !important; }
   .c-d-block { display: block !important; }
+  .c-d-inline { display: inline-block !important; }
+  .c-d-none { display: none !important; }
   .c-pointer { cursor: pointer !important; }
 
   .c-op-10 { opacity: 0.1 !important; }
   .c-op-20 { opacity: 0.2 !important; }
+  .c-op-50 { opacity: 0.5 !important; }
+  .c-op-100 { opacity: 1 !important; }
 
-  @for $i from 1 through 5 {
+  @for $i from 1 through 10 {
     .c-f-size-#{$i} { font-size: #{$i}rem !important; }
   }
 
   .c-shadow-sharp {
-    box-shadow: 10px 10px 0px $ink !important;
+    box-shadow: 12px 12px 0px $ink !important;
+  }
+  .c-shadow-red {
+    box-shadow: 10px 10px 0px $manga-red !important;
+  }
+  .c-shadow-none {
+    box-shadow: none !important;
   }
 
   .c-transition-manga {
-    transition: 0.15s steps(3) !important;
+    transition: 0.2s steps(4) !important;
+  }
+  .c-transition-smooth {
+    transition: 0.3s ease-in-out !important;
   }
 
   .c-skew-10 { transform: skewX(-10deg) !important; }
+  .c-skew-5 { transform: skewX(-5deg) !important; }
   .c-antialiased { -webkit-font-smoothing: antialiased !important; }
 
   .c-break-word { word-break: break-word !important; }
   .c-select-none { user-select: none !important; }
 
   .c-top-0 { top: 0 !important; }
+  .c-bottom-0 { bottom: 0 !important; }
   .c-left-0 { left: 0 !important; }
+  .c-right-0 { right: 0 !important; }
 
   @media (max-width: 768px) {
-    padding-top: 30px;
-    .container { padding: 0 20px; }
+    padding-top: 20px;
+    padding-bottom: 60px;
+    .container { padding: 0 15px; }
+    .c-f-size-mobile { font-size: 1.5rem !important; }
   }
 
   .c-border-red { border-color: $manga-red !important; }
-  .c-bg-yellow { background-color: $manga-yellow !important; }
+  .c-border-ink { border-color: $ink !important; }
 
   .c-flex-wrap { flex-wrap: wrap !important; }
   .c-object-cover { object-fit: cover !important; }
+  .c-object-contain { object-fit: contain !important; }
 
   .c-hidden { display: none !important; }
   .c-visible { display: block !important; }
 
-  @for $i from 1 through 20 {
-    .c-p-percent-#{$i} { padding: #{$i} !important; }
+  .c-sticky-top {
+    position: sticky !important;
+    top: 20px !important;
+    z-index: 100;
   }
 
-  .c-sticky-top { position: sticky !important; top: 0 !important; }
+  .c-will-change {
+    will-change: transform, opacity, box-shadow;
+  }
+
+  .c-manga-btn {
+    padding: 15px 30px;
+    background: $white;
+    border: $border-heavy;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.5rem;
+    cursor: pointer;
+    @include pc-manga-shadow($ink, 8px);
+    transition: 0.1s steps(2);
+    &:active {
+      transform: translate(4px, 4px);
+      box-shadow: none !important;
+    }
+  }
 }

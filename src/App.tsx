@@ -8,6 +8,7 @@ import ScrollToTop from "./components/Shared/Utils/ScrollToTop.tsx";
 
 
 function App() {
+
     return (
         <Layout>
             <ScrollToTop />
