@@ -8,7 +8,7 @@ export default defineConfig({
     allowedHosts: [
       'asilbek-karomatov.dev',
       '64.227.185.18',
-      'localhost:5173'
+      'localhost'
     ],
     proxy: {
       '/api': {
