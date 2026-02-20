@@ -1,5 +1,5 @@
 import React, {useState, useCallback, useEffect} from 'react';
-import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
+import { useGoogleReCaptcha, GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { sendQuestion, getQuestions } from '../../services/contactService';
 import type { Question, ContactFormData, StatusState } from '../../types';
@@ -10,7 +10,7 @@ import ContactStatus from './ContactStatus';
 
 import '../../styles/Contact/Contact.scss';
 
-const Contact: React.FC = () => {
+const ContactContent: React.FC = () => {
     const { executeRecaptcha } = useGoogleReCaptcha();
     const queryClient = useQueryClient();
 
@@ -29,7 +29,7 @@ const Contact: React.FC = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        document.body.style.overflow = 'auto'; // Har ehtimolga qarshi
+        document.body.style.overflow = 'auto';
     }, []);
 
     const mutation = useMutation({
@@ -48,27 +48,20 @@ const Contact: React.FC = () => {
 
     const handleSubmit = useCallback(async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log("Submit bosildi...");
 
         if (!executeRecaptcha) {
-            console.error("reCAPTCHA yuklanmagan!");
             setStatus({ type: 'danger', msg: 'reCAPTCHA hali tayyor emas' });
             return;
         }
 
         try {
             setStatus({ type: 'info', msg: 'Xavfsizlik tekshiruvi...' });
-
             const token = await executeRecaptcha('contact');
-            console.log("reCAPTCHA Token olindi:", token);
-
             mutation.mutate({ ...formData, recaptcha_token: token });
         } catch (err) {
-            console.error("reCAPTCHA xatosi:", err);
             setStatus({ type: 'danger', msg: 'Xavfsizlik tekshiruvidan o\'tilmadi' });
         }
     }, [executeRecaptcha, formData, mutation]);
-
 
     return (
         <section className="contact-manga-wrapper">
@@ -92,6 +85,17 @@ const Contact: React.FC = () => {
                 </div>
             </div>
         </section>
+    );
+};
+
+const Contact: React.FC = () => {
+    return (
+        <GoogleReCaptchaProvider
+            reCaptchaKey="6LfAH2gsAAAAAKLLBq6V09t6nnUhKpfRAEBOKH3b"
+            language="uz"
+        >
+            <ContactContent />
+        </GoogleReCaptchaProvider>
     );
 };
 

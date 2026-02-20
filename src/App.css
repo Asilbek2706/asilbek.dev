@@ -10,9 +10,3 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
-
-.grecaptcha-badge {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-}

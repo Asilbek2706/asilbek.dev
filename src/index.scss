@@ -5,14 +5,20 @@ body {
     font-family: 'Inter', sans-serif !important;
     background-color: #F2F0EB;
     -webkit-font-smoothing: antialiased;
+}
 
+body:not(:has(.contact-manga-wrapper)) {
     .grecaptcha-badge {
-        display: none !important;
         visibility: hidden !important;
         opacity: 0 !important;
         pointer-events: none !important;
-        width: 0 !important;
-        height: 0 !important;
     }
 }
 
+.contact-manga-wrapper {
+    .grecaptcha-badge {
+        visibility: visible;
+        opacity: 1;
+        bottom: 20px !important;
+    }
+}
