@@ -38,7 +38,7 @@ const Footer: React.FC = () => {
                             </span>
                         </div>
                         <div className="col-md-6 text-center text-md-end">
-                            <span className="badge-manga">Build with React & Django</span>
+                            <span className="badge-manga">Build with React</span>
                         </div>
                     </div>
                 </div>
