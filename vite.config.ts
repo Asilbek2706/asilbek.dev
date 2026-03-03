@@ -6,12 +6,11 @@ export default defineConfig({
   server: {
     allowedHosts: [
       'asilbek-karomatov.dev',
-      '64.227.185.18',
       'localhost'
     ],
     proxy: {
       '/api': {
-        target: 'http://64.227.185.18',
+        target: 'asilbek-karomatov.dev',
         changeOrigin: true,
         secure: false,
       }
