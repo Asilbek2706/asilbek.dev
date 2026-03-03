@@ -1,47 +1,67 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import type { AboutData } from "../../types";
+import styles from './Hero.module.scss';
 
 interface HeroProps {
     aboutInfo: AboutData;
 }
 
 const Hero: React.FC<HeroProps> = ({ aboutInfo }) => (
-    <section className="hero-modern">
+    <section className={styles.heroModern}>
         <div className="container">
             <div className="row align-items-center g-5">
                 <div className="col-lg-6 order-2 order-lg-1">
-                    <div className="hero-modern__badge">
-                        <span className="hero-modern__pulse"></span>
-                        <span className="hero-modern__badge-text">Active Developer</span>
-                    </div>
+                    <div className={styles.contentBox}>
+                        <div className={styles.badge} style={{ '--delay': '0.1s' } as React.CSSProperties}>
+                            <span className={styles.pulse}></span>
+                            <span className={styles.badgeText}>Ready for new challenges</span>
+                        </div>
 
-                    <h1 className="hero-modern__title">
-                        I'm {aboutInfo.firstname} <span className="hero-modern__title--outline">{aboutInfo.lastname}</span>
-                    </h1>
+                        <h1 className={styles.title} style={{ '--delay': '0.3s' } as React.CSSProperties}>
+                            <span className={styles.greeting}>Salom, men</span> <br />
+                            {aboutInfo.firstname} <span className={styles.outline}>{aboutInfo.lastname}</span>
+                        </h1>
 
-                    <div className="hero-modern__description">
-                        {aboutInfo.firstname} — Acharya University talabasi. Men zamonaviy <strong>Frontend</strong> va <strong>Full-stack</strong> mantiqlari ustida ishlayman.
-                    </div>
+                        <div className={styles.description} style={{ '--delay': '0.5s' } as React.CSSProperties}>
+                            Men <span className={styles.highlightText}>Acharya University</span> talabasi va
+                            murakkab tizimlar yaratishga ishtiyoqmand <br />
+                            <strong>Full-stack muhandisiman.</strong>
+                        </div>
 
-                    <div className="hero-modern__actions">
-                        <Link to="/contact" className="hero-modern__btn hero-modern__btn--primary">
-                            Bog'lanish <i className="bi bi-arrow-right-short ms-2"></i>
-                        </Link>
-                        <Link to="/projects" className="hero-modern__btn hero-modern__btn--outline">
-                            Loyihalar
-                        </Link>
+                        <div className={styles.actions} style={{ '--delay': '0.7s' } as React.CSSProperties}>
+                            <Link to="/contact" className={styles.btnPrimary}>
+                                Loyihani boshlaymiz <i className="bi bi-rocket-takeoff"></i>
+                            </Link>
+                            <Link to="/projects" className={styles.btnOutline}>
+                                Portfolio
+                            </Link>
+                        </div>
                     </div>
                 </div>
 
-                <div className="col-lg-6 order-1 order-lg-2 text-center position-relative">
-                    <div className="hero-modern__blob"></div>
-                    <img
-                        src={aboutInfo.image}
-                        alt={aboutInfo.firstname}
-                        className="hero-modern__img"
-                    />
+                <div className="col-lg-6 order-1 order-lg-2 text-center">
+                    <div className={styles.visualWrapper}>
+                        <div className={`${styles.floatIcon} ${styles.icon1}`}><i className="bi bi-browser-chrome"></i></div>
+                        <div className={`${styles.floatIcon} ${styles.icon2}`}><i className="bi bi-code-square"></i></div>
+                        <div className={`${styles.floatIcon} ${styles.icon3}`}><i className="bi bi-database"></i></div>
+
+                        <div className={styles.mainImageFrame}>
+                            <div className={styles.blobGradient}></div>
+                            <img
+                                src={aboutInfo.image}
+                                alt={aboutInfo.firstname}
+                                className={styles.heroImg}
+                            />
+                        </div>
+                    </div>
                 </div>
+            </div>
+        </div>
+
+        <div className={styles.scrollIndicator}>
+            <div className={styles.mouse}>
+                <div className={styles.wheel}></div>
             </div>
         </div>
     </section>

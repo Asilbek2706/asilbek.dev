@@ -1,0 +1,63 @@
+@use "../../abstracts/variables" as v;
+
+.brandWrapper {
+  .logoText {
+    font-weight: 200;
+    font-size: 1.6rem;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    color: v.$text-light;
+
+    .dot {
+      color: v.$accent-yellow;
+      font-weight: 900;
+    }
+  }
+
+  .quote {
+    font-weight: 200;
+    font-size: 1rem;
+    color: v.$text-muted;
+    font-style: italic;
+    line-height: 1.7;
+    margin-bottom: 35px;
+    max-width: 90%;
+  }
+}
+
+.socialGrid {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+
+  .socialPill {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 22px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 100px;
+    color: v.$text-muted;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 300;
+    transition: all 0.4s ease;
+
+    i {
+      font-size: 1.1rem;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover {
+      background: rgba(v.$accent-yellow, 0.08);
+      border-color: rgba(v.$accent-yellow, 0.4);
+      color: v.$text-light;
+      transform: translateY(-3px);
+
+      i {
+        transform: rotate(-10deg) scale(1.2);
+      }
+    }
+  }
+}

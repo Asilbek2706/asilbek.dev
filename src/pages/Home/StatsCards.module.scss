@@ -1,0 +1,69 @@
+@use "../../styles/abstracts/variables" as v;
+
+.statsSection {
+  padding: 100px 0;
+}
+
+.glassCard {
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  padding: 40px;
+  border-radius: 30px;
+  height: 100%;
+  backdrop-filter: blur(10px);
+}
+
+.cardTitle {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-weight: 300;
+  color: v.$text-light;
+  margin-bottom: 35px;
+
+  i {
+    color: v.$accent-yellow;
+  }
+}
+
+.timelineItem {
+  border-left: 1px solid rgba(v.$accent-yellow, 0.3);
+  padding-left: 25px;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: -4px;
+    top: 0;
+    width: 7px;
+    height: 7px;
+    background: v.$accent-yellow;
+    border-radius: 50%;
+  }
+}
+
+.year {
+  color: v.$accent-yellow;
+  font-size: 0.8rem;
+  font-family: monospace;
+}
+
+.school {
+  color: v.$text-light;
+  font-weight: 400;
+  margin: 10px 0;
+}
+
+.text {
+  color: v.$text-muted;
+  font-weight: 200;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.skillsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 15px;
+}

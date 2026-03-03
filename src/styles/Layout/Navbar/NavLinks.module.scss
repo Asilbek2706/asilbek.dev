@@ -1,0 +1,120 @@
+@use "../../abstracts/variables" as v;
+
+.navWrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  @media (max-width: 991px) {
+    padding: 60px 0; // Mobile menyuda tepadan joy
+  }
+}
+
+.navList {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  @media (max-width: 991px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 35px;
+    margin-bottom: auto; // Sociallarni pastga surish uchun
+  }
+}
+
+.link {
+  text-decoration: none;
+  color: v.$text-muted;
+  font-weight: 300;
+  font-size: 0.95rem;
+  position: relative;
+  transition: color 0.4s var(--m-ease);
+  letter-spacing: 0.5px;
+
+  @media (max-width: 991px) {
+    font-size: 1.8rem; // Mobileda sarlavha darajasidagi hajm
+    font-weight: 700;
+    letter-spacing: -1px;
+    color: v.$text-light;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 0;
+    height: 1px;
+    background: v.$accent-yellow;
+    transition: width 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+    transform: translateX(-50%);
+  }
+
+  &:hover, &.active {
+    color: v.$text-light;
+
+    &::after {
+      width: 100%;
+    }
+  }
+
+  // Active bo'lganda kichik nuqta (ixtiyoriy, dizaynni boyitadi)
+  &.active::before {
+    @media (max-width: 991px) {
+      content: '';
+      position: absolute;
+      left: -25px;
+      top: 50%;
+      width: 6px;
+      height: 6px;
+      background: v.$accent-yellow;
+      border-radius: 50%;
+      transform: translateY(-50%);
+    }
+  }
+}
+
+// Mobile Social links qismi
+.socialLinks {
+  display: none; // Desktopda yashiramiz
+
+  @media (max-width: 991px) {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+.socialIcon {
+  color: v.$text-muted;
+  font-size: 1.4rem;
+  transition: 0.4s var(--m-ease);
+
+  &:hover {
+    color: v.$accent-yellow;
+    transform: translateY(-5px);
+  }
+}
+
+// Global reveal mantiqi bilan bog'lash
+:global(.m-reveal) {
+  @media (max-width: 991px) {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+}
+
+:global(.is-ready) :global(.m-reveal) {
+  @media (max-width: 991px) {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

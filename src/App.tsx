@@ -1,5 +1,5 @@
-import { Routes, Route } from 'react-router-dom';
-import { useEffect } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import Lenis from 'lenis';
 import Layout from './components/Layout/Layout';
 import Home from "./pages/Home/Home";
@@ -7,8 +7,12 @@ import About from "./pages/About/About";
 import Projects from "./pages/Projects/Projects";
 import Contact from "./pages/Contact/Contact";
 import ScrollToTop from "./components/Shared/Utils/ScrollToTop.tsx";
+import { AnimationProvider } from './context/AnimationContext';
 
 function App() {
+    const location = useLocation();
+    const [pageKey, setPageKey] = useState(0);
+
     useEffect(() => {
         const lenis = new Lenis({
             duration: 1.4,
@@ -30,17 +34,24 @@ function App() {
         };
     }, []);
 
+    useEffect(() => {
+        setPageKey(prev => prev + 1);
+        window.scrollTo(0, 0);
+    }, [location.pathname]);
+
     return (
-        <Layout>
-            <ScrollToTop />
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/projects" element={<Projects />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="*" element={<Home />} />
-            </Routes>
-        </Layout>
+        <AnimationProvider key={pageKey}>
+            <Layout>
+                <ScrollToTop />
+                <Routes location={location} key={location.pathname}>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/projects" element={<Projects />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="*" element={<Home />} />
+                </Routes>
+            </Layout>
+        </AnimationProvider>
     );
 }
 

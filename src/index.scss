@@ -1,15 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;700;800&family=Inter:wght@400;500;600;700;800;900&display=swap');
 
 // --- MANU LIGHT THEME VARIABLES ---
-$m-bg: #F9F9F9;         // O'sha Manu-ning toza, biroz krem rang oq foni
-$m-text: #000000;       // Mutloq qora
-$m-accent: #FF3E00;     // Ikonik Manu qizili
-$m-border: 1px solid rgba(0, 0, 0, 0.08); // O'ta nozik chiziqlar
+$m-bg: #F9F9F9;
+$m-text: #000000;
+$m-accent: #FF3E00;
+$m-border: 1px solid rgba(0, 0, 0, 0.08);
 $m-border-dark: 1px solid #000000;
 
 :root {
+    // Apple va High-end agentliklar formulasi (O'ta silliq)
     --m-ease: cubic-bezier(0.16, 1, 0.3, 1);
-    --m-transition: 0.6s var(--m-ease);
+    --m-transition: 0.8s var(--m-ease);
+    --m-reveal-delay: 0.4s; // Loaderdan keyingi pauza
 }
 
 // --- GLOBAL RESET ---
@@ -29,8 +31,7 @@ body {
     line-height: 1.5;
 }
 
-// --- MANU GRID SYSTEM (Asosiy poydevor) ---
-// Har bir sahifa shunday chiziqlar orasida bo'lishi kerak
+// --- MANU GRID SYSTEM ---
 .m-layout {
     border-left: $m-border;
     border-right: $m-border;
@@ -38,47 +39,73 @@ body {
     margin: 0 auto;
     min-height: 100vh;
     position: relative;
-}
+    // Sahifa yuklanayotganda biroz xiralik (Cinematic feel)
+    transition: filter 1.2s var(--m-ease);
 
-// --- RECAPTCHA MANAGEMENT ---
-// Manu-da vizual tozalik birinchi o'rinda
-body:not(:has(.contact-manga-wrapper)) {
-    .grecaptcha-badge {
-        visibility: hidden !important;
-        opacity: 0 !important;
-        pointer-events: none !important;
+    body.is-loading & {
+        filter: blur(10px);
+        pointer-events: none;
     }
 }
 
-.contact-manga-wrapper {
-    .grecaptcha-badge {
-        visibility: visible;
+// --- 🎞️ CINEMATIC ANIMATION SYSTEM (Context uchun) ---
+
+// 1. Global Reveal (Sahifa tayyor bo'lganda elementlarni chiqarish)
+.m-reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    will-change: transform, opacity;
+    transition: opacity 1.2s var(--m-ease),
+    transform 1.2s var(--m-ease);
+
+    // Sahifa tayyor bo'lganda (Context orqali .is-ready klassi qo'shiladi)
+    .is-ready & {
         opacity: 1;
-        bottom: 30px !important;
-        right: 30px !important;
-        // Captcha-ni ham minimalist qilish (grayscale)
-        filter: grayscale(1);
-        transition: filter var(--m-transition);
-
-        &:hover {
-            filter: grayscale(0);
-        }
+        transform: translateY(0);
     }
 }
 
-// --- UTILITY CLASSES (Manu Style) ---
+// 2. Image Mask Reveal (Rasm ustidagi parda)
+.m-mask-reveal {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: $m-bg;
+        z-index: 2;
+        transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+        transition-delay: 0.2s;
+    }
+
+    .is-ready &::after {
+        transform: translateY(-101%);
+    }
+}
+
+// 3. Staggered Delays (Navbatma-navbat chiqish uchun)
+@for $i from 1 through 12 {
+    .delay-#{$i} {
+        transition-delay: calc(var(--m-reveal-delay) + #{$i * 0.1s}) !important;
+    }
+}
+
+// --- UTILITY CLASSES ---
 .m-mono { font-family: 'JetBrains Mono', monospace; }
-.m-upper { text-transform: uppercase; letter-spacing: 0.1em; }
+.m-upper { text-transform: uppercase; letter-spacing: 0.15em; }
 
 .m-line-y { border-left: $m-border; border-right: $m-border; }
 .m-line-x { border-top: $m-border; border-bottom: $m-border; }
 
-// Linklar uchun Manu-style tagchiziq
 .m-link {
     color: inherit;
     text-decoration: none;
     position: relative;
     padding-bottom: 2px;
+    transition: color 0.3s ease;
 
     &::after {
         content: '';
@@ -87,11 +114,28 @@ body:not(:has(.contact-manga-wrapper)) {
         left: 0;
         width: 0;
         height: 1px;
-        background: $m-text;
+        background: $m-accent; // Manu qizili bilan urg'u beramiz
         transition: width var(--m-transition);
     }
 
-    &:hover::after {
-        width: 100%;
+    &:hover {
+        color: $m-accent;
+        &::after { width: 100%; }
     }
+}
+
+// --- RECAPTCHA ---
+body:not(:has(.contact-manga-wrapper)) {
+    .grecaptcha-badge {
+        visibility: hidden !important;
+        opacity: 0 !important;
+    }
+}
+
+.contact-manga-wrapper .grecaptcha-badge {
+    visibility: visible;
+    opacity: 1;
+    filter: grayscale(1);
+    transition: filter 0.5s ease;
+    &:hover { filter: grayscale(0); }
 }

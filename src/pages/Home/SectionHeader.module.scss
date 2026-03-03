@@ -1,0 +1,32 @@
+@use "../../styles/abstracts/variables" as v;
+
+.header {
+  margin-bottom: 50px;
+  &.centered {
+    text-align: center;
+    .underline { margin: 15px auto 0; }
+  }
+}
+
+.subtitle {
+  color: v.$accent-yellow;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 0.75rem;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+.title {
+  color: v.$text-light;
+  font-weight: 200;
+  font-size: 2.5rem;
+  letter-spacing: -1px;
+}
+
+.underline {
+  width: 40px;
+  height: 1px;
+  background: v.$accent-yellow;
+  margin-top: 15px;
+}

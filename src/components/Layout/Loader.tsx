@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import styles from '../../styles/Layout/Loader.module.scss';
 
 interface Props {
     onFinished?: () => void;
@@ -10,25 +11,28 @@ const Loader = ({ onFinished }: Props) => {
     const handleAnimationEnd = () => {
         setIsFadingOut(true);
         if (onFinished) {
-            setTimeout(onFinished, 500);
+            // Fade-out animatsiyasi tugashi uchun biroz kutamiz
+            setTimeout(onFinished, 800);
         }
     };
 
     return (
-        <div className={`manga-loader-overlay ${isFadingOut ? 'fade-out' : ''}`}>
-            <div className="loader-content">
-                <h1 className="manga-title" data-text="ASILBEK-KAROMATOV.DEV">
-                    ASILBEK-KAROMATOV<span className="text-red">.DEV</span>
+        <div className={`${styles.overlay} ${isFadingOut ? styles.fadeOut : ''}`}>
+            <div className={styles.content}>
+                <h1 className={styles.mangaTitle} data-text="ASILBEK-KAROMATOV.DEV">
+                    ASILBEK-KAROMATOV<span className={styles.accent}>.DEV</span>
                 </h1>
 
-                <div className="loader-progress-bar">
+                <div className={styles.progressBar}>
                     <div
-                        className="progress-fill"
+                        className={styles.progressFill}
                         onAnimationEnd={handleAnimationEnd}
                     ></div>
                 </div>
 
-                <div className="loader-status-code">SYSTEM_INIT_COMPLETE...</div>
+                <div className={styles.statusCode}>
+                    <span className={styles.blink}>_</span>SYSTEM_INIT_COMPLETE...
+                </div>
             </div>
         </div>
     );
