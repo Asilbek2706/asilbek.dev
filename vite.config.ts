@@ -10,10 +10,11 @@ export default defineConfig({
     ],
     proxy: {
       '/api': {
-        target: 'asilbek-karomatov.dev',
+        target: 'https://api.asilbek-karomatov.dev',
         changeOrigin: true,
-        secure: false,
+        secure: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
       }
     }
   }
-})
+});
