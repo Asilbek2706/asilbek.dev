@@ -1,19 +1,20 @@
 import React from 'react';
+import styles from '../../../styles/Layout/Footer/FooterContact.module.scss';
 
-const FooterContact: React.FC<{ email: string; phone: string }> = ({ email, phone }) => (
+const FooterContact: React.FC<{ email: string; phone: string }> = ({email, phone}) => (
     <div className="col-lg-3 col-md-6">
-        <h6 className="footer-title">Bog'lanish</h6>
-        <div className="contact-list">
-            <div className="contact-item">
-                <i className="bi bi-envelope-at text-primary"></i>
+        <h6 className={styles.title}>Bog'lanish</h6>
+        <div className={styles.contactList}>
+            <div className={styles.contactItem}>
+                <i className="bi bi-envelope-at"></i>
                 <span>{email}</span>
             </div>
-            <div className="contact-item">
-                <i className="bi bi-geo-alt text-primary"></i>
+            <div className={styles.contactItem}>
+                <i className="bi bi-geo-alt"></i>
                 <span>Bukhara, Uzbekistan</span>
             </div>
-            <div className="contact-item">
-                <i className="bi bi-telephone text-primary"></i>
+            <div className={styles.contactItem}>
+                <i className="bi bi-telephone"></i>
                 <span>+{phone}</span>
             </div>
         </div>

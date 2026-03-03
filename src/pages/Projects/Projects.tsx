@@ -3,11 +3,9 @@ import { useQuery } from '@tanstack/react-query';
 import { getProjects } from '../../services/projectService';
 import type { Project } from '../../types';
 
-import SectionHeader from "../../components/Shared/UI/SectionHeader.tsx";
+import SectionHeader from "../Home/SectionHeader.tsx";
 import ProjectItem from "./ProjectItem.tsx";
 import { ProjectLoading, ProjectError, ProjectEmpty } from "./ProjectStates.tsx";
-
-import '../../styles/Projects/Projects.scss';
 
 const Projects: React.FC = () => {
     const { data: projects, isLoading, isError } = useQuery<Project[]>({

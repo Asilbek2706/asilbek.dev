@@ -1,0 +1,49 @@
+@use "../../abstracts/variables" as v;
+
+.title {
+  color: v.$text-light;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  margin-bottom: 30px;
+}
+
+.contactList {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: v.$text-muted;
+  font-weight: 200;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+
+  i {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    color: v.$accent-yellow;
+    font-size: 1rem;
+    transition: 0.3s;
+  }
+
+  &:hover {
+    color: v.$text-light;
+
+    i {
+      background: v.$accent-yellow;
+      color: #000;
+      transform: scale(1.1);
+    }
+  }
+}

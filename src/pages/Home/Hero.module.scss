@@ -1,0 +1,216 @@
+@use "../../styles/abstracts/variables" as v;
+
+.heroModern {
+  position: relative;
+  padding: 200px 0 150px;
+  background: radial-gradient(circle at 10% 20%, rgba(v.$accent-yellow, 0.03) 0%, transparent 40%);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.contentBox {
+  z-index: 10;
+
+  // Elementlar ketma-ket chiqishi (Staggered animation)
+  .badge, .title, .description, .actions {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: var(--delay);
+  }
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 100px;
+  margin-bottom: 24px;
+  backdrop-filter: blur(5px);
+
+  .pulse {
+    width: 6px;
+    height: 6px;
+    background: v.$accent-yellow;
+    border-radius: 50%;
+    box-shadow: 0 0 12px v.$accent-yellow;
+    animation: softPulse 2s infinite;
+  }
+
+  .badgeText {
+    font-size: 0.75rem;
+    color: v.$text-muted;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+}
+
+.title {
+  font-size: clamp(3rem, 10vw, 5.5rem);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -3px;
+  color: v.$text-light;
+  margin-bottom: 30px;
+
+  .greeting {
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: v.$accent-yellow;
+    display: block;
+    margin-bottom: 15px;
+  }
+
+  .outline {
+    display: block;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.15);
+    background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+    -webkit-background-clip: text;
+    transition: 0.5s ease;
+
+    &:hover {
+      -webkit-text-stroke: 1px v.$accent-yellow;
+    }
+  }
+}
+
+.description {
+  font-size: 1.15rem;
+  font-weight: 200;
+  line-height: 1.7;
+  color: v.$text-muted;
+  max-width: 500px;
+  margin-bottom: 50px;
+
+  strong { color: v.$text-light; font-weight: 400; }
+  .highlightText { color: v.$accent-yellow; font-weight: 300; }
+}
+
+// Rasm qismini "Unique" qilish
+.visualWrapper {
+  position: relative;
+
+  .mainImageFrame {
+    position: relative;
+    width: 420px;
+    height: 520px;
+    margin: 0 auto;
+
+    // Rasmning orqasidagi neon effekt
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -20px; left: 10%;
+      width: 80%; height: 40px;
+      background: v.$accent-yellow;
+      filter: blur(50px);
+      opacity: 0.15;
+      z-index: 1;
+    }
+
+    .heroImg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      // Unique Clipping & Border
+      border-radius: 40% 60% 40% 60% / 60% 40% 60% 40%;
+      animation: morphing 10s infinite alternate;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      filter: grayscale(30%) contrast(110%);
+      transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 2;
+      position: relative;
+
+      &:hover {
+        filter: grayscale(0%) contrast(100%);
+        border-color: v.$accent-yellow;
+      }
+    }
+  }
+
+  .blobGradient {
+    position: absolute;
+    top: -10%; left: -10%;
+    width: 120%; height: 120%;
+    background: radial-gradient(circle, rgba(v.$accent-yellow, 0.05) 0%, transparent 60%);
+    z-index: 0;
+  }
+}
+
+.floatIcon {
+  position: absolute;
+  width: 54px; height: 54px;
+  background: rgba(10, 10, 10, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  color: v.$accent-yellow;
+  font-size: 1.4rem;
+  z-index: 5;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+  &.icon1 { top: 0; left: 0; animation: floatY 5s infinite ease-in-out; }
+  &.icon2 { bottom: 10%; right: 0; animation: floatY 6s infinite ease-in-out reverse; }
+  &.icon3 { top: 40%; left: -40px; animation: floatY 4s infinite ease-in-out 1s; }
+}
+
+.btnPrimary {
+  background: v.$accent-yellow;
+  color: #000;
+  padding: 18px 38px;
+  border-radius: 100px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  transition: 0.4s;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(v.$accent-yellow, 0.3);
+  }
+}
+
+.btnOutline {
+  padding: 18px 38px;
+  border-radius: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: v.$text-light;
+  text-decoration: none;
+  margin-left: 20px;
+  transition: 0.4s;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: v.$text-light;
+  }
+}
+
+// Animatsiyalar
+@keyframes reveal {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes morphing {
+  0% { border-radius: 40% 60% 40% 60% / 60% 40% 60% 40%; }
+  100% { border-radius: 60% 40% 60% 40% / 40% 60% 40% 60%; }
+}
+
+@keyframes floatY {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-20px) rotate(10deg); }
+}
+
+@keyframes softPulse {
+  0% { box-shadow: 0 0 0 0 rgba(v.$accent-yellow, 0.4); }
+  100% { box-shadow: 0 0 0 15px rgba(v.$accent-yellow, 0); }
+}

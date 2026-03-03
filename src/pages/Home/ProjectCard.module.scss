@@ -1,0 +1,105 @@
+@use "../../styles/abstracts/variables" as v;
+
+.card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  overflow: hidden;
+  transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    transform: translateY(-10px);
+    border-color: rgba(v.$accent-yellow, 0.2);
+
+    .imageWrapper img {
+      transform: scale(1.05);
+    }
+
+    .overlay {
+      opacity: 1;
+    }
+  }
+}
+
+.imageWrapper {
+  position: relative;
+  height: 260px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.6s;
+  }
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(v.$bg-dark, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: 0.4s;
+  backdrop-filter: blur(5px);
+}
+
+.btn {
+  background: v.$accent-yellow;
+  color: #000;
+  padding: 12px 25px;
+  border-radius: 100px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.body {
+  padding: 30px;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+
+    h5 {
+      color: v.$text-light;
+      font-weight: 400;
+      margin: 0;
+    }
+
+    i {
+      color: v.$text-muted;
+      font-size: 1.2rem;
+      transition: 0.3s;
+
+      &:hover {
+        color: v.$text-light;
+      }
+    }
+  }
+
+  p {
+    color: v.$text-muted;
+    font-weight: 200;
+    font-size: 0.9rem;
+    height: 45px;
+    overflow: hidden;
+  }
+}
+
+.footer {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+
+  .badge {
+    color: v.$accent-yellow;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+}

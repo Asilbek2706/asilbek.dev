@@ -1,0 +1,82 @@
+@use "../../abstracts/variables" as v;
+
+.footer {
+  background-color: v.$bg-dark;
+  padding: 80px 0 0;
+  color: v.$text-light;
+  overflow: hidden;
+}
+
+.mainContent {
+  padding-bottom: 60px;
+}
+
+.ctaBox {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 40px;
+  border-radius: 24px;
+  backdrop-filter: blur(10px);
+  transition: transform 0.4s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    border-color: rgba(v.$accent-yellow, 0.2);
+  }
+
+  h5 {
+    font-weight: 400;
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+    letter-spacing: 0.5px;
+  }
+
+  p {
+    font-weight: 200;
+    color: v.$text-muted;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+}
+
+.btnCta {
+  display: block;
+  width: 100%;
+  background-color: v.$accent-yellow;
+  color: #000;
+  text-align: center;
+  text-decoration: none;
+  padding: 14px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-top: 20px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    background-color: lighten(v.$accent-yellow, 10%);
+    box-shadow: 0 10px 25px rgba(v.$accent-yellow, 0.2);
+    transform: scale(1.02);
+  }
+}
+
+.copyright {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 30px 0;
+
+  .copyText {
+    font-weight: 200;
+    font-size: 0.85rem;
+    color: v.$text-muted;
+  }
+}
+
+.mangaBadge {
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: v.$accent-yellow;
+  padding: 6px 16px;
+  border: 1px solid rgba(v.$accent-yellow, 0.3);
+  border-radius: 100px;
+  letter-spacing: 1px;
+}

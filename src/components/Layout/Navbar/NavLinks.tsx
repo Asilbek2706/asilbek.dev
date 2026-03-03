@@ -1,7 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useNav } from '../../../context/NavContext';
+import styles from '../../../styles/Layout/Navbar/NavLinks.module.scss';
 
 const NavLinks: React.FC = () => {
+    const { setIsMenuOpen } = useNav();
+
     const links = [
         { path: "/", label: "Asosiy" },
         { path: "/about", label: "Men haqimda" },
@@ -9,21 +13,42 @@ const NavLinks: React.FC = () => {
         { path: "/contact", label: "Bog'lanish" }
     ];
 
+    const socials = [
+        { icon: "bi-telegram", url: "https://t.me/username" },
+        { icon: "bi-github", url: "https://github.com/username" },
+        { icon: "bi-instagram", url: "https://instagram.com/username" }
+    ];
+
     return (
-        <ul className="navbar-nav ms-auto gap-1">
-            {links.map((link) => (
-                <li className="nav-item" key={link.path}>
-                    <NavLink
-                        to={link.path}
-                        className={({ isActive }) =>
-                            `nav-link custom-link ${isActive ? 'active-link' : ''}`
-                        }
+        <div className={styles.navWrapper}>
+            <ul className={styles.navList}>
+                {links.map((link, index) => (
+                    <li key={link.path} className={`m-reveal delay-${index + 1}`}>
+                        <NavLink
+                            to={link.path}
+                            onClick={() => setIsMenuOpen(false)}
+                            className={({ isActive }) => `${styles.link} ${isActive ? styles.active : ''}`}
+                        >
+                            {link.label}
+                        </NavLink>
+                    </li>
+                ))}
+            </ul>
+
+            <div className={`${styles.socialLinks} m-reveal delay-5`}>
+                {socials.map((social, idx) => (
+                    <a
+                        key={idx}
+                        href={social.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.socialIcon}
                     >
-                        {link.label}
-                    </NavLink>
-                </li>
-            ))}
-        </ul>
+                        <i className={`bi ${social.icon}`}></i>
+                    </a>
+                ))}
+            </div>
+        </div>
     );
 };
 

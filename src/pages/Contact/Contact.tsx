@@ -8,8 +8,6 @@ import ContactForm from './ContactForm';
 import QuestionList from './QuestionList';
 import ContactStatus from './ContactStatus';
 
-import '../../styles/Contact/Contact.scss';
-
 const ContactContent: React.FC = () => {
     const { executeRecaptcha } = useGoogleReCaptcha();
     const queryClient = useQueryClient();
