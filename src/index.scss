@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;700;800&family=Inter:wght@400;500;600;700;800;900&display=swap');
 
-// --- MANU LIGHT THEME VARIABLES ---
 $m-bg: #F9F9F9;
 $m-text: #000000;
 $m-accent: #FF3E00;
@@ -8,13 +7,11 @@ $m-border: 1px solid rgba(0, 0, 0, 0.08);
 $m-border-dark: 1px solid #000000;
 
 :root {
-    // Apple va High-end agentliklar formulasi (O'ta silliq)
     --m-ease: cubic-bezier(0.16, 1, 0.3, 1);
     --m-transition: 0.8s var(--m-ease);
-    --m-reveal-delay: 0.4s; // Loaderdan keyingi pauza
+    --m-reveal-delay: 0.4s;
 }
 
-// --- GLOBAL RESET ---
 * {
     margin: 0;
     padding: 0;
@@ -31,7 +28,6 @@ body {
     line-height: 1.5;
 }
 
-// --- MANU GRID SYSTEM ---
 .m-layout {
     border-left: $m-border;
     border-right: $m-border;
@@ -39,7 +35,6 @@ body {
     margin: 0 auto;
     min-height: 100vh;
     position: relative;
-    // Sahifa yuklanayotganda biroz xiralik (Cinematic feel)
     transition: filter 1.2s var(--m-ease);
 
     body.is-loading & {
@@ -48,9 +43,6 @@ body {
     }
 }
 
-// --- 🎞️ CINEMATIC ANIMATION SYSTEM (Context uchun) ---
-
-// 1. Global Reveal (Sahifa tayyor bo'lganda elementlarni chiqarish)
 .m-reveal {
     opacity: 0;
     transform: translateY(40px);
@@ -58,14 +50,12 @@ body {
     transition: opacity 1.2s var(--m-ease),
     transform 1.2s var(--m-ease);
 
-    // Sahifa tayyor bo'lganda (Context orqali .is-ready klassi qo'shiladi)
     .is-ready & {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-// 2. Image Mask Reveal (Rasm ustidagi parda)
 .m-mask-reveal {
     position: relative;
     overflow: hidden;
@@ -86,14 +76,12 @@ body {
     }
 }
 
-// 3. Staggered Delays (Navbatma-navbat chiqish uchun)
 @for $i from 1 through 12 {
     .delay-#{$i} {
         transition-delay: calc(var(--m-reveal-delay) + #{$i * 0.1s}) !important;
     }
 }
 
-// --- UTILITY CLASSES ---
 .m-mono { font-family: 'JetBrains Mono', monospace; }
 .m-upper { text-transform: uppercase; letter-spacing: 0.15em; }
 
@@ -114,7 +102,7 @@ body {
         left: 0;
         width: 0;
         height: 1px;
-        background: $m-accent; // Manu qizili bilan urg'u beramiz
+        background: $m-accent;
         transition: width var(--m-transition);
     }
 
@@ -124,7 +112,6 @@ body {
     }
 }
 
-// --- RECAPTCHA ---
 body:not(:has(.contact-manga-wrapper)) {
     .grecaptcha-badge {
         visibility: hidden !important;

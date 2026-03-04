@@ -84,13 +84,19 @@
 }
 
 @keyframes typeText {
-  to { width: 100%; }
+  to {
+    width: 100%;
+  }
 }
 
 @keyframes fillProgress {
-  to { transform: translateX(0); }
+  to {
+    transform: translateX(0);
+  }
 }
 
 @keyframes blink {
-  50% { opacity: 0; }
+  50% {
+    opacity: 0;
+  }
 }

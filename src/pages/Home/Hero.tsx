@@ -42,9 +42,11 @@ const Hero: React.FC<HeroProps> = ({ aboutInfo }) => (
 
                 <div className="col-lg-6 order-1 order-lg-2 text-center">
                     <div className={styles.visualWrapper}>
-                        <div className={`${styles.floatIcon} ${styles.icon1}`}><i className="bi bi-browser-chrome"></i></div>
-                        <div className={`${styles.floatIcon} ${styles.icon2}`}><i className="bi bi-code-square"></i></div>
-                        <div className={`${styles.floatIcon} ${styles.icon3}`}><i className="bi bi-database"></i></div>
+                        <div className={`${styles.floatIcon} ${styles.react}`}><i className="bi bi-patch-check-fill"></i><span>React</span></div>
+                        <div className={`${styles.floatIcon} ${styles.js}`}><i className="bi bi-filetype-js"></i></div>
+                        <div className={`${styles.floatIcon} ${styles.ts}`}><i className="bi bi-filetype-tsx"></i></div>
+                        <div className={`${styles.floatIcon} ${styles.sass}`}><i className="bi bi-filetype-scss"></i></div>
+                        <div className={`${styles.floatIcon} ${styles.bootstrap}`}><i className="bi bi-bootstrap-fill"></i></div>
 
                         <div className={styles.mainImageFrame}>
                             <div className={styles.blobGradient}></div>
@@ -56,12 +58,6 @@ const Hero: React.FC<HeroProps> = ({ aboutInfo }) => (
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <div className={styles.scrollIndicator}>
-            <div className={styles.mouse}>
-                <div className={styles.wheel}></div>
             </div>
         </div>
     </section>

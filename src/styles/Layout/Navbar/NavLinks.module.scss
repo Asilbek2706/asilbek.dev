@@ -6,7 +6,7 @@
   height: 100%;
 
   @media (max-width: 991px) {
-    padding: 60px 0; // Mobile menyuda tepadan joy
+    padding: 60px 0;
   }
 }
 
@@ -21,7 +21,7 @@
     flex-direction: column;
     align-items: center;
     gap: 35px;
-    margin-bottom: auto; // Sociallarni pastga surish uchun
+    margin-bottom: auto;
   }
 }
 
@@ -35,7 +35,7 @@
   letter-spacing: 0.5px;
 
   @media (max-width: 991px) {
-    font-size: 1.8rem; // Mobileda sarlavha darajasidagi hajm
+    font-size: 1.8rem;
     font-weight: 700;
     letter-spacing: -1px;
     color: v.$text-light;
@@ -61,7 +61,6 @@
     }
   }
 
-  // Active bo'lganda kichik nuqta (ixtiyoriy, dizaynni boyitadi)
   &.active::before {
     @media (max-width: 991px) {
       content: '';
@@ -77,9 +76,8 @@
   }
 }
 
-// Mobile Social links qismi
 .socialLinks {
-  display: none; // Desktopda yashiramiz
+  display: none;
 
   @media (max-width: 991px) {
     display: flex;
@@ -103,7 +101,6 @@
   }
 }
 
-// Global reveal mantiqi bilan bog'lash
 :global(.m-reveal) {
   @media (max-width: 991px) {
     opacity: 0;
