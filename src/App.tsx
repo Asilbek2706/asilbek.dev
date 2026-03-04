@@ -6,6 +6,7 @@ import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
 import Projects from "./pages/Projects/Projects";
 import Contact from "./pages/Contact/Contact";
+import QuestionsPage from "./pages/Contact/QuestionsPage";
 import ScrollToTop from "./components/Shared/Utils/ScrollToTop.tsx";
 import { AnimationProvider } from './context/AnimationContext';
 
@@ -48,6 +49,7 @@ function App() {
                     <Route path="/about" element={<About />} />
                     <Route path="/projects" element={<Projects />} />
                     <Route path="/contact" element={<Contact />} />
+                    <Route path="/contact/questions" element={<QuestionsPage />} />
                     <Route path="*" element={<Home />} />
                 </Routes>
             </Layout>

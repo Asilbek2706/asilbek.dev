@@ -1,35 +1,42 @@
 import React from 'react';
+import styles from '../../styles/Projects/ProjectStates.module.scss';
 
 export const ProjectLoading: React.FC = () => (
-    <div className="col-12 project-state-loading">
-        <div className="project-state-loading__wrapper">
-            <div className="project-state-loading__spinner" role="status">
-                <span className="visually-hidden">Yuklanmoqda...</span>
+    <div className="col-12">
+        <div className={styles.loadingWrapper}>
+            <div className={styles.loader}>
+                <div className={styles.circle}></div>
+                <div className={styles.circle}></div>
+                <div className={styles.circle}></div>
             </div>
-            <h3 className="project-state-loading__text">Ma'lumotlar yuklanmoqda...</h3>
+            <h3 className={styles.loadingText}>Arsenal tayyorlanmoqda...</h3>
         </div>
     </div>
 );
 
 export const ProjectError: React.FC = () => (
-    <div className="col-12 project-state-error">
-        <div className="project-state-error__card">
-            <div className="project-state-error__icon-box">
-                <i className="bi bi-exclamation-octagon-fill"></i>
+    <div className="col-12">
+        <div className={styles.errorCard}>
+            <div className={styles.errorIcon}>
+                <i className="bi bi-exclamation-triangle"></i>
             </div>
-            <h2 className="project-state-error__title">Tizimda xatolik!</h2>
-            <p className="project-state-error__lead">Loyihalarni yuklab bo'lmadi. Keyinroq qayta urinib ko'ring.</p>
-            <div className="project-state-error__footer-line"></div>
+            <h2 className={styles.errorTitle}>Aloqa uzildi</h2>
+            <p className={styles.errorDesc}>Loyihalarni serverdan olib bo'lmadi. Internetni yoki ulanishni tekshiring.</p>
+            <button className={styles.retryBtn} onClick={() => window.location.reload()}>
+                QAYTA URINISH
+            </button>
         </div>
     </div>
 );
 
 export const ProjectEmpty: React.FC = () => (
-    <div className="col-12 project-state-empty">
-        <div className="project-state-empty__box">
-            <i className="bi bi-archive project-state-empty__icon"></i>
-            <p className="project-state-empty__text">Hozircha arsenal bo'sh...</p>
-            <div className="project-state-empty__decoration"></div>
+    <div className="col-12">
+        <div className={styles.emptyBox}>
+            <div className={styles.ghostIcon}>
+                <i className="bi bi-robot"></i>
+            </div>
+            <p className={styles.emptyText}>Hozircha bu yerda hech narsa yo'q...</p>
+            <div className={styles.line}></div>
         </div>
     </div>
 );

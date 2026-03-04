@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './SectionHeader.module.scss';
+import styles from '../../styles/Home/SectionHeader.module.scss';
 
 interface SectionHeaderProps {
     subtitle: string;

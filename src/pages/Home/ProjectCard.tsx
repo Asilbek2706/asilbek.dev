@@ -1,6 +1,6 @@
 import React from 'react';
 import type {Project} from "../../types";
-import styles from './ProjectCard.module.scss';
+import styles from '../../styles/Home/ProjectCard.module.scss';
 
 const ProjectCard: React.FC<{ project: Project }> = ({project}) => (
     <div className={styles.card}>

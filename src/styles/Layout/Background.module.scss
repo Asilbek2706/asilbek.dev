@@ -4,9 +4,10 @@
   position: fixed;
   inset: 0;
   z-index: -1;
-  background-color: v.$bg-dark;
+  background-color: #121212;
   overflow: hidden;
   pointer-events: none;
+  transition: background-color 0.4s var(--m-ease);
 }
 
 .shapeWrapper {
@@ -14,24 +15,35 @@
   top: 50%;
   right: -10%;
   transform: translateY(-50%);
-  width: 120vh;
-  height: 120vh;
+  width: 110vh;
+  height: 110vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  opacity: 0;
+}
+
+.isReady .shapeWrapper {
+  opacity: 1;
+  transition: opacity 1.5s var(--m-ease);
 }
 
 .spiralSvg {
   width: 100%;
   height: 100%;
-  animation: rotateSlow 60s linear infinite;
-  opacity: 0.6;
+  color: rgba(255, 255, 255, 0.07);
+  animation: rotateSlow 100s linear infinite;
+  filter: blur(30px);
 }
 
 .overlay {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 50%, transparent 0%, v.$bg-dark 80%);
+  background: radial-gradient(
+                  circle at 75% 50%,
+                  transparent 0%,
+                  #121212 85%
+  );
 }
 
 @keyframes rotateSlow {

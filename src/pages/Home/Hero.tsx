@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import type { AboutData } from "../../types";
-import styles from './Hero.module.scss';
+import styles from '../../styles/Home/Hero.module.scss';
 
 interface HeroProps {
     aboutInfo: AboutData;

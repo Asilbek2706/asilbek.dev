@@ -1,4 +1,4 @@
-@use "../../styles/abstracts/variables" as v;
+@use "../abstracts/variables" as v;
 
 .heroModern {
   position: relative;
@@ -15,9 +15,10 @@
     left: 50%;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at center, rgba(v.$accent-yellow, 0.03) 0%, transparent 70%);
+    background: radial-gradient(circle at center, rgba(v.$accent-yellow, 0.015) 0%, transparent 70%);
     transform: translate(-50%, -50%);
     pointer-events: none;
+    z-index: 0;
   }
 }
 
@@ -27,8 +28,8 @@
 
   .badge, .title, .description, .actions {
     opacity: 0;
-    transform: translateY(30px);
-    animation: reveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    transform: translateY(20px);
+    animation: reveal 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     animation-delay: var(--delay);
   }
 }
@@ -49,7 +50,7 @@
     height: 8px;
     background: v.$accent-yellow;
     border-radius: 50%;
-    box-shadow: 0 0 15px v.$accent-yellow;
+    box-shadow: 0 0 15px rgba(v.$accent-yellow, 0.3);
     animation: softPulse 2s infinite;
   }
 
@@ -85,20 +86,20 @@
     display: inline-block;
     color: transparent;
     -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
-    transition: all 0.5s v.$ease-m;
+    transition: all 0.4s var(--m-ease);
 
     &:hover {
       -webkit-text-stroke: 1px v.$accent-yellow;
-      filter: drop-shadow(0 0 10px rgba(v.$accent-yellow, 0.3));
+      filter: drop-shadow(0 0 10px rgba(v.$accent-yellow, 0.2));
     }
   }
 }
 
 .description {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   font-weight: 300;
-  line-height: 1.8;
-  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.5);
   max-width: 550px;
   margin-bottom: 50px;
 
@@ -131,10 +132,10 @@
       position: absolute;
       inset: 0;
       border-radius: 190px;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 40%, rgba(255, 255, 255, 0.05) 100%);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, transparent 40%);
       z-index: 3;
       pointer-events: none;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .heroImg {
@@ -142,188 +143,130 @@
       height: 100%;
       object-fit: cover;
       border-radius: 190px;
-      filter: grayscale(10%) contrast(1.05);
+      filter: grayscale(15%) contrast(1.05);
       animation: floatMain 8s ease-in-out infinite;
-      transition: all 0.8s v.$ease-m;
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+      transition: all 0.6s var(--m-ease);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
 
       &:hover {
         filter: grayscale(0%) contrast(1.1);
-        transform: scale(1.03) rotateY(-8deg);
-        box-shadow: 0 40px 80px rgba(v.$accent-yellow, 0.15);
+        transform: scale(1.02) rotateY(-5deg);
       }
     }
   }
 
   .blobGradient {
     position: absolute;
-    width: 130%;
-    height: 130%;
-    background: radial-gradient(circle, rgba(v.$accent-yellow, 0.07) 0%, transparent 70%);
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(v.$accent-yellow, 0.03) 0%, transparent 65%);
     z-index: 1;
-    filter: blur(60px);
-    animation: pulseGlow 5s ease-in-out infinite;
+    filter: blur(80px);
+    animation: pulseGlow 6s ease-in-out infinite;
+    pointer-events: none;
   }
 }
 
 .floatIcon {
   position: absolute;
   padding: 12px 20px;
-  background: rgba(15, 15, 15, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
+  background: rgba(15, 15, 15, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
   border-radius: 20px;
   display: flex;
   align-items: center;
   gap: 12px;
   color: v.$accent-yellow;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   z-index: 5;
-  transition: all 0.4s v.$ease-m;
+  transition: all 0.3s var(--m-ease);
   cursor: pointer;
 
   span {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 600;
     color: #fff;
     letter-spacing: 0.5px;
   }
 
   &:hover {
-    transform: translateY(-15px) scale(1.1) !important;
-    background: rgba(20, 20, 20, 0.8);
+    transform: translateY(-10px) scale(1.05) !important;
     border-color: v.$accent-yellow;
-    box-shadow: 0 15px 30px rgba(v.$accent-yellow, 0.2);
+    box-shadow: 0 10px 25px rgba(v.$accent-yellow, 0.15);
   }
 
-  &.react {
-    top: 0;
-    right: -5%;
-    animation: floatY 5s infinite ease-in-out;
-  }
-
-  &.js {
-    bottom: 15%;
-    left: -10%;
-    animation: floatY 6s infinite ease-in-out 1s;
-  }
-
-  &.ts {
-    top: 35%;
-    right: -15%;
-    animation: floatY 4.5s infinite ease-in-out 0.5s;
-  }
-
-  &.sass {
-    bottom: -5%;
-    right: 5%;
-    animation: floatY 7s infinite ease-in-out reverse;
-  }
-
-  &.bootstrap {
-    top: 10%;
-    left: -5%;
-    animation: floatY 5.5s infinite ease-in-out reverse 1.5s;
-  }
+  &.react { top: 0; right: -5%; animation: floatY 5s infinite ease-in-out; }
+  &.js { bottom: 15%; left: -10%; animation: floatY 6s infinite ease-in-out 1s; }
+  &.ts { top: 35%; right: -15%; animation: floatY 4.5s infinite ease-in-out 0.5s; }
+  &.sass { bottom: -5%; right: 5%; animation: floatY 7s infinite ease-in-out reverse; }
+  &.bootstrap { top: 10%; left: -5%; animation: floatY 5.5s infinite ease-in-out reverse 1.5s; }
 }
 
 .btnPrimary {
   background: v.$accent-yellow;
   color: #000;
-  padding: 18px 40px;
+  padding: 16px 35px;
   border-radius: 100px;
   font-weight: 700;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  transition: 0.4s v.$ease-m;
+  gap: 10px;
+  transition: 0.3s var(--m-ease);
 
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(v.$accent-yellow, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(v.$accent-yellow, 0.2);
   }
 }
 
 .btnOutline {
-  padding: 18px 40px;
+  padding: 16px 35px;
   border-radius: 100px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: #fff;
   text-decoration: none;
-  margin-left: 20px;
-  transition: 0.4s;
+  margin-left: 15px;
+  transition: 0.3s var(--m-ease);
 
   &:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: #fff;
-    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
   }
 }
 
 @keyframes reveal {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes floatMain {
-  0%, 100% {
-    transform: translateY(0) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-20px) rotate(1deg);
-  }
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(0.5deg); }
 }
 
 @keyframes floatY {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-25px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
 }
 
 @keyframes pulseGlow {
-  0%, 100% {
-    opacity: 0.4;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.7;
-    transform: scale(1.1);
-  }
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.05); }
 }
 
 @keyframes softPulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(v.$accent-yellow, 0.4);
-  }
-  70% {
-    box-shadow: 0 0 0 15px rgba(v.$accent-yellow, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(v.$accent-yellow, 0);
-  }
+  0% { box-shadow: 0 0 0 0 rgba(v.$accent-yellow, 0.2); }
+  70% { box-shadow: 0 0 0 10px rgba(v.$accent-yellow, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(v.$accent-yellow, 0); }
 }
 
 @media (max-width: 992px) {
   .visualWrapper {
-    margin-bottom: 50px;
-
-    .mainImageFrame {
-      width: 300px;
-      height: 400px;
-    }
+    margin-bottom: 40px;
+    .mainImageFrame { width: 280px; height: 380px; }
   }
-  .floatIcon {
-    display: none;
-  }
+  .floatIcon { display: none; }
 }

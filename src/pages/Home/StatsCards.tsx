@@ -1,6 +1,6 @@
 import React from 'react';
 import SkillChip from "./SkillChip";
-import styles from './StatsCards.module.scss';
+import styles from '../../styles/Home/StatsCards.module.scss';
 
 const StatsCard: React.FC = () => {
     const skills = [

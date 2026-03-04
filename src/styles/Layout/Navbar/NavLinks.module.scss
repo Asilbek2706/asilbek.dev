@@ -6,7 +6,8 @@
   height: 100%;
 
   @media (max-width: 991px) {
-    padding: 60px 0;
+    padding: 80px 0 40px;
+    justify-content: space-between;
   }
 }
 
@@ -20,44 +21,48 @@
   @media (max-width: 991px) {
     flex-direction: column;
     align-items: center;
-    gap: 35px;
-    margin-bottom: auto;
+    gap: 25px;
   }
 }
 
 .link {
   text-decoration: none;
-  color: v.$text-muted;
-  font-weight: 300;
-  font-size: 0.95rem;
+  color: v.$text-light !important; // Default holat
+  font-weight: 400;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
   position: relative;
-  transition: color 0.4s var(--m-ease);
-  letter-spacing: 0.5px;
+  transition: color 0.2s var(--m-ease); // 0.3s -> 0.2s (yana tezlashdi)
 
   @media (max-width: 991px) {
-    font-size: 1.8rem;
-    font-weight: 700;
-    letter-spacing: -1px;
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    text-transform: none;
     color: v.$text-light;
   }
 
+  // ✨ Hover chizig'ini qizil global stildan sariqqa majburlaymiz (Override)
   &::after {
     content: '';
     position: absolute;
     bottom: -5px;
-    left: 50%;
-    width: 0;
+    left: 0;
+    width: 100%;
     height: 1px;
-    background: v.$accent-yellow;
-    transition: width 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-    transform: translateX(-50%);
+    background: v.$accent-yellow !important; // Qizil emas, sariq!
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s var(--m-ease) !important; // Shiddatli chiqish
   }
 
   &:hover, &.active {
-    color: v.$text-light;
+    color: v.$accent-yellow !important; // Matn ham sariq bo'ladi
 
     &::after {
-      width: 100%;
+      transform: scaleX(1);
+      transform-origin: left;
     }
   }
 
@@ -65,53 +70,58 @@
     @media (max-width: 991px) {
       content: '';
       position: absolute;
-      left: -25px;
-      top: 50%;
-      width: 6px;
-      height: 6px;
+      left: -20px;
+      top: 55%;
+      width: 8px;
+      height: 2px;
       background: v.$accent-yellow;
-      border-radius: 50%;
       transform: translateY(-50%);
     }
   }
 }
 
-.socialLinks {
+// ❌ Raqamlarni (linkNumber) olib tashladik, agar komponentda bo'lsa ko'rinmaydi
+.linkNumber {
   display: none;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 20px;
 
   @media (max-width: 991px) {
-    display: flex;
     justify-content: center;
-    gap: 30px;
-    padding-top: 40px;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    width: 80%;
+    gap: 35px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    width: 60%;
     margin: 0 auto;
+  }
+
+  @media (min-width: 992px) {
+    display: none;
   }
 }
 
 .socialIcon {
-  color: v.$text-muted;
-  font-size: 1.4rem;
-  transition: 0.4s var(--m-ease);
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.2rem;
+  transition: 0.2s var(--m-ease);
 
   &:hover {
-    color: v.$accent-yellow;
-    transform: translateY(-5px);
+    color: v.$accent-yellow !important;
+    transform: translateY(-3px);
   }
 }
 
+// --- Animatsiyalar ---
 :global(.m-reveal) {
-  @media (max-width: 991px) {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
-  }
+  opacity: 0;
+  transform: translateY(10px); // Masofani kamaytirdik (tezroq tushadi)
+  transition: opacity 0.4s var(--m-ease), transform 0.4s var(--m-ease);
 }
 
 :global(.is-ready) :global(.m-reveal) {
-  @media (max-width: 991px) {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  opacity: 1;
+  transform: translateY(0);
 }

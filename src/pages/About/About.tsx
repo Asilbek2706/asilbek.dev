@@ -5,6 +5,7 @@ import { useAboutStore } from '../../store/useAboutStore';
 import HeroSection from './HeroSection';
 import PrinciplesSection from './PrinciplesSection';
 import SkillsSection from './SkillsSection';
+import styles from '../../styles/About/About.module.scss';
 
 const About: React.FC = () => {
     const storeAbout = useAboutStore((state) => state.aboutInfo);
@@ -14,27 +15,40 @@ const About: React.FC = () => {
         initialData: storeAbout || undefined,
     });
 
+    // 1. PREMIUM LOADING STATE
     if (isLoading && !about) return (
-        <div className="d-flex justify-content-center align-items-center vh-100">
-            <div className="spinner-grow text-primary"></div>
+        <div className={styles.loaderWrapper}>
+            <div className={styles.customLoader}>
+                <div className={styles.circle}></div>
+                <div className={styles.text}>Yuklanmoqda...</div>
+            </div>
         </div>
     );
 
+    // 2. PREMIUM ERROR STATE
     if (isError || !about) return (
-        <div className="container py-5 text-center mt-5">
-            <div className="glass-card p-5 border-danger border-opacity-25">
-                <i className="bi bi-exclamation-triangle fs-1 text-warning mb-3"></i>
-                <h3 className="fw-bold">Ma'lumot topilmadi</h3>
+        <div className={styles.errorWrapper}>
+            <div className={styles.errorCard}>
+                <i className="bi bi-cloud-slash"></i>
+                <h3>Ma'lumot uzatishda xatolik</h3>
+                <p>Server bilan bog'lanish imkoni bo'lmadi. Iltimos, sahifani yangilab ko'ring.</p>
+                <button onClick={() => window.location.reload()} className={styles.refreshBtn}>
+                    Yangilash
+                </button>
             </div>
         </div>
     );
 
     return (
-        <div className="about-modern-page bg-white">
+        <main className={styles.aboutPage}>
+            {/* Sahifaning orqa fonidagi umumiy nurli nuqtalar */}
+            <div className={styles.bgGlow}></div>
+
             <HeroSection about={about} />
+            <div className={styles.separator}></div>
             <PrinciplesSection />
             <SkillsSection />
-        </div>
+        </main>
     );
 };
 

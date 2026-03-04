@@ -1,0 +1,135 @@
+@use "../abstracts/variables" as v;
+
+.skillsWrapper {
+  padding: 60px 0;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+}
+
+.container {
+  max-width: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 50px;
+
+  .line {
+    flex: 1;
+    max-width: 100px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(v.$accent-yellow, 0.3));
+
+    &:last-child {
+      background: linear-gradient(to left, transparent, rgba(v.$accent-yellow, 0.3));
+    }
+  }
+
+  .title {
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin: 0;
+    opacity: 0.8;
+  }
+}
+
+.marqueeContainer {
+  position: relative;
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+  padding: 20px 0;
+
+  // ✨ Chekkalarni "yashirish" effekti (Fade)
+  .overlayLeft, .overlayRight {
+    position: absolute;
+    top: 0;
+    width: 150px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .overlayLeft {
+    left: 0;
+    background: linear-gradient(to right, #000, transparent); // Fon rangi qora bo'lsa
+  }
+
+  .overlayRight {
+    right: 0;
+    background: linear-gradient(to left, #000, transparent);
+  }
+}
+
+.marqueeContent {
+  display: flex;
+  gap: 30px;
+  white-space: nowrap;
+  animation: marqueeRun 40s linear infinite; // O'ta silliq harakat
+
+  &:hover {
+    animation-play-state: paused; // Hover qilinganda to'xtaydi
+  }
+}
+
+.skillChip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 28px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 100px;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(5px);
+
+  .dot {
+    width: 6px;
+    height: 6px;
+    background: v.$accent-yellow;
+    border-radius: 50%;
+    box-shadow: 0 0 10px v.$accent-yellow;
+  }
+
+  .skillName {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+  }
+
+  &:hover {
+    background: rgba(v.$accent-yellow, 0.1);
+    border-color: rgba(v.$accent-yellow, 0.3);
+    transform: translateY(-5px);
+
+    .skillName {
+      color: #fff;
+    }
+
+    .dot {
+      transform: scale(1.5);
+    }
+  }
+}
+
+@keyframes marqueeRun {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } // Faqat yarmi surilishi kerak cheksiz aylanish uchun
+}
+
+// Mobile uchun moslashuv
+@media (max-width: 768px) {
+  .marqueeContent {
+    animation-duration: 25s; // Tezroq harakat
+    gap: 15px;
+  }
+  .overlayLeft, .overlayRight { width: 60px; }
+}

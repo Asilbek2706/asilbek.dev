@@ -1,33 +1,35 @@
 import React from "react";
+import styles from "../../styles/About/SkillsSection.module.scss";
 
 const SkillsSection: React.FC = () => {
     const skills = [
         'React.js', 'TypeScript', 'JavaScript', 'HTML5/CSS3',
-        'Bootstrap 5', 'Tailwind CSS', 'Golang', 'Django',
-        'SQLite3', 'Git', 'Figma'
+        'Sass/SCSS', 'Tailwind CSS', 'Golang', 'Django',
+        'SQLite3', 'Git', 'Figma', 'Redux Toolkit'
     ];
 
-    const duplicatedSkills = [...skills, ...skills, ...skills, ...skills];
+    // Animatsiya uzluksiz bo'lishi uchun 2 marta takrorlash kifoya
+    const duplicatedSkills = [...skills, ...skills];
 
     return (
-        <section className="skills-section-manga">
-            <div className="skills-section-manga__container">
-                <div className="skills-section-manga__header">
-                    <h3 className="skills-section-manga__title">Texnik bilimlar</h3>
+        <section className={styles.skillsWrapper}>
+            <div className={styles.container}>
+                <div className={styles.header}>
+                    <div className={styles.line}></div>
+                    <h3 className={styles.title}>Texnik bilimlar</h3>
+                    <div className={styles.line}></div>
                 </div>
 
-                <div className="skills-section-manga__marquee">
-                    <div className="skills-section-manga__content">
+                <div className={styles.marqueeContainer}>
+                    {/* Chap va o'ng tomondagi "Fade" effekti uchun qatlamlar */}
+                    <div className={styles.overlayLeft}></div>
+                    <div className={styles.overlayRight}></div>
+
+                    <div className={styles.marqueeContent}>
                         {duplicatedSkills.map((skill, idx) => (
-                            <div key={`skill-1-${idx}`} className="skills-section-manga__chip">
-                                <span className="skills-section-manga__dot"></span>
-                                {skill}
-                            </div>
-                        ))}
-                        {skills.map((skill, idx) => (
-                            <div key={`skill-2-${idx}`} className="skills-section-manga__chip">
-                                <span className="skills-section-manga__dot"></span>
-                                {skill}
+                            <div key={idx} className={styles.skillChip}>
+                                <div className={styles.dot}></div>
+                                <span className={styles.skillName}>{skill}</span>
                             </div>
                         ))}
                     </div>

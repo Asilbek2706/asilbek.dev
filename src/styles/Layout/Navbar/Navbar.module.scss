@@ -6,14 +6,25 @@
   width: 100%;
   padding: 35px 0;
   z-index: 1000;
-  transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
+  // 0.5s juda sekin edi, 0.3s silliqlik va tezlik balansi
+  transition: 0.3s var(--m-ease);
 
-.scrolled {
-  padding: 15px 0;
-  background: rgba(v.$bg-dark, 0.9);
-  backdrop-filter: blur(15px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  // Boshlang'ich holat (is-ready bo'lguncha)
+  opacity: 0;
+  transform: translateY(-20px);
+
+  &.scrolled {
+    padding: 15px 0;
+    background: rgba(v.$bg-dark, 0.85); // Biroq shaffofroq
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  // AnimationContext'dan keladigan klass
+  &:global(.is-ready) {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .hamburger {
@@ -22,23 +33,26 @@
   border: none;
   cursor: pointer;
   z-index: 1100;
+  padding: 5px;
 
   span {
     display: block;
-    width: 25px;
+    width: 24px;
     height: 1px;
     background: v.$text-light;
-    margin: 8px 0;
-    transition: 0.3s;
+    margin: 6px 0;
+    transition: 0.2s var(--m-ease);
   }
 
   &.open {
     span:nth-child(1) {
-      transform: translateY(4.5px) rotate(45deg);
+      transform: translateY(3.5px) rotate(45deg);
+      background: v.$accent-yellow; // Rangli urg'u
     }
 
     span:nth-child(2) {
-      transform: translateY(-4.5px) rotate(-45deg);
+      transform: translateY(-3.5px) rotate(-45deg);
+      background: v.$accent-yellow;
     }
   }
 
@@ -57,7 +71,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: 0.6s cubic-bezier(0.8, 0, 0.2, 1);
+  // 0.6s dan 0.4s ga tushirildi - reaksiya tezligi oshdi
+  transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1050;
 
   &.show {
     right: 0;
@@ -72,4 +88,9 @@
   @media (max-width: 991px) {
     display: none;
   }
+}
+
+// ✨ Global m-reveal klassiga moslashuv
+:global(.m-reveal) {
+  will-change: transform, opacity;
 }

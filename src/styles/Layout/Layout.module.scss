@@ -5,22 +5,26 @@
   flex-direction: column;
   min-height: 100vh;
   position: relative;
-
   width: 100%;
   overflow-x: hidden;
+  // Fonni toza saqlash uchun spotlight gradientlarini shu yerda cheklaymiz
+  background-color: transparent; // Biroz to'qroq qora - premium ko'rinadi
 }
 
 .mainContent {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  animation: fadeIn 0.8s ease-out forwards;
+
+  // 0.8s dan 0.4s ga tushirdik - sahifa "shart" etib ochiladi
+  animation: revealContent 0.4s var(--m-ease) forwards;
+  will-change: opacity, transform;
 }
 
-@keyframes fadeIn {
+@keyframes revealContent {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(15px);
   }
   to {
     opacity: 1;
@@ -29,26 +33,27 @@
 }
 
 :global {
-  html {
-  }
-
   body {
     margin: 0;
     padding: 0;
-    background-color: #1a1a1a;
+    // Spotlight dog'ini yo'qotish uchun backgroundni mustahkamlaymiz
+    background-color: #0c0c0c !important;
+    color: v.$text-light;
   }
 
+  // Scrollbar - minimalist uslubda
   ::-webkit-scrollbar {
-    width: 6px;
+    width: 4px; // 6px dan 4px ga - yanada nozikroq
   }
 
   ::-webkit-scrollbar-track {
-    background: #1a1a1a;
+    background: #0c0c0c;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 2px;
+    transition: background 0.3s ease;
 
     &:hover {
       background: v.$accent-yellow;

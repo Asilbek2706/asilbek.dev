@@ -1,4 +1,4 @@
-@use "../../styles/abstracts/variables" as v;
+@use "../abstracts/variables" as v;
 
 .homeWrapper {
   animation: pageFadeIn 1s cubic-bezier(0.4, 0, 0.2, 1);

@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './SkillChip.module.scss';
+import styles from '../../styles/Home/SkillChip.module.scss';
 
 interface SkillChipProps {
     name: string;

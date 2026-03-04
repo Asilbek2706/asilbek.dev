@@ -1,5 +1,6 @@
 import React from 'react';
 import type { StatusState } from '../../types';
+import styles from '../../styles/Contact/ContactStatus.module.scss';
 
 interface ContactStatusProps {
     status: StatusState | null;
@@ -9,25 +10,25 @@ const ContactStatus: React.FC<ContactStatusProps> = ({ status }) => {
     if (!status) return null;
 
     const statusIcons: Record<StatusState['type'], string> = {
-        success: 'bi-check-all',
-        danger: 'bi-lightning-fill',
-        info: 'bi-shield-shaded'
+        success: 'bi-check2-circle',
+        danger: 'bi-exclamation-octagon',
+        info: 'bi-info-circle'
     };
 
     return (
-        <div className={`manga-status-alert manga-status-${status.type} f-u-mt-20`}>
-            <div className="manga-status-header">
-                <i className={`bi ${statusIcons[status.type]}`}></i>
-                <span className="manga-status-tag">SYSTEM_MESSAGE</span>
+        <div className={`${styles.statusWrapper} ${styles[status.type]}`}>
+            <div className={styles.statusContent}>
+                <div className={styles.iconBox}>
+                    <i className={`bi ${statusIcons[status.type]}`}></i>
+                </div>
+                <div className={styles.textBox}>
+                    <span className={styles.statusLabel}>
+                        {status.type === 'success' ? 'Muvaffaqiyatli' : 'Tizim xabari'}
+                    </span>
+                    <p className={styles.message}>{status.msg}</p>
+                </div>
             </div>
-            <div className="manga-status-body">
-                {status.msg}
-            </div>
-            <div className="manga-status-footer-lines">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <div className={styles.progressLine}></div>
         </div>
     );
 };

@@ -9,7 +9,7 @@ import SectionHeader from "./SectionHeader";
 import ProjectCard from "./ProjectCard";
 
 import type { Project } from '../../types';
-import styles from './Home.module.scss';
+import styles from '../../styles/Home/Home.module.scss';
 import {HomeProvider} from "../../context/pages/HomeContext.tsx";
 
 const Home: React.FC = () => {
