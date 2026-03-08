@@ -6,6 +6,7 @@ export default defineConfig({
   server: {
     allowedHosts: [
       'asilbek-karomatov.dev',
+       'asilbek.foo',
       'localhost'
     ],
     proxy: {
