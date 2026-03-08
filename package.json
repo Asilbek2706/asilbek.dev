@@ -1,7 +1,7 @@
 {
   "name": "asilbek-karomatov.dev",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "engines": {
     "node": "20.x"
@@ -9,9 +9,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "start": "vite preview --host 0.0.0.0 --port ${PORT:-5173}",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "start": "vite preview --host 0.0.0.0 --port $PORT",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@react-three/drei": "^10.7.7",
@@ -37,9 +36,9 @@
     "@types/react-dom": "^19.0.0",
     "@vitejs/plugin-react": "^4.3.4",
     "eslint": "^9.17.0",
-    "esbuild": "^0.27.3",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.16",
+    "esbuild": "^0.27.3",
     "globals": "^15.14.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.18.0",
