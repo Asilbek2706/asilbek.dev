@@ -264,3 +264,158 @@
   0%, 100% { opacity: 1; }
   50% { opacity: 0.3; }
 }
+
+
+@media (max-width: 1200px) {
+  .aboutHero {
+    padding-top: 120px;
+    margin-bottom: 40px;
+
+    .imageContainer {
+      margin-top: 80px;
+      .imageFrame {
+        width: 300px;
+        height: 400px;
+      }
+    }
+
+    .infoWrapper {
+      .mainTitle {
+        font-size: 4rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .aboutHero {
+    flex-direction: column;
+    text-align: center;
+    padding: 60px 0;
+
+    .imageContainer {
+      margin-bottom: 60px;
+
+      .expBadge {
+        right: -10px;
+        bottom: 20px;
+        padding: 12px 20px;
+
+        .expIcon { font-size: 1.5rem; }
+        .expTitle { font-size: 1rem; }
+      }
+    }
+
+    .infoWrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .leadText {
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .contactGrid {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .footer {
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .aboutHero {
+    .imageContainer {
+      .imageFrame {
+        width: 260px;
+        height: 360px;
+      }
+
+      .abstractShape {
+        filter: blur(30px);
+      }
+    }
+
+    .infoWrapper {
+      .mainTitle {
+        font-size: 3rem;
+        margin-bottom: 20px;
+      }
+
+      .contactGrid {
+        grid-template-columns: 1fr;
+        width: 100%;
+      }
+
+      .contactCard {
+        padding: 18px;
+        justify-content: flex-start;
+        text-align: left;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .aboutHero {
+    padding: 40px 0;
+
+    .imageContainer {
+      .imageFrame {
+        width: 220px;
+        height: 300px;
+      }
+
+      .expBadge {
+        right: -5px;
+        padding: 10px 15px;
+        gap: 10px;
+
+        .expIcon { font-size: 1.2rem; }
+        .expTitle { font-size: 0.9rem; }
+      }
+    }
+
+    .infoWrapper {
+      .metaBadge {
+        margin-bottom: 15px;
+        padding: 4px 12px;
+      }
+
+      .mainTitle {
+        font-size: 2.2rem;
+      }
+
+      .leadText {
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+
+      .footer {
+        .socialBtn {
+          width: 42px;
+          height: 42px;
+          font-size: 1.1rem;
+        }
+      }
+    }
+  }
+}
+
+@media (hover: none) {
+  .aboutHero .imageContainer .imageFrame:hover .profileImg {
+    transform: none;
+  }
+
+  .aboutHero .infoWrapper .contactCard:hover {
+    transform: none;
+  }
+}

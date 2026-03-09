@@ -20,12 +20,13 @@
   align-items: center;
   gap: 15px;
   color: v.$text-muted;
+  text-decoration: none;
   font-weight: 200;
   font-size: 0.95rem;
   transition: all 0.3s ease;
 
   i {
-    width: 32px;
+    width: 50px;
     height: 32px;
     display: flex;
     align-items: center;
@@ -45,5 +46,74 @@
       color: #000;
       transform: scale(1.1);
     }
+  }
+}
+
+@media (max-width: 1024px) {
+  .title {
+    font-size: 0.85rem;
+    margin-bottom: 25px;
+  }
+
+  .contactList {
+    gap: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 0.8rem;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+  }
+
+  .contactList {
+    gap: 16px;
+  }
+
+  .contactItem {
+    font-size: 0.9rem;
+    gap: 12px;
+
+    i {
+      width: 30px;
+      height: 30px;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .contactList {
+    align-items: center;
+  }
+
+  .contactItem {
+    width: 100%;
+    justify-content: center;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 12px;
+
+    i {
+      background: rgba(v.$accent-yellow, 0.1);
+    }
+  }
+}
+
+@media (max-height: 450px) and (orientation: landscape) {
+  .contactList {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+
+  .title {
+    margin-bottom: 15px;
   }
 }

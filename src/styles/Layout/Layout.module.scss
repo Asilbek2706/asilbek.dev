@@ -7,8 +7,7 @@
   position: relative;
   width: 100%;
   overflow-x: hidden;
-  // Fonni toza saqlash uchun spotlight gradientlarini shu yerda cheklaymiz
-  background-color: transparent; // Biroz to'qroq qora - premium ko'rinadi
+  background-color: transparent;
 }
 
 .mainContent {
@@ -16,7 +15,6 @@
   display: flex;
   flex-direction: column;
 
-  // 0.8s dan 0.4s ga tushirdik - sahifa "shart" etib ochiladi
   animation: revealContent 0.4s var(--m-ease) forwards;
   will-change: opacity, transform;
 }
@@ -36,14 +34,12 @@
   body {
     margin: 0;
     padding: 0;
-    // Spotlight dog'ini yo'qotish uchun backgroundni mustahkamlaymiz
     background-color: #0c0c0c !important;
     color: v.$text-light;
   }
 
-  // Scrollbar - minimalist uslubda
   ::-webkit-scrollbar {
-    width: 4px; // 6px dan 4px ga - yanada nozikroq
+    width: 4px;
   }
 
   ::-webkit-scrollbar-track {
@@ -58,5 +54,68 @@
     &:hover {
       background: v.$accent-yellow;
     }
+  }
+}
+
+@media (max-width: 1024px) {
+  .mainContent {
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .layoutWrapper {
+    overflow-x: hidden;
+  }
+
+  .mainContent {
+    padding: 0 15px;
+    animation-duration: 0.6s;
+  }
+
+  :global {
+    ::-webkit-scrollbar {
+      display: none;
+    }
+
+    body {
+      -webkit-tap-highlight-color: transparent;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .mainContent {
+    padding: 0 10px;
+    transform: translateY(10px);
+  }
+
+  @keyframes revealContent {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mainContent {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-height: 450px) and (orientation: landscape) {
+  .layoutWrapper {
+    min-height: auto;
+  }
+
+  .mainContent {
+    padding-bottom: 40px;
   }
 }

@@ -16,10 +16,75 @@
     transform: translateY(-2px);
   }
 
-  i { font-size: 1.1rem; }
+  i {
+    font-size: 1.1rem;
+  }
+
   .name {
     color: v.$text-muted;
     font-weight: 200;
     font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .chip {
+    padding: 8px 16px;
+    gap: 10px;
+
+    i {
+      font-size: 1rem;
+    }
+
+    .name {
+      font-size: 0.85rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .chip {
+    padding: 7px 14px;
+    border-radius: 10px;
+
+    i {
+      font-size: 0.95rem;
+    }
+
+    .name {
+      font-size: 0.8rem;
+    }
+
+    &:hover {
+      transform: none;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .chip {
+    padding: 6px 12px;
+    gap: 8px;
+    width: 100%;
+    justify-content: center;
+
+    i {
+      font-size: 0.9rem;
+    }
+
+    .name {
+      font-size: 0.75rem;
+      letter-spacing: 0.5px;
+    }
+  }
+}
+
+@media (max-height: 450px) and (orientation: landscape) {
+  .chip {
+    padding: 5px 10px;
+
+    .name {
+      font-size: 0.8rem;
+    }
   }
 }

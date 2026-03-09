@@ -25,7 +25,7 @@
 }
 
 .mangaTitle {
-  font-weight: 200; // Yupqa shrift
+  font-weight: 200;
   font-size: 1.5rem;
   letter-spacing: 4px;
   color: rgba(255, 255, 255, 0.1);
@@ -98,5 +98,79 @@
 @keyframes blink {
   50% {
     opacity: 0;
+  }
+}
+
+@media (max-width: 1024px) {
+  .mangaTitle {
+    font-size: 1.3rem;
+    letter-spacing: 3px;
+  }
+
+  .progressBar {
+    width: 180px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mangaTitle {
+    font-size: 1.15rem;
+    letter-spacing: 2px;
+  }
+
+  .progressBar {
+    width: 160px;
+  }
+
+  .statusCode {
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    gap: 15px;
+  }
+
+  .mangaTitle {
+    font-size: 1rem;
+    letter-spacing: 1.5px;
+
+    &::before {
+      border-right-width: 1.5px;
+    }
+  }
+
+  .progressBar {
+    width: 140px;
+    height: 1px;
+  }
+
+  .statusCode {
+    font-size: 0.6rem;
+    margin-top: 8px;
+  }
+}
+
+@media (max-height: 450px) and (orientation: landscape) {
+  .content {
+    flex-direction: row;
+    gap: 30px;
+    align-items: center;
+  }
+
+  .statusCode {
+    margin-top: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mangaTitle::before,
+  .progressFill,
+  .blink {
+    animation: none;
+    width: 100%;
+    transform: none;
+    opacity: 1;
   }
 }

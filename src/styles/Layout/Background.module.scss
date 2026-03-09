@@ -32,7 +32,7 @@
   width: 100%;
   height: 100%;
   color: rgba(255, 255, 255, 0.07);
-  animation: rotateSlow 100s linear infinite;
+  animation: rotateSlow 70s linear infinite;
   filter: blur(30px);
 }
 
@@ -52,5 +52,81 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 1200px) {
+  .shapeWrapper {
+    right: -15%;
+    width: 100vh;
+    height: 100vh;
+  }
+}
+
+@media (max-width: 991px) {
+  .shapeWrapper {
+    right: -20%;
+    width: 90vh;
+    height: 90vh;
+    opacity: 0.8;
+  }
+
+  .overlay {
+    background: radial-gradient(
+                    circle at 80% 50%,
+                    transparent 0%,
+                    #121212 90%
+    );
+  }
+}
+
+@media (max-width: 768px) {
+  .shapeWrapper {
+    top: 60%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    width: 70vh;
+    height: 70vh;
+    filter: blur(20px);
+  }
+
+  .spiralSvg {
+    animation: rotateSlow 60s linear infinite;
+  }
+
+  .overlay {
+    background: radial-gradient(
+                    circle at 50% 60%,
+                    rgba(18, 18, 18, 0.4) 0%,
+                    #121212 100%
+    );
+  }
+}
+
+@media (max-width: 480px) {
+  .shapeWrapper {
+    top: 50%;
+    width: 60vh;
+    height: 60vh;
+  }
+
+  .spiralSvg {
+    color: rgba(255, 255, 255, 0.05);
+  }
+}
+
+@media (max-height: 450px) and (orientation: landscape) {
+  .shapeWrapper {
+    width: 120vh;
+    height: 120vh;
+    right: -25%;
+  }
+
+  .overlay {
+    background: radial-gradient(
+                    circle at 85% 50%,
+                    transparent 0%,
+                    #121212 85%
+    );
   }
 }
