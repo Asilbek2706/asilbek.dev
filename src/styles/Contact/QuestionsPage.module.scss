@@ -134,10 +134,11 @@
 .messageStack {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 60px;
 }
 
 .threadGroup {
+  position: relative;
   opacity: 0;
   transform: translateY(25px);
   animation: reveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -149,6 +150,8 @@
   border: 1px solid rgba(255, 255, 255, 0.06);
   padding: 24px 30px;
   border-radius: 22px 22px 22px 5px;
+  position: relative;
+  z-index: 5;
   transition: all 0.3s ease;
 
   &:hover {
@@ -186,17 +189,33 @@
 
 .adminReply {
   display: flex;
-  margin-left: 40px;
-  margin-top: 12px;
+  margin-left: 60px;
+  margin-top: 20px;
   gap: 20px;
+  position: relative;
 
   .connectorLine {
-    width: 20px;
-    height: 40px;
-    border-left: 1.5px solid rgba(v.$accent-yellow, 0.2);
-    border-bottom: 1.5px solid rgba(v.$accent-yellow, 0.2);
-    border-radius: 0 0 0 16px;
-    margin-top: -20px;
+    position: absolute;
+    top: -55px;
+    left: -35px;
+    width: 35px;
+    height: 85px;
+    border-left: 2px solid rgba(v.$accent-yellow, 0.25);
+    border-bottom: 2px solid rgba(v.$accent-yellow, 0.25);
+    border-bottom-left-radius: 20px;
+    z-index: 1;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      right: -2px;
+      width: 6px;
+      height: 6px;
+      background: v.$accent-yellow;
+      border-radius: 50%;
+      box-shadow: 0 0 12px v.$accent-yellow;
+    }
   }
 
   .replyBox {
@@ -205,6 +224,8 @@
     border: 1px solid rgba(v.$accent-yellow, 0.15);
     padding: 20px 25px;
     border-radius: 5px 22px 22px 22px;
+    position: relative;
+    z-index: 5;
 
     .replyHeader {
       display: flex;
@@ -314,15 +335,170 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
   .pageWrapper {
-    padding-top: 100px;
+    padding: 120px 24px 80px;
+  }
+  .header {
+    margin-bottom: 60px;
+  }
+  .listSection {
+    max-width: 750px;
+  }
+}
+
+@media (max-width: 992px) {
+  .titleGroup .mainTitle {
+    font-size: 3.5rem;
   }
   .statsBar {
     gap: 20px;
     padding: 15px 25px;
   }
+}
+
+@media (max-width: 768px) {
+  .pageWrapper {
+    padding: 100px 16px 60px;
+  }
+  .backBtn {
+    padding: 10px 20px;
+    margin-bottom: 30px;
+  }
+  .header {
+    margin-bottom: 40px;
+  }
+  .titleGroup {
+    .mainTitle {
+      font-size: 2.8rem;
+    }
+
+    .description {
+      font-size: 0.9rem;
+      margin-top: 15px;
+    }
+  }
+  .statsBar {
+    margin-top: 30px;
+    gap: 15px;
+    padding: 12px 20px;
+
+    .statItem .value {
+      font-size: 1rem;
+    }
+  }
+  .messageStack {
+    gap: 45px;
+  }
+  .userCard {
+    padding: 20px;
+    border-radius: 18px 18px 18px 5px;
+
+    .cardHeader .userName {
+      font-size: 0.9rem;
+    }
+  }
   .adminReply {
-    margin-left: 20px;
+    margin-left: 45px;
+    margin-top: 20px;
+    gap: 15px;
+
+    .connectorLine {
+      left: -28px;
+      width: 25px;
+      height: 75px;
+      top: -50px;
+      display: block !important;
+    }
+
+    .replyBox {
+      padding: 15px 20px;
+      border-radius: 5px 18px 18px 18px;
+
+      .answerText {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .pageWrapper {
+    padding-top: 80px;
+  }
+  .backBtn {
+    align-self: center;
+    margin-bottom: 20px;
+  }
+  .titleGroup .mainTitle {
+    font-size: 2.2rem;
+    letter-spacing: -1px;
+  }
+  .statsBar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    gap: 15px;
+    padding: 15px;
+
+    .divider {
+      display: none;
+    }
+
+    .statItem {
+      align-items: center;
+      text-align: center;
+    }
+  }
+  .adminReply {
+    margin-left: 25px;
+    margin-top: 20px;
+    gap: 10px;
+
+    .connectorLine {
+      display: block !important;
+      left: -18px;
+      width: 18px;
+      height: 70px;
+      top: -45px;
+    }
+
+    .replyBox {
+      border-radius: 15px;
+      padding: 15px;
+    }
+  }
+  .emptyState {
+    padding: 60px 0;
+
+    i {
+      font-size: 2.5rem;
+    }
+
+    h3 {
+      font-size: 1rem;
+    }
+  }
+  .pageFooter {
+    margin-top: 60px;
+    font-size: 0.75rem;
+  }
+}
+
+@media (hover: none) {
+  .backBtn:hover {
+    transform: none;
+  }
+  .userCard:hover {
+    background: rgba(255, 255, 255, 0.02);
+    border-color: rgba(255, 255, 255, 0.06);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .threadGroup, .pulse, .skeletonItem {
+    animation: none;
+    opacity: 1;
+    transform: none;
   }
 }

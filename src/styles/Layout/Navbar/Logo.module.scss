@@ -10,3 +10,35 @@
   transition: opacity 0.3s ease;
   &:hover { opacity: 0.7; }
 }
+
+
+@media (max-width: 1024px) {
+  .logoText {
+    font-size: 1.1rem;
+    letter-spacing: 0.8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .logoText {
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+
+    .dot {
+      font-size: 1.1rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .logoText {
+    font-size: 0.95rem;
+    font-weight: 300;
+  }
+}
+
+@media (hover: none) {
+  .logoText:hover {
+    opacity: 1;
+  }
+}

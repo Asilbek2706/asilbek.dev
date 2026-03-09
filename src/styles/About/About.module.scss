@@ -6,7 +6,6 @@
   min-height: 100vh;
   overflow-x: hidden;
 
-  // Sahifa bo'ylab sochilgan mayin nur
   .bgGlow {
     position: absolute;
     top: 20%;
@@ -108,5 +107,98 @@
 @keyframes spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 1024px) {
+  .aboutPage {
+    .bgGlow {
+      width: 350px;
+      height: 350px;
+      right: -20%;
+    }
+  }
+
+  .errorWrapper {
+    .errorCard {
+      padding: 40px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .aboutPage {
+    .bgGlow {
+      width: 250px;
+      top: 10%;
+      filter: blur(60px);
+    }
+  }
+
+  .loaderWrapper {
+    .customLoader {
+      .circle {
+        width: 40px;
+        height: 40px;
+      }
+      .text {
+        font-size: 0.7rem;
+        letter-spacing: 2px;
+      }
+    }
+  }
+
+  .errorWrapper {
+    padding: 15px;
+
+    .errorCard {
+      max-width: 100%;
+      padding: 30px 20px;
+      border-radius: 20px;
+
+      i {
+        font-size: 2.5rem;
+      }
+
+      h3 {
+        font-size: 1.2rem;
+      }
+
+      p {
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .aboutPage {
+    .bgGlow {
+      width: 180px;
+      right: -30%;
+      opacity: 0.5;
+    }
+  }
+
+  .errorWrapper {
+    .errorCard {
+      padding: 25px 15px;
+
+      .refreshBtn {
+        width: 100%;
+        padding: 14px;
+      }
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .customLoader .circle {
+    animation-duration: 2s;
+  }
+
+  .errorCard .refreshBtn:hover {
+    transform: none;
   }
 }

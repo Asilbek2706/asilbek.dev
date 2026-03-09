@@ -1,6 +1,5 @@
 @use "../abstracts/variables" as v;
 
-// --- Loading State ---
 .loadingWrapper {
   padding: 100px 0;
   display: flex;
@@ -34,7 +33,6 @@
   }
 }
 
-// --- Error State ---
 .errorCard {
   background: rgba(255, 77, 77, 0.03);
   border: 1px solid rgba(255, 77, 77, 0.1);
@@ -82,7 +80,6 @@
   }
 }
 
-// --- Empty State ---
 .emptyBox {
   padding: 80px 0;
   text-align: center;
@@ -111,7 +108,6 @@
   }
 }
 
-// Animations
 @keyframes bounce {
   to { transform: translateY(-20px); opacity: 0.5; }
 }
@@ -125,4 +121,159 @@
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-20px); }
+}
+
+@media (max-width: 1200px) {
+  .loadingWrapper {
+    padding: 80px 0;
+  }
+
+  .errorCard {
+    padding: 50px;
+    max-width: 450px;
+  }
+}
+
+@media (max-width: 991px) {
+  .loadingWrapper {
+    padding: 60px 0;
+  }
+
+  .errorCard {
+    padding: 40px;
+    margin: 30px auto;
+  }
+
+  .emptyBox {
+    padding: 60px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .loadingWrapper {
+    padding: 50px 0;
+
+    .loader {
+      gap: 10px;
+      margin-bottom: 25px;
+
+      .circle {
+        width: 12px;
+        height: 12px;
+      }
+    }
+
+    .loadingText {
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+    }
+  }
+
+  .errorCard {
+    padding: 35px 25px;
+    border-radius: 24px;
+    max-width: 90%;
+
+    .errorIcon {
+      font-size: 2.5rem;
+    }
+
+    .errorTitle {
+      font-size: 1.25rem;
+    }
+
+    .errorDesc {
+      font-size: 0.9rem;
+      margin-bottom: 25px;
+    }
+  }
+
+  .emptyBox {
+    padding: 50px 0;
+
+    .ghostIcon {
+      font-size: 3rem;
+    }
+
+    .emptyText {
+      font-size: 1rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .loadingWrapper {
+    .loader .circle {
+      width: 10px;
+      height: 10px;
+    }
+
+    .loadingText {
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+    }
+  }
+
+  .errorCard {
+    padding: 30px 20px;
+
+    .errorIcon {
+      font-size: 2.2rem;
+    }
+
+    .retryBtn {
+      width: 100%;
+      padding: 12px 20px;
+      font-size: 0.75rem;
+    }
+  }
+
+  .emptyBox {
+    .ghostIcon {
+      font-size: 2.5rem;
+    }
+
+    .emptyText {
+      font-size: 0.9rem;
+    }
+
+    .line {
+      width: 40px;
+    }
+  }
+
+  @keyframes bounce {
+    to { transform: translateY(-15px); opacity: 0.5; }
+  }
+}
+
+@media (max-height: 450px) and (orientation: landscape) {
+  .loadingWrapper, .emptyBox {
+    padding: 30px 0;
+  }
+
+  .errorCard {
+    margin: 20px auto;
+    padding: 25px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    max-width: 600px;
+    gap: 30px;
+
+    .errorIcon {
+      margin-bottom: 0;
+    }
+
+    .errorDesc {
+      margin-bottom: 15px;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .circle, .errorIcon, .ghostIcon {
+    animation: none;
+  }
 }

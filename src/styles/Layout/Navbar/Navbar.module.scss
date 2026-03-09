@@ -6,21 +6,18 @@
   width: 100%;
   padding: 35px 0;
   z-index: 1000;
-  // 0.5s juda sekin edi, 0.3s silliqlik va tezlik balansi
   transition: 0.3s var(--m-ease);
 
-  // Boshlang'ich holat (is-ready bo'lguncha)
   opacity: 0;
   transform: translateY(-20px);
 
   &.scrolled {
     padding: 15px 0;
-    background: rgba(v.$bg-dark, 0.85); // Biroq shaffofroq
+    background: rgba(v.$bg-dark, 0.85);
     backdrop-filter: blur(15px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   }
 
-  // AnimationContext'dan keladigan klass
   &:global(.is-ready) {
     opacity: 1;
     transform: translateY(0);
@@ -47,17 +44,13 @@
   &.open {
     span:nth-child(1) {
       transform: translateY(3.5px) rotate(45deg);
-      background: v.$accent-yellow; // Rangli urg'u
+      background: v.$accent-yellow;
     }
 
     span:nth-child(2) {
       transform: translateY(-3.5px) rotate(-45deg);
       background: v.$accent-yellow;
     }
-  }
-
-  @media (max-width: 991px) {
-    display: block;
   }
 }
 
@@ -71,16 +64,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  // 0.6s dan 0.4s ga tushirildi - reaksiya tezligi oshdi
   transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 1050;
 
   &.show {
     right: 0;
-  }
-
-  @media (min-width: 992px) {
-    display: none;
   }
 }
 
@@ -90,7 +78,113 @@
   }
 }
 
-// ✨ Global m-reveal klassiga moslashuv
 :global(.m-reveal) {
   will-change: transform, opacity;
+}
+
+@media (min-width: 992px) {
+  .mobileMenu {
+    display: none;
+  }
+}
+
+@media (max-width: 991px) {
+  .navbar {
+    padding: 20px 0;
+
+    &.scrolled {
+      padding: 12px 0;
+    }
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .mobileMenu {
+    align-items: flex-start;
+    justify-content: center;
+    padding: 100px 40px 40px;
+
+    .navWrapper {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .navList {
+      flex-direction: column;
+      gap: 30px;
+
+      .link {
+        font-size: 1.2rem;
+        display: block;
+      }
+    }
+
+    .socialLinks {
+      display: flex;
+      gap: 20px;
+      padding-top: 30px;
+      margin-top: auto;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      width: 100%;
+
+      .socialIcon {
+        font-size: 1.5rem;
+        color: v.$text-light;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 50px 0;
+  }
+
+  .mobileMenu {
+    padding: 80px 25px 30px;
+
+    .navList {
+      gap: 20px;
+
+      .link {
+        font-size: 1rem;
+        letter-spacing: 1.5px;
+      }
+    }
+
+    .socialLinks {
+      padding-top: 20px;
+
+      .socialIcon {
+        font-size: 1.3rem;
+      }
+    }
+  }
+}
+
+@media (max-height: 450px) and (orientation: landscape) {
+  .mobileMenu {
+    padding: 60px 40px 20px;
+
+    .navWrapper {
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .navList {
+      gap: 15px;
+    }
+
+    .socialLinks {
+      border-top: none;
+      border-left: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 0 0 0 20px;
+      margin-top: 0;
+    }
+  }
 }

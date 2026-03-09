@@ -79,3 +79,84 @@
   border-radius: 100px;
   letter-spacing: 1px;
 }
+
+@media (max-width: 1024px) {
+  .footer {
+    padding-top: 60px;
+  }
+
+  .ctaBox {
+    padding: 30px;
+
+    h5 {
+      font-size: 1.15rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding-top: 40px;
+  }
+
+  .mainContent {
+    padding-bottom: 40px;
+  }
+
+  .ctaBox {
+    text-align: center;
+    border-radius: 20px;
+
+    p {
+      font-size: 0.85rem;
+    }
+  }
+
+  .copyright {
+    padding: 25px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding-top: 30px;
+  }
+
+  .ctaBox {
+    padding: 25px 20px;
+
+    h5 {
+      font-size: 1.1rem;
+    }
+  }
+
+  .btnCta {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+
+  .copyText {
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+
+  .mangaBadge {
+    font-size: 0.7rem;
+    padding: 4px 12px;
+  }
+}
+
+@media (max-height: 450px) and (orientation: landscape) {
+  .footer {
+    padding-top: 20px;
+  }
+
+  .mainContent {
+    padding-bottom: 20px;
+  }
+}

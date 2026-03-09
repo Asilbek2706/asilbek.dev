@@ -47,7 +47,6 @@
   overflow: hidden;
   padding: 20px 0;
 
-  // ✨ Chekkalarni "yashirish" effekti (Fade)
   .overlayLeft, .overlayRight {
     position: absolute;
     top: 0;
@@ -59,7 +58,7 @@
 
   .overlayLeft {
     left: 0;
-    background: linear-gradient(to right, #000, transparent); // Fon rangi qora bo'lsa
+    background: linear-gradient(to right, #000, transparent);
   }
 
   .overlayRight {
@@ -72,10 +71,10 @@
   display: flex;
   gap: 30px;
   white-space: nowrap;
-  animation: marqueeRun 40s linear infinite; // O'ta silliq harakat
+  animation: marqueeRun 40s linear infinite;
 
   &:hover {
-    animation-play-state: paused; // Hover qilinganda to'xtaydi
+    animation-play-state: paused;
   }
 }
 
@@ -122,14 +121,102 @@
 
 @keyframes marqueeRun {
   0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); } // Faqat yarmi surilishi kerak cheksiz aylanish uchun
+  100% { transform: translateX(-50%); }
 }
 
-// Mobile uchun moslashuv
-@media (max-width: 768px) {
-  .marqueeContent {
-    animation-duration: 25s; // Tezroq harakat
-    gap: 15px;
+/* --- SKILLS MARQUEE RESPONSIVE --- */
+
+@media (max-width: 1024px) {
+  .skillsWrapper {
+    padding: 40px 0;
   }
-  .overlayLeft, .overlayRight { width: 60px; }
+
+  .marqueeContainer {
+    .overlayLeft, .overlayRight {
+      width: 100px; // Shaffoflik (gradient) maydonini biroz kamaytiramiz
+    }
+  }
+
+  .skillChip {
+    padding: 12px 24px;
+
+    .skillName {
+      font-size: 1rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    margin-bottom: 30px;
+    padding: 0 20px;
+
+    .line {
+      max-width: 60px; // Chiziqlar mobilda qisqaradi
+    }
+
+    .title {
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+    }
+  }
+
+  .marqueeContent {
+    gap: 20px; // Chiplar orasidagi masofa kamayadi
+    animation-duration: 30s; // Kichik ekranda tezlikni biroz oshirish (yoki kamaytirish mumkin)
+  }
+
+  .skillChip {
+    padding: 10px 20px;
+    gap: 10px;
+
+    .skillName {
+      font-size: 0.9rem;
+    }
+
+    .dot {
+      width: 5px;
+      height: 5px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .skillsWrapper {
+    padding: 30px 0;
+  }
+
+  .marqueeContainer {
+    padding: 15px 0;
+
+    .overlayLeft, .overlayRight {
+      width: 60px; // Gradientni yanada qisqartiramiz
+    }
+  }
+
+  .skillChip {
+    padding: 8px 16px;
+
+    .skillName {
+      font-size: 0.85rem;
+    }
+
+    // Mobilda hover effektini kamaytiramiz
+    &:hover {
+      transform: translateY(-3px);
+    }
+  }
+
+  .header {
+    .title {
+      font-size: 0.8rem;
+    }
+  }
+}
+
+// Mobilda barmog'i bilan to'xtatganda (touch) animatsiya to'xtashi uchun
+@media (hover: none) {
+  .marqueeContent:active {
+    animation-play-state: paused;
+  }
 }

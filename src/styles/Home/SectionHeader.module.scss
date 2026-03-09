@@ -30,3 +30,82 @@
   background: v.$accent-yellow;
   margin-top: 15px;
 }
+
+@media (max-width: 1200px) {
+  .header {
+    margin-bottom: 40px;
+  }
+
+  .title {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 991px) {
+  .header {
+    margin-bottom: 35px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    margin-bottom: 30px;
+    padding: 0 15px;
+
+    &.centered {
+      .underline {
+        margin-top: 12px;
+      }
+    }
+  }
+
+  .subtitle {
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+
+  .title {
+    font-size: 1.75rem;
+    letter-spacing: -0.5px;
+  }
+
+  .underline {
+    width: 35px;
+    margin-top: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    margin-bottom: 25px;
+  }
+
+  .subtitle {
+    font-size: 0.65rem;
+    letter-spacing: 1.5px;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .underline {
+    width: 30px;
+    margin-top: 10px;
+  }
+}
+
+@media (max-height: 450px) and (orientation: landscape) {
+  .header {
+    margin-bottom: 20px;
+  }
+
+  .title {
+    font-size: 1.4rem;
+  }
+}

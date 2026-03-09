@@ -12,8 +12,7 @@ const HeroSection: React.FC<Props> = ({ about }) => {
             <div className="container">
                 <div className="row g-5 align-items-center">
 
-                    {/* 1. IMAGE QISMI */}
-                    <div className="col-lg-5">
+                    <div className="col-lg-5 mb-20">
                         <div className={styles.imageContainer}>
                             <div className={styles.abstractShape}></div>
                             <div className={styles.imageFrame}>
