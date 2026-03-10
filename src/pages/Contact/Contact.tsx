@@ -24,7 +24,6 @@ const ContactContent: React.FC = () => {
     const { data: questions } = useQuery<Question[]>({
         queryKey: ['questions'],
         queryFn: getQuestions,
-        refetchInterval: 10000,
     });
 
     useEffect(() => {
