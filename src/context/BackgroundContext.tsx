@@ -1,4 +1,4 @@
-import React, {createContext, useContext, useState} from 'react';
+import {createContext, type FC, type ReactNode, useContext, useState} from 'react';
 
 interface BackgroundContextType {
     variant: 'default' | 'spiral' | 'dots';
@@ -7,7 +7,7 @@ interface BackgroundContextType {
 
 const BackgroundContext = createContext<BackgroundContextType | undefined>(undefined);
 
-export const BackgroundProvider: React.FC<{ children: React.ReactNode }> = ({children}) => {
+export const BackgroundProvider: FC<{ children: ReactNode }> = ({children}) => {
     const [variant, setVariant] = useState<'default' | 'spiral' | 'dots'>('default');
 
     return (
